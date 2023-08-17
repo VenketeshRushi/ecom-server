@@ -41,3 +41,17 @@ model Order {
   userId     Int
   createdAt  DateTime @default(now())
 }
+
+model Product {
+  id          Int      @id @default(autoincrement())
+  title       String
+  gender      String
+  description String
+  category    String
+  price       Int
+  size        String[]
+  color       String
+  rating      Float
+  img         String[]
+}
+
