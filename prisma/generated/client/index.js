@@ -121,6 +121,11 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
@@ -143,7 +148,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/vowelweb/Desktop/abc/prisma/generated/client",
+      "value": "/home/vowelweb/Desktop/VR/test-cc/ecom-server/prisma/generated/client",
       "fromEnvVar": null
     },
     "config": {
@@ -169,7 +174,7 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "mysql",
+  "activeProvider": "postgresql",
   "dataProxy": false
 }
 
