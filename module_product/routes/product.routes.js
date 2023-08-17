@@ -3,15 +3,15 @@ const router = express.Router();
 
 const handleErrors = require("../middleware/handleErrors");
 const authorization = require("../../module_auth/middleware/authorization");
-const productController = require("../controllers/UserController");
+const productController = require("../controllers/ProductController");
 
 // HANDLING ERRORS
 router.use(handleErrors);
 
 // GET ALL PRODUCTS
-router.post("/register", authorization, productController.getAllProducts);
+router.get("/getallproducts", productController.getAllProducts);
 
 // GET SPECIFIC CATEGORY PRODUCTS
-router.post("/login", authorization, productController.async);
+router.get("/getfourproducts", productController.getProductsByVerity);
 
 module.exports = router;
