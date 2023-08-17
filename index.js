@@ -1,8 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 
-const AuthApiRoutes = require("./module_auth/routes/auth.routes");
 const prisma = require("./db.server");
+
+const AuthApiRoutes = require("./module_auth/routes/auth.routes");
+const ProductApiRoutes = require("./module_product/routes/product.routes");
 
 const app = express();
 
@@ -10,6 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/auth", AuthApiRoutes);
+app.use("/product", AuthApiRoutes);
 
 app.get("/getallproducts", async (req, res) => {
   try {

@@ -1,9 +1,8 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
 const { BadRequest } = require("../utils/errors");
+const prisma = require("../../db.server");
 
 const transport = nodemailer.createTransport({
   service: "gmail",
