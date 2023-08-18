@@ -17,7 +17,6 @@ exports.getProductsByVerity = async (req, res, next) => {
         id: 'desc',
       },
     });
-    console.log("API Response:", JSON.stringify(products, null, 2))
     res.status(200).json(products);
   } catch (error) {
     next(error);
