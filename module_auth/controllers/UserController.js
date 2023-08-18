@@ -22,18 +22,18 @@ exports.login = async (req, res, next) => {
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (!user) {
-      throw new BadRequest("Invalid Credentials");
+      return res.status(401).json({ message: "Email Address Not Found" });
     }
 
     const match = await bcrypt.compare(password, user.password);
 
     if (!match) {
-      throw new BadRequest("Invalid Credentials");
+      return res.status(401).json({ message: "Invalid Password" });
     }
 
     const token = jwt.sign({ user }, "1234");
 
-    res.status(200).json({ user, token });
+    return res.status(200).json({ user, token });
   } catch (error) {
     next(error);
   }
@@ -49,7 +49,7 @@ exports.signup = async (req, res, next) => {
     const existingUser = await prisma.user.findUnique({ where: { email } });
 
     if (existingUser) {
-      throw new BadRequest("User already exists");
+      return res.status(401).json({ message: "User already exists" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -69,11 +69,10 @@ exports.checkMailAndSendOTP = async (req, res, next) => {
   const { data } = req.body;
   const email = data;
   try {
-
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (!user) {
-      throw new BadRequest("User not found");
+      return res.status(401).json({ message: "User Not Found" });
     }
 
     const otp = Math.floor(Math.random() * (9999 - 1000) + 1000);
@@ -786,7 +785,7 @@ exports.checkMailAndSendOTP = async (req, res, next) => {
     </html>`,
     });
 
-    res.status(201).json({ email: user.email, otp });
+    return res.status(201).json({ email: user.email, otp });
   } catch (error) {
     next(error);
   }
@@ -794,8 +793,6 @@ exports.checkMailAndSendOTP = async (req, res, next) => {
 
 exports.resetPassword = async (req, res, next) => {
   const { email, password } = req.body.data;
-
-  console.log("email", email, password);
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -805,7 +802,7 @@ exports.resetPassword = async (req, res, next) => {
       data: { password: hashedPassword },
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       message:
         "Password updated successfully. You can now login with your new password.",
     });
