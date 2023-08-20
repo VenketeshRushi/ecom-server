@@ -33,15 +33,6 @@ model Address {
   userId    Int
 }
 
-model Order {
-  id         Int      @id @default(autoincrement())
-  orderNumber String
-  totalAmount Float
-  user       User     @relation(fields: [userId], references: [id])
-  userId     Int
-  createdAt  DateTime @default(now())
-}
-
 model Product {
   id          Int      @id @default(autoincrement())
   title       String

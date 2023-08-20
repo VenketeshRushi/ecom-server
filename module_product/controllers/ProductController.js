@@ -33,7 +33,7 @@ exports.getSingleProduct = async (req, res, next) => {
     });
 
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
     return res.status(200).json(product);
@@ -43,13 +43,22 @@ exports.getSingleProduct = async (req, res, next) => {
 };
 
 exports.addToCart = async (req, res, next) => {
-  const productdata = req.body.data; 
+  const productdata = req.body.data;
 
   try {
     // Add your logic here to add the product to the cart database
-    return res.status(200).json({ message: 'Product added to cart' });
+    return res.status(200).json({ message: "Product added to cart" });
   } catch (error) {
     next(error);
   }
 };
 
+exports.addOrder = async (req, res, next) => {
+  try {
+    const order = await  prisma.order.create({ ...req.body, user: req.user._id });
+
+    return res.status(201).json(order);
+  } catch (error) {
+    next(error);
+  }
+};
