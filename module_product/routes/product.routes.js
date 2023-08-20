@@ -14,4 +14,7 @@ router.get("/getallproducts", productController.getAllProducts);
 // GET SPECIFIC CATEGORY PRODUCTS
 router.get("/getfourproducts", productController.getProductsByVerity);
 
+// GET SINGLE PRODUCTS
+router.get("/getsingleproduct/:id", productController.getSingleProduct);
+
 module.exports = router;

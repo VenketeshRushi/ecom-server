@@ -14,7 +14,7 @@ exports.getProductsByVerity = async (req, res, next) => {
     const products = await prisma.product.findMany({
       take: 4,
       orderBy: {
-        id: 'desc',
+        id: "desc",
       },
     });
     return res.status(200).json(products);
@@ -22,3 +22,23 @@ exports.getProductsByVerity = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getSingleProduct = async (req, res, next) => {
+  const id = +req.params.id;
+  try {
+    const product = await prisma.product.findUnique({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!product) {
+      return res.status(404).json({ message: 'Product not found' });
+    }
+
+    return res.status(200).json(product);
+  } catch (error) {
+    next(error);
+  }
+};
+
