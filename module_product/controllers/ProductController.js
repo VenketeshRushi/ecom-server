@@ -42,3 +42,14 @@ exports.getSingleProduct = async (req, res, next) => {
   }
 };
 
+exports.addToCart = async (req, res, next) => {
+  const productdata = req.body.data; 
+
+  try {
+    // Add your logic here to add the product to the cart database
+    return res.status(200).json({ message: 'Product added to cart' });
+  } catch (error) {
+    next(error);
+  }
+};
+
