@@ -19,11 +19,8 @@
     "nodemailer": "^6.9.4",
     "nodemon": "^3.0.1",
     "razorpay": "^2.9.2"
-<<<<<<< HEAD
   },
   "devDependencies": {
     "prisma": "^5.1.1"
-=======
->>>>>>> 1ca181db9c8fbb10ed60ac6e13e567eb1f472aa6
   }
 }
