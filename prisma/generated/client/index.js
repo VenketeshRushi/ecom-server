@@ -221,7 +221,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/vowelweb/Desktop/VR/test-cc/ecom-server/prisma/generated/client",
+      "value": "/home/vowelweb/Desktop/ecom-server-main/prisma/generated/client",
       "fromEnvVar": null
     },
     "config": {
