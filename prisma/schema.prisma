@@ -35,6 +35,10 @@ model Address {
   userId    Int
 }
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1ca181db9c8fbb10ed60ac6e13e567eb1f472aa6
 model Product {
   id          Int      @id @default(autoincrement())
   title       String
