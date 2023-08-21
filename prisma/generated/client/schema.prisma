@@ -21,6 +21,8 @@ model User {
   updatedAt DateTime @updatedAt
   addresses Address[]
   orders    Order[]
+  cartItems CartProduct[]
+  favoriteItems Favorite[]
 }
 
 model Address {
@@ -33,14 +35,6 @@ model Address {
   userId    Int
 }
 
-model Order {
-  id         Int      @id @default(autoincrement())
-  orderNumber String
-  totalAmount Float
-  user       User     @relation(fields: [userId], references: [id])
-  userId     Int
-  createdAt  DateTime @default(now())
-}
 
 model Product {
   id          Int      @id @default(autoincrement())
@@ -55,3 +49,74 @@ model Product {
   img         String[]
 }
 
+model CartProduct {
+  id          Int     @id @default(autoincrement())
+  title       String
+  gender      String
+  description String
+  category    String
+  price       Float
+  size        String
+  color       String
+  rating      Float
+  img         String[]
+  quantity    Int
+  user        User @relation(fields: [userId], references: [id])
+  userId      Int  @unique
+  orders      Order[]
+}
+
+model Favorite {
+  id          Int      @id @default(autoincrement())
+  title       String
+  gender      String
+  description String
+  category    String
+  price       Float
+  size        String[]
+  color       String
+  rating      Float
+  img         String[]
+  user        User @relation(fields: [userId], references: [id])
+  userId      Int  @unique
+  createdAt   DateTime @default(now())
+}
+
+model Order {
+  id              Int       @id @default(autoincrement())
+  subTotal        Float
+  quantity        Int
+  shipping        Float
+  discount        Float
+  total           Float
+  user            User      @relation(fields: [userId], references: [id])
+  userId          Int
+  createdAt       DateTime @default(now())
+  PaymentDetails  PaymentDetail[]
+  ShippingDetails ShippingDetail[]
+  cartProducts    CartProduct[]
+}
+
+model PaymentDetail {
+  id               Int       @id @default(autoincrement())
+  razorpayOrderId  String
+  razorpayPaymentId String
+  order            Order?    @relation(fields: [orderId], references: [id])
+  orderId          Int?
+}
+
+model ShippingDetail {
+  id           Int       @id @default(autoincrement())
+  firstName    String
+  lastName     String
+  addressLine1 String
+  addressLine2 String?
+  locality     String
+  pinCode      Int
+  state        String
+  country      String
+  email        String
+  mobile       Int
+  order        Order?    @relation(fields: [orderId], references: [id])
+  orderId      Int?
+}

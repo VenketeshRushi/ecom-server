@@ -24,15 +24,35 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type Address = $Result.DefaultSelection<Prisma.$AddressPayload>
 /**
+ * Model Product
+ * 
+ */
+export type Product = $Result.DefaultSelection<Prisma.$ProductPayload>
+/**
+ * Model CartProduct
+ * 
+ */
+export type CartProduct = $Result.DefaultSelection<Prisma.$CartProductPayload>
+/**
+ * Model Favorite
+ * 
+ */
+export type Favorite = $Result.DefaultSelection<Prisma.$FavoritePayload>
+/**
  * Model Order
  * 
  */
 export type Order = $Result.DefaultSelection<Prisma.$OrderPayload>
 /**
- * Model Product
+ * Model PaymentDetail
  * 
  */
-export type Product = $Result.DefaultSelection<Prisma.$ProductPayload>
+export type PaymentDetail = $Result.DefaultSelection<Prisma.$PaymentDetailPayload>
+/**
+ * Model ShippingDetail
+ * 
+ */
+export type ShippingDetail = $Result.DefaultSelection<Prisma.$ShippingDetailPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -177,6 +197,36 @@ export class PrismaClient<
   get address(): Prisma.AddressDelegate<ExtArgs>;
 
   /**
+   * `prisma.product`: Exposes CRUD operations for the **Product** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Products
+    * const products = await prisma.product.findMany()
+    * ```
+    */
+  get product(): Prisma.ProductDelegate<ExtArgs>;
+
+  /**
+   * `prisma.cartProduct`: Exposes CRUD operations for the **CartProduct** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CartProducts
+    * const cartProducts = await prisma.cartProduct.findMany()
+    * ```
+    */
+  get cartProduct(): Prisma.CartProductDelegate<ExtArgs>;
+
+  /**
+   * `prisma.favorite`: Exposes CRUD operations for the **Favorite** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Favorites
+    * const favorites = await prisma.favorite.findMany()
+    * ```
+    */
+  get favorite(): Prisma.FavoriteDelegate<ExtArgs>;
+
+  /**
    * `prisma.order`: Exposes CRUD operations for the **Order** model.
     * Example usage:
     * ```ts
@@ -187,14 +237,24 @@ export class PrismaClient<
   get order(): Prisma.OrderDelegate<ExtArgs>;
 
   /**
-   * `prisma.product`: Exposes CRUD operations for the **Product** model.
+   * `prisma.paymentDetail`: Exposes CRUD operations for the **PaymentDetail** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Products
-    * const products = await prisma.product.findMany()
+    * // Fetch zero or more PaymentDetails
+    * const paymentDetails = await prisma.paymentDetail.findMany()
     * ```
     */
-  get product(): Prisma.ProductDelegate<ExtArgs>;
+  get paymentDetail(): Prisma.PaymentDetailDelegate<ExtArgs>;
+
+  /**
+   * `prisma.shippingDetail`: Exposes CRUD operations for the **ShippingDetail** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ShippingDetails
+    * const shippingDetails = await prisma.shippingDetail.findMany()
+    * ```
+    */
+  get shippingDetail(): Prisma.ShippingDetailDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -667,8 +727,12 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Address: 'Address',
+    Product: 'Product',
+    CartProduct: 'CartProduct',
+    Favorite: 'Favorite',
     Order: 'Order',
-    Product: 'Product'
+    PaymentDetail: 'PaymentDetail',
+    ShippingDetail: 'ShippingDetail'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -685,7 +749,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'address' | 'order' | 'product'
+      modelProps: 'user' | 'address' | 'product' | 'cartProduct' | 'favorite' | 'order' | 'paymentDetail' | 'shippingDetail'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -821,6 +885,204 @@ export namespace Prisma {
           }
         }
       }
+      Product: {
+        payload: Prisma.$ProductPayload<ExtArgs>
+        fields: Prisma.ProductFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProductFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProductPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProductFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+          }
+          findFirst: {
+            args: Prisma.ProductFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProductPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProductFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+          }
+          findMany: {
+            args: Prisma.ProductFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProductPayload>[]
+          }
+          create: {
+            args: Prisma.ProductCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+          }
+          createMany: {
+            args: Prisma.ProductCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.ProductDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+          }
+          update: {
+            args: Prisma.ProductUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProductDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProductUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProductUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+          }
+          aggregate: {
+            args: Prisma.ProductAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateProduct>
+          }
+          groupBy: {
+            args: Prisma.ProductGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ProductGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProductCountArgs<ExtArgs>,
+            result: $Utils.Optional<ProductCountAggregateOutputType> | number
+          }
+        }
+      }
+      CartProduct: {
+        payload: Prisma.$CartProductPayload<ExtArgs>
+        fields: Prisma.CartProductFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CartProductFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CartProductPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CartProductFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CartProductPayload>
+          }
+          findFirst: {
+            args: Prisma.CartProductFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CartProductPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CartProductFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CartProductPayload>
+          }
+          findMany: {
+            args: Prisma.CartProductFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CartProductPayload>[]
+          }
+          create: {
+            args: Prisma.CartProductCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CartProductPayload>
+          }
+          createMany: {
+            args: Prisma.CartProductCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.CartProductDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CartProductPayload>
+          }
+          update: {
+            args: Prisma.CartProductUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CartProductPayload>
+          }
+          deleteMany: {
+            args: Prisma.CartProductDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CartProductUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.CartProductUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$CartProductPayload>
+          }
+          aggregate: {
+            args: Prisma.CartProductAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateCartProduct>
+          }
+          groupBy: {
+            args: Prisma.CartProductGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<CartProductGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CartProductCountArgs<ExtArgs>,
+            result: $Utils.Optional<CartProductCountAggregateOutputType> | number
+          }
+        }
+      }
+      Favorite: {
+        payload: Prisma.$FavoritePayload<ExtArgs>
+        fields: Prisma.FavoriteFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FavoriteFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FavoritePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FavoriteFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+          }
+          findFirst: {
+            args: Prisma.FavoriteFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FavoritePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FavoriteFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+          }
+          findMany: {
+            args: Prisma.FavoriteFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>[]
+          }
+          create: {
+            args: Prisma.FavoriteCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+          }
+          createMany: {
+            args: Prisma.FavoriteCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.FavoriteDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+          }
+          update: {
+            args: Prisma.FavoriteUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+          }
+          deleteMany: {
+            args: Prisma.FavoriteDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FavoriteUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.FavoriteUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$FavoritePayload>
+          }
+          aggregate: {
+            args: Prisma.FavoriteAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateFavorite>
+          }
+          groupBy: {
+            args: Prisma.FavoriteGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<FavoriteGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FavoriteCountArgs<ExtArgs>,
+            result: $Utils.Optional<FavoriteCountAggregateOutputType> | number
+          }
+        }
+      }
       Order: {
         payload: Prisma.$OrderPayload<ExtArgs>
         fields: Prisma.OrderFieldRefs
@@ -887,69 +1149,135 @@ export namespace Prisma {
           }
         }
       }
-      Product: {
-        payload: Prisma.$ProductPayload<ExtArgs>
-        fields: Prisma.ProductFieldRefs
+      PaymentDetail: {
+        payload: Prisma.$PaymentDetailPayload<ExtArgs>
+        fields: Prisma.PaymentDetailFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.ProductFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload> | null
+            args: Prisma.PaymentDetailFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PaymentDetailPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.ProductFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.PaymentDetailFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PaymentDetailPayload>
           }
           findFirst: {
-            args: Prisma.ProductFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload> | null
+            args: Prisma.PaymentDetailFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PaymentDetailPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.ProductFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.PaymentDetailFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PaymentDetailPayload>
           }
           findMany: {
-            args: Prisma.ProductFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>[]
+            args: Prisma.PaymentDetailFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PaymentDetailPayload>[]
           }
           create: {
-            args: Prisma.ProductCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.PaymentDetailCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PaymentDetailPayload>
           }
           createMany: {
-            args: Prisma.ProductCreateManyArgs<ExtArgs>,
+            args: Prisma.PaymentDetailCreateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           delete: {
-            args: Prisma.ProductDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.PaymentDetailDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PaymentDetailPayload>
           }
           update: {
-            args: Prisma.ProductUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.PaymentDetailUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PaymentDetailPayload>
           }
           deleteMany: {
-            args: Prisma.ProductDeleteManyArgs<ExtArgs>,
+            args: Prisma.PaymentDetailDeleteManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           updateMany: {
-            args: Prisma.ProductUpdateManyArgs<ExtArgs>,
+            args: Prisma.PaymentDetailUpdateManyArgs<ExtArgs>,
             result: Prisma.BatchPayload
           }
           upsert: {
-            args: Prisma.ProductUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$ProductPayload>
+            args: Prisma.PaymentDetailUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$PaymentDetailPayload>
           }
           aggregate: {
-            args: Prisma.ProductAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateProduct>
+            args: Prisma.PaymentDetailAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregatePaymentDetail>
           }
           groupBy: {
-            args: Prisma.ProductGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<ProductGroupByOutputType>[]
+            args: Prisma.PaymentDetailGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<PaymentDetailGroupByOutputType>[]
           }
           count: {
-            args: Prisma.ProductCountArgs<ExtArgs>,
-            result: $Utils.Optional<ProductCountAggregateOutputType> | number
+            args: Prisma.PaymentDetailCountArgs<ExtArgs>,
+            result: $Utils.Optional<PaymentDetailCountAggregateOutputType> | number
+          }
+        }
+      }
+      ShippingDetail: {
+        payload: Prisma.$ShippingDetailPayload<ExtArgs>
+        fields: Prisma.ShippingDetailFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ShippingDetailFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ShippingDetailPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ShippingDetailFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ShippingDetailPayload>
+          }
+          findFirst: {
+            args: Prisma.ShippingDetailFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ShippingDetailPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ShippingDetailFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ShippingDetailPayload>
+          }
+          findMany: {
+            args: Prisma.ShippingDetailFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ShippingDetailPayload>[]
+          }
+          create: {
+            args: Prisma.ShippingDetailCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ShippingDetailPayload>
+          }
+          createMany: {
+            args: Prisma.ShippingDetailCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.ShippingDetailDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ShippingDetailPayload>
+          }
+          update: {
+            args: Prisma.ShippingDetailUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ShippingDetailPayload>
+          }
+          deleteMany: {
+            args: Prisma.ShippingDetailDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ShippingDetailUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ShippingDetailUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ShippingDetailPayload>
+          }
+          aggregate: {
+            args: Prisma.ShippingDetailAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateShippingDetail>
+          }
+          groupBy: {
+            args: Prisma.ShippingDetailGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ShippingDetailGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ShippingDetailCountArgs<ExtArgs>,
+            result: $Utils.Optional<ShippingDetailCountAggregateOutputType> | number
           }
         }
       }
@@ -1103,11 +1431,15 @@ export namespace Prisma {
   export type UserCountOutputType = {
     addresses: number
     orders: number
+    cartItems: number
+    favoriteItems: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     addresses?: boolean | UserCountOutputTypeCountAddressesArgs
     orders?: boolean | UserCountOutputTypeCountOrdersArgs
+    cartItems?: boolean | UserCountOutputTypeCountCartItemsArgs
+    favoriteItems?: boolean | UserCountOutputTypeCountFavoriteItemsArgs
   }
 
   // Custom InputTypes
@@ -1136,6 +1468,110 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: OrderWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCartItemsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: CartProductWhereInput
+  }
+
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFavoriteItemsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: FavoriteWhereInput
+  }
+
+
+
+  /**
+   * Count Type CartProductCountOutputType
+   */
+
+  export type CartProductCountOutputType = {
+    orders: number
+  }
+
+  export type CartProductCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    orders?: boolean | CartProductCountOutputTypeCountOrdersArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * CartProductCountOutputType without action
+   */
+  export type CartProductCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProductCountOutputType
+     */
+    select?: CartProductCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * CartProductCountOutputType without action
+   */
+  export type CartProductCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: OrderWhereInput
+  }
+
+
+
+  /**
+   * Count Type OrderCountOutputType
+   */
+
+  export type OrderCountOutputType = {
+    PaymentDetails: number
+    ShippingDetails: number
+    cartProducts: number
+  }
+
+  export type OrderCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    PaymentDetails?: boolean | OrderCountOutputTypeCountPaymentDetailsArgs
+    ShippingDetails?: boolean | OrderCountOutputTypeCountShippingDetailsArgs
+    cartProducts?: boolean | OrderCountOutputTypeCountCartProductsArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * OrderCountOutputType without action
+   */
+  export type OrderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OrderCountOutputType
+     */
+    select?: OrderCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * OrderCountOutputType without action
+   */
+  export type OrderCountOutputTypeCountPaymentDetailsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: PaymentDetailWhereInput
+  }
+
+
+  /**
+   * OrderCountOutputType without action
+   */
+  export type OrderCountOutputTypeCountShippingDetailsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ShippingDetailWhereInput
+  }
+
+
+  /**
+   * OrderCountOutputType without action
+   */
+  export type OrderCountOutputTypeCountCartProductsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: CartProductWhereInput
   }
 
 
@@ -1360,6 +1796,8 @@ export namespace Prisma {
     updatedAt?: boolean
     addresses?: boolean | User$addressesArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
+    cartItems?: boolean | User$cartItemsArgs<ExtArgs>
+    favoriteItems?: boolean | User$favoriteItemsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1376,6 +1814,8 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     addresses?: boolean | User$addressesArgs<ExtArgs>
     orders?: boolean | User$ordersArgs<ExtArgs>
+    cartItems?: boolean | User$cartItemsArgs<ExtArgs>
+    favoriteItems?: boolean | User$favoriteItemsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -1385,6 +1825,8 @@ export namespace Prisma {
     objects: {
       addresses: Prisma.$AddressPayload<ExtArgs>[]
       orders: Prisma.$OrderPayload<ExtArgs>[]
+      cartItems: Prisma.$CartProductPayload<ExtArgs>[]
+      favoriteItems: Prisma.$FavoritePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetResult<{
       id: number
@@ -1762,6 +2204,10 @@ export namespace Prisma {
     addresses<T extends User$addressesArgs<ExtArgs> = {}>(args?: Subset<T, User$addressesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     orders<T extends User$ordersArgs<ExtArgs> = {}>(args?: Subset<T, User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    cartItems<T extends User$cartItemsArgs<ExtArgs> = {}>(args?: Subset<T, User$cartItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    favoriteItems<T extends User$favoriteItemsArgs<ExtArgs> = {}>(args?: Subset<T, User$favoriteItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2148,6 +2594,48 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.cartItems
+   */
+  export type User$cartItemsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+    where?: CartProductWhereInput
+    orderBy?: CartProductOrderByWithRelationInput | CartProductOrderByWithRelationInput[]
+    cursor?: CartProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CartProductScalarFieldEnum | CartProductScalarFieldEnum[]
+  }
+
+
+  /**
+   * User.favoriteItems
+   */
+  export type User$favoriteItemsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Favorite
+     */
+    select?: FavoriteSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FavoriteInclude<ExtArgs> | null
+    where?: FavoriteWhereInput
+    orderBy?: FavoriteOrderByWithRelationInput | FavoriteOrderByWithRelationInput[]
+    cursor?: FavoriteWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FavoriteScalarFieldEnum | FavoriteScalarFieldEnum[]
   }
 
 
@@ -3135,966 +3623,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Order
-   */
-
-  export type AggregateOrder = {
-    _count: OrderCountAggregateOutputType | null
-    _avg: OrderAvgAggregateOutputType | null
-    _sum: OrderSumAggregateOutputType | null
-    _min: OrderMinAggregateOutputType | null
-    _max: OrderMaxAggregateOutputType | null
-  }
-
-  export type OrderAvgAggregateOutputType = {
-    id: number | null
-    totalAmount: number | null
-    userId: number | null
-  }
-
-  export type OrderSumAggregateOutputType = {
-    id: number | null
-    totalAmount: number | null
-    userId: number | null
-  }
-
-  export type OrderMinAggregateOutputType = {
-    id: number | null
-    orderNumber: string | null
-    totalAmount: number | null
-    userId: number | null
-    createdAt: Date | null
-  }
-
-  export type OrderMaxAggregateOutputType = {
-    id: number | null
-    orderNumber: string | null
-    totalAmount: number | null
-    userId: number | null
-    createdAt: Date | null
-  }
-
-  export type OrderCountAggregateOutputType = {
-    id: number
-    orderNumber: number
-    totalAmount: number
-    userId: number
-    createdAt: number
-    _all: number
-  }
-
-
-  export type OrderAvgAggregateInputType = {
-    id?: true
-    totalAmount?: true
-    userId?: true
-  }
-
-  export type OrderSumAggregateInputType = {
-    id?: true
-    totalAmount?: true
-    userId?: true
-  }
-
-  export type OrderMinAggregateInputType = {
-    id?: true
-    orderNumber?: true
-    totalAmount?: true
-    userId?: true
-    createdAt?: true
-  }
-
-  export type OrderMaxAggregateInputType = {
-    id?: true
-    orderNumber?: true
-    totalAmount?: true
-    userId?: true
-    createdAt?: true
-  }
-
-  export type OrderCountAggregateInputType = {
-    id?: true
-    orderNumber?: true
-    totalAmount?: true
-    userId?: true
-    createdAt?: true
-    _all?: true
-  }
-
-  export type OrderAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Order to aggregate.
-     */
-    where?: OrderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Orders to fetch.
-     */
-    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: OrderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Orders from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Orders.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Orders
-    **/
-    _count?: true | OrderCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: OrderAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: OrderSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: OrderMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: OrderMaxAggregateInputType
-  }
-
-  export type GetOrderAggregateType<T extends OrderAggregateArgs> = {
-        [P in keyof T & keyof AggregateOrder]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateOrder[P]>
-      : GetScalarType<T[P], AggregateOrder[P]>
-  }
-
-
-
-
-  export type OrderGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: OrderWhereInput
-    orderBy?: OrderOrderByWithAggregationInput | OrderOrderByWithAggregationInput[]
-    by: OrderScalarFieldEnum[] | OrderScalarFieldEnum
-    having?: OrderScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: OrderCountAggregateInputType | true
-    _avg?: OrderAvgAggregateInputType
-    _sum?: OrderSumAggregateInputType
-    _min?: OrderMinAggregateInputType
-    _max?: OrderMaxAggregateInputType
-  }
-
-  export type OrderGroupByOutputType = {
-    id: number
-    orderNumber: string
-    totalAmount: number
-    userId: number
-    createdAt: Date
-    _count: OrderCountAggregateOutputType | null
-    _avg: OrderAvgAggregateOutputType | null
-    _sum: OrderSumAggregateOutputType | null
-    _min: OrderMinAggregateOutputType | null
-    _max: OrderMaxAggregateOutputType | null
-  }
-
-  type GetOrderGroupByPayload<T extends OrderGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<OrderGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof OrderGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], OrderGroupByOutputType[P]>
-            : GetScalarType<T[P], OrderGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type OrderSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    orderNumber?: boolean
-    totalAmount?: boolean
-    userId?: boolean
-    createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["order"]>
-
-  export type OrderSelectScalar = {
-    id?: boolean
-    orderNumber?: boolean
-    totalAmount?: boolean
-    userId?: boolean
-    createdAt?: boolean
-  }
-
-  export type OrderInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-
-  export type $OrderPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    name: "Order"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetResult<{
-      id: number
-      orderNumber: string
-      totalAmount: number
-      userId: number
-      createdAt: Date
-    }, ExtArgs["result"]["order"]>
-    composites: {}
-  }
-
-
-  type OrderGetPayload<S extends boolean | null | undefined | OrderDefaultArgs> = $Result.GetResult<Prisma.$OrderPayload, S>
-
-  type OrderCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
-    Omit<OrderFindManyArgs, 'select' | 'include'> & {
-      select?: OrderCountAggregateInputType | true
-    }
-
-  export interface OrderDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Order'], meta: { name: 'Order' } }
-    /**
-     * Find zero or one Order that matches the filter.
-     * @param {OrderFindUniqueArgs} args - Arguments to find a Order
-     * @example
-     * // Get one Order
-     * const order = await prisma.order.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends OrderFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, OrderFindUniqueArgs<ExtArgs>>
-    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one Order that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {OrderFindUniqueOrThrowArgs} args - Arguments to find a Order
-     * @example
-     * // Get one Order
-     * const order = await prisma.order.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends OrderFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, OrderFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first Order that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrderFindFirstArgs} args - Arguments to find a Order
-     * @example
-     * // Get one Order
-     * const order = await prisma.order.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends OrderFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, OrderFindFirstArgs<ExtArgs>>
-    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first Order that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrderFindFirstOrThrowArgs} args - Arguments to find a Order
-     * @example
-     * // Get one Order
-     * const order = await prisma.order.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends OrderFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, OrderFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more Orders that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrderFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Orders
-     * const orders = await prisma.order.findMany()
-     * 
-     * // Get first 10 Orders
-     * const orders = await prisma.order.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const orderWithIdOnly = await prisma.order.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends OrderFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, OrderFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a Order.
-     * @param {OrderCreateArgs} args - Arguments to create a Order.
-     * @example
-     * // Create one Order
-     * const Order = await prisma.order.create({
-     *   data: {
-     *     // ... data to create a Order
-     *   }
-     * })
-     * 
-    **/
-    create<T extends OrderCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, OrderCreateArgs<ExtArgs>>
-    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many Orders.
-     *     @param {OrderCreateManyArgs} args - Arguments to create many Orders.
-     *     @example
-     *     // Create many Orders
-     *     const order = await prisma.order.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends OrderCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, OrderCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Order.
-     * @param {OrderDeleteArgs} args - Arguments to delete one Order.
-     * @example
-     * // Delete one Order
-     * const Order = await prisma.order.delete({
-     *   where: {
-     *     // ... filter to delete one Order
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends OrderDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, OrderDeleteArgs<ExtArgs>>
-    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one Order.
-     * @param {OrderUpdateArgs} args - Arguments to update one Order.
-     * @example
-     * // Update one Order
-     * const order = await prisma.order.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends OrderUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, OrderUpdateArgs<ExtArgs>>
-    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more Orders.
-     * @param {OrderDeleteManyArgs} args - Arguments to filter Orders to delete.
-     * @example
-     * // Delete a few Orders
-     * const { count } = await prisma.order.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends OrderDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, OrderDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Orders.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrderUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Orders
-     * const order = await prisma.order.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends OrderUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, OrderUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Order.
-     * @param {OrderUpsertArgs} args - Arguments to update or create a Order.
-     * @example
-     * // Update or create a Order
-     * const order = await prisma.order.upsert({
-     *   create: {
-     *     // ... data to create a Order
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Order we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends OrderUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, OrderUpsertArgs<ExtArgs>>
-    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of Orders.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrderCountArgs} args - Arguments to filter Orders to count.
-     * @example
-     * // Count the number of Orders
-     * const count = await prisma.order.count({
-     *   where: {
-     *     // ... the filter for the Orders we want to count
-     *   }
-     * })
-    **/
-    count<T extends OrderCountArgs>(
-      args?: Subset<T, OrderCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], OrderCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Order.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends OrderAggregateArgs>(args: Subset<T, OrderAggregateArgs>): Prisma.PrismaPromise<GetOrderAggregateType<T>>
-
-    /**
-     * Group by Order.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {OrderGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends OrderGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: OrderGroupByArgs['orderBy'] }
-        : { orderBy?: OrderGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, OrderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Order model
-   */
-  readonly fields: OrderFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Order.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__OrderClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the Order model
-   */ 
-  interface OrderFieldRefs {
-    readonly id: FieldRef<"Order", 'Int'>
-    readonly orderNumber: FieldRef<"Order", 'String'>
-    readonly totalAmount: FieldRef<"Order", 'Float'>
-    readonly userId: FieldRef<"Order", 'Int'>
-    readonly createdAt: FieldRef<"Order", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-
-  /**
-   * Order findUnique
-   */
-  export type OrderFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Order
-     */
-    select?: OrderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: OrderInclude<ExtArgs> | null
-    /**
-     * Filter, which Order to fetch.
-     */
-    where: OrderWhereUniqueInput
-  }
-
-
-  /**
-   * Order findUniqueOrThrow
-   */
-  export type OrderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Order
-     */
-    select?: OrderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: OrderInclude<ExtArgs> | null
-    /**
-     * Filter, which Order to fetch.
-     */
-    where: OrderWhereUniqueInput
-  }
-
-
-  /**
-   * Order findFirst
-   */
-  export type OrderFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Order
-     */
-    select?: OrderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: OrderInclude<ExtArgs> | null
-    /**
-     * Filter, which Order to fetch.
-     */
-    where?: OrderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Orders to fetch.
-     */
-    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Orders.
-     */
-    cursor?: OrderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Orders from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Orders.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Orders.
-     */
-    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
-  }
-
-
-  /**
-   * Order findFirstOrThrow
-   */
-  export type OrderFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Order
-     */
-    select?: OrderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: OrderInclude<ExtArgs> | null
-    /**
-     * Filter, which Order to fetch.
-     */
-    where?: OrderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Orders to fetch.
-     */
-    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Orders.
-     */
-    cursor?: OrderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Orders from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Orders.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Orders.
-     */
-    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
-  }
-
-
-  /**
-   * Order findMany
-   */
-  export type OrderFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Order
-     */
-    select?: OrderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: OrderInclude<ExtArgs> | null
-    /**
-     * Filter, which Orders to fetch.
-     */
-    where?: OrderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Orders to fetch.
-     */
-    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Orders.
-     */
-    cursor?: OrderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Orders from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Orders.
-     */
-    skip?: number
-    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
-  }
-
-
-  /**
-   * Order create
-   */
-  export type OrderCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Order
-     */
-    select?: OrderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: OrderInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Order.
-     */
-    data: XOR<OrderCreateInput, OrderUncheckedCreateInput>
-  }
-
-
-  /**
-   * Order createMany
-   */
-  export type OrderCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Orders.
-     */
-    data: OrderCreateManyInput | OrderCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * Order update
-   */
-  export type OrderUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Order
-     */
-    select?: OrderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: OrderInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Order.
-     */
-    data: XOR<OrderUpdateInput, OrderUncheckedUpdateInput>
-    /**
-     * Choose, which Order to update.
-     */
-    where: OrderWhereUniqueInput
-  }
-
-
-  /**
-   * Order updateMany
-   */
-  export type OrderUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Orders.
-     */
-    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyInput>
-    /**
-     * Filter which Orders to update
-     */
-    where?: OrderWhereInput
-  }
-
-
-  /**
-   * Order upsert
-   */
-  export type OrderUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Order
-     */
-    select?: OrderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: OrderInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Order to update in case it exists.
-     */
-    where: OrderWhereUniqueInput
-    /**
-     * In case the Order found by the `where` argument doesn't exist, create a new Order with this data.
-     */
-    create: XOR<OrderCreateInput, OrderUncheckedCreateInput>
-    /**
-     * In case the Order was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<OrderUpdateInput, OrderUncheckedUpdateInput>
-  }
-
-
-  /**
-   * Order delete
-   */
-  export type OrderDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Order
-     */
-    select?: OrderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: OrderInclude<ExtArgs> | null
-    /**
-     * Filter which Order to delete.
-     */
-    where: OrderWhereUniqueInput
-  }
-
-
-  /**
-   * Order deleteMany
-   */
-  export type OrderDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Orders to delete
-     */
-    where?: OrderWhereInput
-  }
-
-
-  /**
-   * Order without action
-   */
-  export type OrderDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Order
-     */
-    select?: OrderSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: OrderInclude<ExtArgs> | null
-  }
-
-
-
-  /**
    * Model Product
    */
 
@@ -5054,6 +4582,5215 @@ export namespace Prisma {
 
 
   /**
+   * Model CartProduct
+   */
+
+  export type AggregateCartProduct = {
+    _count: CartProductCountAggregateOutputType | null
+    _avg: CartProductAvgAggregateOutputType | null
+    _sum: CartProductSumAggregateOutputType | null
+    _min: CartProductMinAggregateOutputType | null
+    _max: CartProductMaxAggregateOutputType | null
+  }
+
+  export type CartProductAvgAggregateOutputType = {
+    id: number | null
+    price: number | null
+    rating: number | null
+    quantity: number | null
+    userId: number | null
+  }
+
+  export type CartProductSumAggregateOutputType = {
+    id: number | null
+    price: number | null
+    rating: number | null
+    quantity: number | null
+    userId: number | null
+  }
+
+  export type CartProductMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    gender: string | null
+    description: string | null
+    category: string | null
+    price: number | null
+    size: string | null
+    color: string | null
+    rating: number | null
+    quantity: number | null
+    userId: number | null
+  }
+
+  export type CartProductMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    gender: string | null
+    description: string | null
+    category: string | null
+    price: number | null
+    size: string | null
+    color: string | null
+    rating: number | null
+    quantity: number | null
+    userId: number | null
+  }
+
+  export type CartProductCountAggregateOutputType = {
+    id: number
+    title: number
+    gender: number
+    description: number
+    category: number
+    price: number
+    size: number
+    color: number
+    rating: number
+    img: number
+    quantity: number
+    userId: number
+    _all: number
+  }
+
+
+  export type CartProductAvgAggregateInputType = {
+    id?: true
+    price?: true
+    rating?: true
+    quantity?: true
+    userId?: true
+  }
+
+  export type CartProductSumAggregateInputType = {
+    id?: true
+    price?: true
+    rating?: true
+    quantity?: true
+    userId?: true
+  }
+
+  export type CartProductMinAggregateInputType = {
+    id?: true
+    title?: true
+    gender?: true
+    description?: true
+    category?: true
+    price?: true
+    size?: true
+    color?: true
+    rating?: true
+    quantity?: true
+    userId?: true
+  }
+
+  export type CartProductMaxAggregateInputType = {
+    id?: true
+    title?: true
+    gender?: true
+    description?: true
+    category?: true
+    price?: true
+    size?: true
+    color?: true
+    rating?: true
+    quantity?: true
+    userId?: true
+  }
+
+  export type CartProductCountAggregateInputType = {
+    id?: true
+    title?: true
+    gender?: true
+    description?: true
+    category?: true
+    price?: true
+    size?: true
+    color?: true
+    rating?: true
+    img?: true
+    quantity?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type CartProductAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CartProduct to aggregate.
+     */
+    where?: CartProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CartProducts to fetch.
+     */
+    orderBy?: CartProductOrderByWithRelationInput | CartProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CartProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CartProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CartProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CartProducts
+    **/
+    _count?: true | CartProductCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CartProductAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CartProductSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CartProductMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CartProductMaxAggregateInputType
+  }
+
+  export type GetCartProductAggregateType<T extends CartProductAggregateArgs> = {
+        [P in keyof T & keyof AggregateCartProduct]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCartProduct[P]>
+      : GetScalarType<T[P], AggregateCartProduct[P]>
+  }
+
+
+
+
+  export type CartProductGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: CartProductWhereInput
+    orderBy?: CartProductOrderByWithAggregationInput | CartProductOrderByWithAggregationInput[]
+    by: CartProductScalarFieldEnum[] | CartProductScalarFieldEnum
+    having?: CartProductScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CartProductCountAggregateInputType | true
+    _avg?: CartProductAvgAggregateInputType
+    _sum?: CartProductSumAggregateInputType
+    _min?: CartProductMinAggregateInputType
+    _max?: CartProductMaxAggregateInputType
+  }
+
+  export type CartProductGroupByOutputType = {
+    id: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size: string
+    color: string
+    rating: number
+    img: string[]
+    quantity: number
+    userId: number
+    _count: CartProductCountAggregateOutputType | null
+    _avg: CartProductAvgAggregateOutputType | null
+    _sum: CartProductSumAggregateOutputType | null
+    _min: CartProductMinAggregateOutputType | null
+    _max: CartProductMaxAggregateOutputType | null
+  }
+
+  type GetCartProductGroupByPayload<T extends CartProductGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CartProductGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CartProductGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CartProductGroupByOutputType[P]>
+            : GetScalarType<T[P], CartProductGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CartProductSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    gender?: boolean
+    description?: boolean
+    category?: boolean
+    price?: boolean
+    size?: boolean
+    color?: boolean
+    rating?: boolean
+    img?: boolean
+    quantity?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    orders?: boolean | CartProduct$ordersArgs<ExtArgs>
+    _count?: boolean | CartProductCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["cartProduct"]>
+
+  export type CartProductSelectScalar = {
+    id?: boolean
+    title?: boolean
+    gender?: boolean
+    description?: boolean
+    category?: boolean
+    price?: boolean
+    size?: boolean
+    color?: boolean
+    rating?: boolean
+    img?: boolean
+    quantity?: boolean
+    userId?: boolean
+  }
+
+  export type CartProductInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    orders?: boolean | CartProduct$ordersArgs<ExtArgs>
+    _count?: boolean | CartProductCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $CartProductPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    name: "CartProduct"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      orders: Prisma.$OrderPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetResult<{
+      id: number
+      title: string
+      gender: string
+      description: string
+      category: string
+      price: number
+      size: string
+      color: string
+      rating: number
+      img: string[]
+      quantity: number
+      userId: number
+    }, ExtArgs["result"]["cartProduct"]>
+    composites: {}
+  }
+
+
+  type CartProductGetPayload<S extends boolean | null | undefined | CartProductDefaultArgs> = $Result.GetResult<Prisma.$CartProductPayload, S>
+
+  type CartProductCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<CartProductFindManyArgs, 'select' | 'include'> & {
+      select?: CartProductCountAggregateInputType | true
+    }
+
+  export interface CartProductDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CartProduct'], meta: { name: 'CartProduct' } }
+    /**
+     * Find zero or one CartProduct that matches the filter.
+     * @param {CartProductFindUniqueArgs} args - Arguments to find a CartProduct
+     * @example
+     * // Get one CartProduct
+     * const cartProduct = await prisma.cartProduct.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends CartProductFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, CartProductFindUniqueArgs<ExtArgs>>
+    ): Prisma__CartProductClient<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one CartProduct that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {CartProductFindUniqueOrThrowArgs} args - Arguments to find a CartProduct
+     * @example
+     * // Get one CartProduct
+     * const cartProduct = await prisma.cartProduct.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends CartProductFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CartProductFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__CartProductClient<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first CartProduct that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartProductFindFirstArgs} args - Arguments to find a CartProduct
+     * @example
+     * // Get one CartProduct
+     * const cartProduct = await prisma.cartProduct.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends CartProductFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, CartProductFindFirstArgs<ExtArgs>>
+    ): Prisma__CartProductClient<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first CartProduct that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartProductFindFirstOrThrowArgs} args - Arguments to find a CartProduct
+     * @example
+     * // Get one CartProduct
+     * const cartProduct = await prisma.cartProduct.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends CartProductFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, CartProductFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__CartProductClient<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more CartProducts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartProductFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CartProducts
+     * const cartProducts = await prisma.cartProduct.findMany()
+     * 
+     * // Get first 10 CartProducts
+     * const cartProducts = await prisma.cartProduct.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const cartProductWithIdOnly = await prisma.cartProduct.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends CartProductFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CartProductFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a CartProduct.
+     * @param {CartProductCreateArgs} args - Arguments to create a CartProduct.
+     * @example
+     * // Create one CartProduct
+     * const CartProduct = await prisma.cartProduct.create({
+     *   data: {
+     *     // ... data to create a CartProduct
+     *   }
+     * })
+     * 
+    **/
+    create<T extends CartProductCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, CartProductCreateArgs<ExtArgs>>
+    ): Prisma__CartProductClient<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many CartProducts.
+     *     @param {CartProductCreateManyArgs} args - Arguments to create many CartProducts.
+     *     @example
+     *     // Create many CartProducts
+     *     const cartProduct = await prisma.cartProduct.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends CartProductCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CartProductCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a CartProduct.
+     * @param {CartProductDeleteArgs} args - Arguments to delete one CartProduct.
+     * @example
+     * // Delete one CartProduct
+     * const CartProduct = await prisma.cartProduct.delete({
+     *   where: {
+     *     // ... filter to delete one CartProduct
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends CartProductDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, CartProductDeleteArgs<ExtArgs>>
+    ): Prisma__CartProductClient<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one CartProduct.
+     * @param {CartProductUpdateArgs} args - Arguments to update one CartProduct.
+     * @example
+     * // Update one CartProduct
+     * const cartProduct = await prisma.cartProduct.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends CartProductUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, CartProductUpdateArgs<ExtArgs>>
+    ): Prisma__CartProductClient<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more CartProducts.
+     * @param {CartProductDeleteManyArgs} args - Arguments to filter CartProducts to delete.
+     * @example
+     * // Delete a few CartProducts
+     * const { count } = await prisma.cartProduct.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends CartProductDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, CartProductDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CartProducts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartProductUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CartProducts
+     * const cartProduct = await prisma.cartProduct.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends CartProductUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, CartProductUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CartProduct.
+     * @param {CartProductUpsertArgs} args - Arguments to update or create a CartProduct.
+     * @example
+     * // Update or create a CartProduct
+     * const cartProduct = await prisma.cartProduct.upsert({
+     *   create: {
+     *     // ... data to create a CartProduct
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CartProduct we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends CartProductUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, CartProductUpsertArgs<ExtArgs>>
+    ): Prisma__CartProductClient<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of CartProducts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartProductCountArgs} args - Arguments to filter CartProducts to count.
+     * @example
+     * // Count the number of CartProducts
+     * const count = await prisma.cartProduct.count({
+     *   where: {
+     *     // ... the filter for the CartProducts we want to count
+     *   }
+     * })
+    **/
+    count<T extends CartProductCountArgs>(
+      args?: Subset<T, CartProductCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CartProductCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CartProduct.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartProductAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CartProductAggregateArgs>(args: Subset<T, CartProductAggregateArgs>): Prisma.PrismaPromise<GetCartProductAggregateType<T>>
+
+    /**
+     * Group by CartProduct.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CartProductGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CartProductGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CartProductGroupByArgs['orderBy'] }
+        : { orderBy?: CartProductGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CartProductGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCartProductGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CartProduct model
+   */
+  readonly fields: CartProductFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CartProduct.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CartProductClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    orders<T extends CartProduct$ordersArgs<ExtArgs> = {}>(args?: Subset<T, CartProduct$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the CartProduct model
+   */ 
+  interface CartProductFieldRefs {
+    readonly id: FieldRef<"CartProduct", 'Int'>
+    readonly title: FieldRef<"CartProduct", 'String'>
+    readonly gender: FieldRef<"CartProduct", 'String'>
+    readonly description: FieldRef<"CartProduct", 'String'>
+    readonly category: FieldRef<"CartProduct", 'String'>
+    readonly price: FieldRef<"CartProduct", 'Float'>
+    readonly size: FieldRef<"CartProduct", 'String'>
+    readonly color: FieldRef<"CartProduct", 'String'>
+    readonly rating: FieldRef<"CartProduct", 'Float'>
+    readonly img: FieldRef<"CartProduct", 'String[]'>
+    readonly quantity: FieldRef<"CartProduct", 'Int'>
+    readonly userId: FieldRef<"CartProduct", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * CartProduct findUnique
+   */
+  export type CartProductFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+    /**
+     * Filter, which CartProduct to fetch.
+     */
+    where: CartProductWhereUniqueInput
+  }
+
+
+  /**
+   * CartProduct findUniqueOrThrow
+   */
+  export type CartProductFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+    /**
+     * Filter, which CartProduct to fetch.
+     */
+    where: CartProductWhereUniqueInput
+  }
+
+
+  /**
+   * CartProduct findFirst
+   */
+  export type CartProductFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+    /**
+     * Filter, which CartProduct to fetch.
+     */
+    where?: CartProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CartProducts to fetch.
+     */
+    orderBy?: CartProductOrderByWithRelationInput | CartProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CartProducts.
+     */
+    cursor?: CartProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CartProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CartProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CartProducts.
+     */
+    distinct?: CartProductScalarFieldEnum | CartProductScalarFieldEnum[]
+  }
+
+
+  /**
+   * CartProduct findFirstOrThrow
+   */
+  export type CartProductFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+    /**
+     * Filter, which CartProduct to fetch.
+     */
+    where?: CartProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CartProducts to fetch.
+     */
+    orderBy?: CartProductOrderByWithRelationInput | CartProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CartProducts.
+     */
+    cursor?: CartProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CartProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CartProducts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CartProducts.
+     */
+    distinct?: CartProductScalarFieldEnum | CartProductScalarFieldEnum[]
+  }
+
+
+  /**
+   * CartProduct findMany
+   */
+  export type CartProductFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+    /**
+     * Filter, which CartProducts to fetch.
+     */
+    where?: CartProductWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CartProducts to fetch.
+     */
+    orderBy?: CartProductOrderByWithRelationInput | CartProductOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CartProducts.
+     */
+    cursor?: CartProductWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CartProducts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CartProducts.
+     */
+    skip?: number
+    distinct?: CartProductScalarFieldEnum | CartProductScalarFieldEnum[]
+  }
+
+
+  /**
+   * CartProduct create
+   */
+  export type CartProductCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CartProduct.
+     */
+    data: XOR<CartProductCreateInput, CartProductUncheckedCreateInput>
+  }
+
+
+  /**
+   * CartProduct createMany
+   */
+  export type CartProductCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CartProducts.
+     */
+    data: CartProductCreateManyInput | CartProductCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * CartProduct update
+   */
+  export type CartProductUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CartProduct.
+     */
+    data: XOR<CartProductUpdateInput, CartProductUncheckedUpdateInput>
+    /**
+     * Choose, which CartProduct to update.
+     */
+    where: CartProductWhereUniqueInput
+  }
+
+
+  /**
+   * CartProduct updateMany
+   */
+  export type CartProductUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CartProducts.
+     */
+    data: XOR<CartProductUpdateManyMutationInput, CartProductUncheckedUpdateManyInput>
+    /**
+     * Filter which CartProducts to update
+     */
+    where?: CartProductWhereInput
+  }
+
+
+  /**
+   * CartProduct upsert
+   */
+  export type CartProductUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CartProduct to update in case it exists.
+     */
+    where: CartProductWhereUniqueInput
+    /**
+     * In case the CartProduct found by the `where` argument doesn't exist, create a new CartProduct with this data.
+     */
+    create: XOR<CartProductCreateInput, CartProductUncheckedCreateInput>
+    /**
+     * In case the CartProduct was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CartProductUpdateInput, CartProductUncheckedUpdateInput>
+  }
+
+
+  /**
+   * CartProduct delete
+   */
+  export type CartProductDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+    /**
+     * Filter which CartProduct to delete.
+     */
+    where: CartProductWhereUniqueInput
+  }
+
+
+  /**
+   * CartProduct deleteMany
+   */
+  export type CartProductDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CartProducts to delete
+     */
+    where?: CartProductWhereInput
+  }
+
+
+  /**
+   * CartProduct.orders
+   */
+  export type CartProduct$ordersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    where?: OrderWhereInput
+    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
+    cursor?: OrderWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+
+  /**
+   * CartProduct without action
+   */
+  export type CartProductDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Favorite
+   */
+
+  export type AggregateFavorite = {
+    _count: FavoriteCountAggregateOutputType | null
+    _avg: FavoriteAvgAggregateOutputType | null
+    _sum: FavoriteSumAggregateOutputType | null
+    _min: FavoriteMinAggregateOutputType | null
+    _max: FavoriteMaxAggregateOutputType | null
+  }
+
+  export type FavoriteAvgAggregateOutputType = {
+    id: number | null
+    price: number | null
+    rating: number | null
+    userId: number | null
+  }
+
+  export type FavoriteSumAggregateOutputType = {
+    id: number | null
+    price: number | null
+    rating: number | null
+    userId: number | null
+  }
+
+  export type FavoriteMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    gender: string | null
+    description: string | null
+    category: string | null
+    price: number | null
+    color: string | null
+    rating: number | null
+    userId: number | null
+    createdAt: Date | null
+  }
+
+  export type FavoriteMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    gender: string | null
+    description: string | null
+    category: string | null
+    price: number | null
+    color: string | null
+    rating: number | null
+    userId: number | null
+    createdAt: Date | null
+  }
+
+  export type FavoriteCountAggregateOutputType = {
+    id: number
+    title: number
+    gender: number
+    description: number
+    category: number
+    price: number
+    size: number
+    color: number
+    rating: number
+    img: number
+    userId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type FavoriteAvgAggregateInputType = {
+    id?: true
+    price?: true
+    rating?: true
+    userId?: true
+  }
+
+  export type FavoriteSumAggregateInputType = {
+    id?: true
+    price?: true
+    rating?: true
+    userId?: true
+  }
+
+  export type FavoriteMinAggregateInputType = {
+    id?: true
+    title?: true
+    gender?: true
+    description?: true
+    category?: true
+    price?: true
+    color?: true
+    rating?: true
+    userId?: true
+    createdAt?: true
+  }
+
+  export type FavoriteMaxAggregateInputType = {
+    id?: true
+    title?: true
+    gender?: true
+    description?: true
+    category?: true
+    price?: true
+    color?: true
+    rating?: true
+    userId?: true
+    createdAt?: true
+  }
+
+  export type FavoriteCountAggregateInputType = {
+    id?: true
+    title?: true
+    gender?: true
+    description?: true
+    category?: true
+    price?: true
+    size?: true
+    color?: true
+    rating?: true
+    img?: true
+    userId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type FavoriteAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Favorite to aggregate.
+     */
+    where?: FavoriteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Favorites to fetch.
+     */
+    orderBy?: FavoriteOrderByWithRelationInput | FavoriteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FavoriteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Favorites from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Favorites.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Favorites
+    **/
+    _count?: true | FavoriteCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: FavoriteAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: FavoriteSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FavoriteMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FavoriteMaxAggregateInputType
+  }
+
+  export type GetFavoriteAggregateType<T extends FavoriteAggregateArgs> = {
+        [P in keyof T & keyof AggregateFavorite]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFavorite[P]>
+      : GetScalarType<T[P], AggregateFavorite[P]>
+  }
+
+
+
+
+  export type FavoriteGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: FavoriteWhereInput
+    orderBy?: FavoriteOrderByWithAggregationInput | FavoriteOrderByWithAggregationInput[]
+    by: FavoriteScalarFieldEnum[] | FavoriteScalarFieldEnum
+    having?: FavoriteScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FavoriteCountAggregateInputType | true
+    _avg?: FavoriteAvgAggregateInputType
+    _sum?: FavoriteSumAggregateInputType
+    _min?: FavoriteMinAggregateInputType
+    _max?: FavoriteMaxAggregateInputType
+  }
+
+  export type FavoriteGroupByOutputType = {
+    id: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size: string[]
+    color: string
+    rating: number
+    img: string[]
+    userId: number
+    createdAt: Date
+    _count: FavoriteCountAggregateOutputType | null
+    _avg: FavoriteAvgAggregateOutputType | null
+    _sum: FavoriteSumAggregateOutputType | null
+    _min: FavoriteMinAggregateOutputType | null
+    _max: FavoriteMaxAggregateOutputType | null
+  }
+
+  type GetFavoriteGroupByPayload<T extends FavoriteGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FavoriteGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FavoriteGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FavoriteGroupByOutputType[P]>
+            : GetScalarType<T[P], FavoriteGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FavoriteSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    gender?: boolean
+    description?: boolean
+    category?: boolean
+    price?: boolean
+    size?: boolean
+    color?: boolean
+    rating?: boolean
+    img?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["favorite"]>
+
+  export type FavoriteSelectScalar = {
+    id?: boolean
+    title?: boolean
+    gender?: boolean
+    description?: boolean
+    category?: boolean
+    price?: boolean
+    size?: boolean
+    color?: boolean
+    rating?: boolean
+    img?: boolean
+    userId?: boolean
+    createdAt?: boolean
+  }
+
+  export type FavoriteInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+
+  export type $FavoritePayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    name: "Favorite"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetResult<{
+      id: number
+      title: string
+      gender: string
+      description: string
+      category: string
+      price: number
+      size: string[]
+      color: string
+      rating: number
+      img: string[]
+      userId: number
+      createdAt: Date
+    }, ExtArgs["result"]["favorite"]>
+    composites: {}
+  }
+
+
+  type FavoriteGetPayload<S extends boolean | null | undefined | FavoriteDefaultArgs> = $Result.GetResult<Prisma.$FavoritePayload, S>
+
+  type FavoriteCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<FavoriteFindManyArgs, 'select' | 'include'> & {
+      select?: FavoriteCountAggregateInputType | true
+    }
+
+  export interface FavoriteDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Favorite'], meta: { name: 'Favorite' } }
+    /**
+     * Find zero or one Favorite that matches the filter.
+     * @param {FavoriteFindUniqueArgs} args - Arguments to find a Favorite
+     * @example
+     * // Get one Favorite
+     * const favorite = await prisma.favorite.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends FavoriteFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, FavoriteFindUniqueArgs<ExtArgs>>
+    ): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Favorite that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {FavoriteFindUniqueOrThrowArgs} args - Arguments to find a Favorite
+     * @example
+     * // Get one Favorite
+     * const favorite = await prisma.favorite.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends FavoriteFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, FavoriteFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Favorite that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteFindFirstArgs} args - Arguments to find a Favorite
+     * @example
+     * // Get one Favorite
+     * const favorite = await prisma.favorite.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends FavoriteFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, FavoriteFindFirstArgs<ExtArgs>>
+    ): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Favorite that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteFindFirstOrThrowArgs} args - Arguments to find a Favorite
+     * @example
+     * // Get one Favorite
+     * const favorite = await prisma.favorite.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends FavoriteFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, FavoriteFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Favorites that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Favorites
+     * const favorites = await prisma.favorite.findMany()
+     * 
+     * // Get first 10 Favorites
+     * const favorites = await prisma.favorite.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const favoriteWithIdOnly = await prisma.favorite.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends FavoriteFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, FavoriteFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Favorite.
+     * @param {FavoriteCreateArgs} args - Arguments to create a Favorite.
+     * @example
+     * // Create one Favorite
+     * const Favorite = await prisma.favorite.create({
+     *   data: {
+     *     // ... data to create a Favorite
+     *   }
+     * })
+     * 
+    **/
+    create<T extends FavoriteCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, FavoriteCreateArgs<ExtArgs>>
+    ): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Favorites.
+     *     @param {FavoriteCreateManyArgs} args - Arguments to create many Favorites.
+     *     @example
+     *     // Create many Favorites
+     *     const favorite = await prisma.favorite.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends FavoriteCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, FavoriteCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Favorite.
+     * @param {FavoriteDeleteArgs} args - Arguments to delete one Favorite.
+     * @example
+     * // Delete one Favorite
+     * const Favorite = await prisma.favorite.delete({
+     *   where: {
+     *     // ... filter to delete one Favorite
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends FavoriteDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, FavoriteDeleteArgs<ExtArgs>>
+    ): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Favorite.
+     * @param {FavoriteUpdateArgs} args - Arguments to update one Favorite.
+     * @example
+     * // Update one Favorite
+     * const favorite = await prisma.favorite.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends FavoriteUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, FavoriteUpdateArgs<ExtArgs>>
+    ): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Favorites.
+     * @param {FavoriteDeleteManyArgs} args - Arguments to filter Favorites to delete.
+     * @example
+     * // Delete a few Favorites
+     * const { count } = await prisma.favorite.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends FavoriteDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, FavoriteDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Favorites.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Favorites
+     * const favorite = await prisma.favorite.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends FavoriteUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, FavoriteUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Favorite.
+     * @param {FavoriteUpsertArgs} args - Arguments to update or create a Favorite.
+     * @example
+     * // Update or create a Favorite
+     * const favorite = await prisma.favorite.upsert({
+     *   create: {
+     *     // ... data to create a Favorite
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Favorite we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends FavoriteUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, FavoriteUpsertArgs<ExtArgs>>
+    ): Prisma__FavoriteClient<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Favorites.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteCountArgs} args - Arguments to filter Favorites to count.
+     * @example
+     * // Count the number of Favorites
+     * const count = await prisma.favorite.count({
+     *   where: {
+     *     // ... the filter for the Favorites we want to count
+     *   }
+     * })
+    **/
+    count<T extends FavoriteCountArgs>(
+      args?: Subset<T, FavoriteCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FavoriteCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Favorite.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FavoriteAggregateArgs>(args: Subset<T, FavoriteAggregateArgs>): Prisma.PrismaPromise<GetFavoriteAggregateType<T>>
+
+    /**
+     * Group by Favorite.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FavoriteGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FavoriteGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FavoriteGroupByArgs['orderBy'] }
+        : { orderBy?: FavoriteGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FavoriteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFavoriteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Favorite model
+   */
+  readonly fields: FavoriteFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Favorite.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FavoriteClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Favorite model
+   */ 
+  interface FavoriteFieldRefs {
+    readonly id: FieldRef<"Favorite", 'Int'>
+    readonly title: FieldRef<"Favorite", 'String'>
+    readonly gender: FieldRef<"Favorite", 'String'>
+    readonly description: FieldRef<"Favorite", 'String'>
+    readonly category: FieldRef<"Favorite", 'String'>
+    readonly price: FieldRef<"Favorite", 'Float'>
+    readonly size: FieldRef<"Favorite", 'String[]'>
+    readonly color: FieldRef<"Favorite", 'String'>
+    readonly rating: FieldRef<"Favorite", 'Float'>
+    readonly img: FieldRef<"Favorite", 'String[]'>
+    readonly userId: FieldRef<"Favorite", 'Int'>
+    readonly createdAt: FieldRef<"Favorite", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Favorite findUnique
+   */
+  export type FavoriteFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Favorite
+     */
+    select?: FavoriteSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FavoriteInclude<ExtArgs> | null
+    /**
+     * Filter, which Favorite to fetch.
+     */
+    where: FavoriteWhereUniqueInput
+  }
+
+
+  /**
+   * Favorite findUniqueOrThrow
+   */
+  export type FavoriteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Favorite
+     */
+    select?: FavoriteSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FavoriteInclude<ExtArgs> | null
+    /**
+     * Filter, which Favorite to fetch.
+     */
+    where: FavoriteWhereUniqueInput
+  }
+
+
+  /**
+   * Favorite findFirst
+   */
+  export type FavoriteFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Favorite
+     */
+    select?: FavoriteSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FavoriteInclude<ExtArgs> | null
+    /**
+     * Filter, which Favorite to fetch.
+     */
+    where?: FavoriteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Favorites to fetch.
+     */
+    orderBy?: FavoriteOrderByWithRelationInput | FavoriteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Favorites.
+     */
+    cursor?: FavoriteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Favorites from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Favorites.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Favorites.
+     */
+    distinct?: FavoriteScalarFieldEnum | FavoriteScalarFieldEnum[]
+  }
+
+
+  /**
+   * Favorite findFirstOrThrow
+   */
+  export type FavoriteFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Favorite
+     */
+    select?: FavoriteSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FavoriteInclude<ExtArgs> | null
+    /**
+     * Filter, which Favorite to fetch.
+     */
+    where?: FavoriteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Favorites to fetch.
+     */
+    orderBy?: FavoriteOrderByWithRelationInput | FavoriteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Favorites.
+     */
+    cursor?: FavoriteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Favorites from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Favorites.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Favorites.
+     */
+    distinct?: FavoriteScalarFieldEnum | FavoriteScalarFieldEnum[]
+  }
+
+
+  /**
+   * Favorite findMany
+   */
+  export type FavoriteFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Favorite
+     */
+    select?: FavoriteSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FavoriteInclude<ExtArgs> | null
+    /**
+     * Filter, which Favorites to fetch.
+     */
+    where?: FavoriteWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Favorites to fetch.
+     */
+    orderBy?: FavoriteOrderByWithRelationInput | FavoriteOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Favorites.
+     */
+    cursor?: FavoriteWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Favorites from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Favorites.
+     */
+    skip?: number
+    distinct?: FavoriteScalarFieldEnum | FavoriteScalarFieldEnum[]
+  }
+
+
+  /**
+   * Favorite create
+   */
+  export type FavoriteCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Favorite
+     */
+    select?: FavoriteSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FavoriteInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Favorite.
+     */
+    data: XOR<FavoriteCreateInput, FavoriteUncheckedCreateInput>
+  }
+
+
+  /**
+   * Favorite createMany
+   */
+  export type FavoriteCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Favorites.
+     */
+    data: FavoriteCreateManyInput | FavoriteCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Favorite update
+   */
+  export type FavoriteUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Favorite
+     */
+    select?: FavoriteSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FavoriteInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Favorite.
+     */
+    data: XOR<FavoriteUpdateInput, FavoriteUncheckedUpdateInput>
+    /**
+     * Choose, which Favorite to update.
+     */
+    where: FavoriteWhereUniqueInput
+  }
+
+
+  /**
+   * Favorite updateMany
+   */
+  export type FavoriteUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Favorites.
+     */
+    data: XOR<FavoriteUpdateManyMutationInput, FavoriteUncheckedUpdateManyInput>
+    /**
+     * Filter which Favorites to update
+     */
+    where?: FavoriteWhereInput
+  }
+
+
+  /**
+   * Favorite upsert
+   */
+  export type FavoriteUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Favorite
+     */
+    select?: FavoriteSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FavoriteInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Favorite to update in case it exists.
+     */
+    where: FavoriteWhereUniqueInput
+    /**
+     * In case the Favorite found by the `where` argument doesn't exist, create a new Favorite with this data.
+     */
+    create: XOR<FavoriteCreateInput, FavoriteUncheckedCreateInput>
+    /**
+     * In case the Favorite was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FavoriteUpdateInput, FavoriteUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Favorite delete
+   */
+  export type FavoriteDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Favorite
+     */
+    select?: FavoriteSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FavoriteInclude<ExtArgs> | null
+    /**
+     * Filter which Favorite to delete.
+     */
+    where: FavoriteWhereUniqueInput
+  }
+
+
+  /**
+   * Favorite deleteMany
+   */
+  export type FavoriteDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Favorites to delete
+     */
+    where?: FavoriteWhereInput
+  }
+
+
+  /**
+   * Favorite without action
+   */
+  export type FavoriteDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Favorite
+     */
+    select?: FavoriteSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: FavoriteInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model Order
+   */
+
+  export type AggregateOrder = {
+    _count: OrderCountAggregateOutputType | null
+    _avg: OrderAvgAggregateOutputType | null
+    _sum: OrderSumAggregateOutputType | null
+    _min: OrderMinAggregateOutputType | null
+    _max: OrderMaxAggregateOutputType | null
+  }
+
+  export type OrderAvgAggregateOutputType = {
+    id: number | null
+    subTotal: number | null
+    quantity: number | null
+    shipping: number | null
+    discount: number | null
+    total: number | null
+    userId: number | null
+  }
+
+  export type OrderSumAggregateOutputType = {
+    id: number | null
+    subTotal: number | null
+    quantity: number | null
+    shipping: number | null
+    discount: number | null
+    total: number | null
+    userId: number | null
+  }
+
+  export type OrderMinAggregateOutputType = {
+    id: number | null
+    subTotal: number | null
+    quantity: number | null
+    shipping: number | null
+    discount: number | null
+    total: number | null
+    userId: number | null
+    createdAt: Date | null
+  }
+
+  export type OrderMaxAggregateOutputType = {
+    id: number | null
+    subTotal: number | null
+    quantity: number | null
+    shipping: number | null
+    discount: number | null
+    total: number | null
+    userId: number | null
+    createdAt: Date | null
+  }
+
+  export type OrderCountAggregateOutputType = {
+    id: number
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    userId: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type OrderAvgAggregateInputType = {
+    id?: true
+    subTotal?: true
+    quantity?: true
+    shipping?: true
+    discount?: true
+    total?: true
+    userId?: true
+  }
+
+  export type OrderSumAggregateInputType = {
+    id?: true
+    subTotal?: true
+    quantity?: true
+    shipping?: true
+    discount?: true
+    total?: true
+    userId?: true
+  }
+
+  export type OrderMinAggregateInputType = {
+    id?: true
+    subTotal?: true
+    quantity?: true
+    shipping?: true
+    discount?: true
+    total?: true
+    userId?: true
+    createdAt?: true
+  }
+
+  export type OrderMaxAggregateInputType = {
+    id?: true
+    subTotal?: true
+    quantity?: true
+    shipping?: true
+    discount?: true
+    total?: true
+    userId?: true
+    createdAt?: true
+  }
+
+  export type OrderCountAggregateInputType = {
+    id?: true
+    subTotal?: true
+    quantity?: true
+    shipping?: true
+    discount?: true
+    total?: true
+    userId?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type OrderAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Order to aggregate.
+     */
+    where?: OrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Orders to fetch.
+     */
+    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Orders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Orders
+    **/
+    _count?: true | OrderCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OrderAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OrderSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OrderMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OrderMaxAggregateInputType
+  }
+
+  export type GetOrderAggregateType<T extends OrderAggregateArgs> = {
+        [P in keyof T & keyof AggregateOrder]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOrder[P]>
+      : GetScalarType<T[P], AggregateOrder[P]>
+  }
+
+
+
+
+  export type OrderGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: OrderWhereInput
+    orderBy?: OrderOrderByWithAggregationInput | OrderOrderByWithAggregationInput[]
+    by: OrderScalarFieldEnum[] | OrderScalarFieldEnum
+    having?: OrderScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OrderCountAggregateInputType | true
+    _avg?: OrderAvgAggregateInputType
+    _sum?: OrderSumAggregateInputType
+    _min?: OrderMinAggregateInputType
+    _max?: OrderMaxAggregateInputType
+  }
+
+  export type OrderGroupByOutputType = {
+    id: number
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    userId: number
+    createdAt: Date
+    _count: OrderCountAggregateOutputType | null
+    _avg: OrderAvgAggregateOutputType | null
+    _sum: OrderSumAggregateOutputType | null
+    _min: OrderMinAggregateOutputType | null
+    _max: OrderMaxAggregateOutputType | null
+  }
+
+  type GetOrderGroupByPayload<T extends OrderGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OrderGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OrderGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OrderGroupByOutputType[P]>
+            : GetScalarType<T[P], OrderGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OrderSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    subTotal?: boolean
+    quantity?: boolean
+    shipping?: boolean
+    discount?: boolean
+    total?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    PaymentDetails?: boolean | Order$PaymentDetailsArgs<ExtArgs>
+    ShippingDetails?: boolean | Order$ShippingDetailsArgs<ExtArgs>
+    cartProducts?: boolean | Order$cartProductsArgs<ExtArgs>
+    _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["order"]>
+
+  export type OrderSelectScalar = {
+    id?: boolean
+    subTotal?: boolean
+    quantity?: boolean
+    shipping?: boolean
+    discount?: boolean
+    total?: boolean
+    userId?: boolean
+    createdAt?: boolean
+  }
+
+  export type OrderInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    PaymentDetails?: boolean | Order$PaymentDetailsArgs<ExtArgs>
+    ShippingDetails?: boolean | Order$ShippingDetailsArgs<ExtArgs>
+    cartProducts?: boolean | Order$cartProductsArgs<ExtArgs>
+    _count?: boolean | OrderCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+
+  export type $OrderPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    name: "Order"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      PaymentDetails: Prisma.$PaymentDetailPayload<ExtArgs>[]
+      ShippingDetails: Prisma.$ShippingDetailPayload<ExtArgs>[]
+      cartProducts: Prisma.$CartProductPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetResult<{
+      id: number
+      subTotal: number
+      quantity: number
+      shipping: number
+      discount: number
+      total: number
+      userId: number
+      createdAt: Date
+    }, ExtArgs["result"]["order"]>
+    composites: {}
+  }
+
+
+  type OrderGetPayload<S extends boolean | null | undefined | OrderDefaultArgs> = $Result.GetResult<Prisma.$OrderPayload, S>
+
+  type OrderCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<OrderFindManyArgs, 'select' | 'include'> & {
+      select?: OrderCountAggregateInputType | true
+    }
+
+  export interface OrderDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Order'], meta: { name: 'Order' } }
+    /**
+     * Find zero or one Order that matches the filter.
+     * @param {OrderFindUniqueArgs} args - Arguments to find a Order
+     * @example
+     * // Get one Order
+     * const order = await prisma.order.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends OrderFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderFindUniqueArgs<ExtArgs>>
+    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one Order that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {OrderFindUniqueOrThrowArgs} args - Arguments to find a Order
+     * @example
+     * // Get one Order
+     * const order = await prisma.order.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends OrderFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first Order that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderFindFirstArgs} args - Arguments to find a Order
+     * @example
+     * // Get one Order
+     * const order = await prisma.order.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends OrderFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderFindFirstArgs<ExtArgs>>
+    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first Order that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderFindFirstOrThrowArgs} args - Arguments to find a Order
+     * @example
+     * // Get one Order
+     * const order = await prisma.order.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends OrderFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more Orders that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Orders
+     * const orders = await prisma.order.findMany()
+     * 
+     * // Get first 10 Orders
+     * const orders = await prisma.order.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const orderWithIdOnly = await prisma.order.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends OrderFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a Order.
+     * @param {OrderCreateArgs} args - Arguments to create a Order.
+     * @example
+     * // Create one Order
+     * const Order = await prisma.order.create({
+     *   data: {
+     *     // ... data to create a Order
+     *   }
+     * })
+     * 
+    **/
+    create<T extends OrderCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderCreateArgs<ExtArgs>>
+    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many Orders.
+     *     @param {OrderCreateManyArgs} args - Arguments to create many Orders.
+     *     @example
+     *     // Create many Orders
+     *     const order = await prisma.order.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends OrderCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Order.
+     * @param {OrderDeleteArgs} args - Arguments to delete one Order.
+     * @example
+     * // Delete one Order
+     * const Order = await prisma.order.delete({
+     *   where: {
+     *     // ... filter to delete one Order
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends OrderDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderDeleteArgs<ExtArgs>>
+    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one Order.
+     * @param {OrderUpdateArgs} args - Arguments to update one Order.
+     * @example
+     * // Update one Order
+     * const order = await prisma.order.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends OrderUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderUpdateArgs<ExtArgs>>
+    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more Orders.
+     * @param {OrderDeleteManyArgs} args - Arguments to filter Orders to delete.
+     * @example
+     * // Delete a few Orders
+     * const { count } = await prisma.order.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends OrderDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, OrderDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Orders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Orders
+     * const order = await prisma.order.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends OrderUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Order.
+     * @param {OrderUpsertArgs} args - Arguments to update or create a Order.
+     * @example
+     * // Update or create a Order
+     * const order = await prisma.order.upsert({
+     *   create: {
+     *     // ... data to create a Order
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Order we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends OrderUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, OrderUpsertArgs<ExtArgs>>
+    ): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of Orders.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderCountArgs} args - Arguments to filter Orders to count.
+     * @example
+     * // Count the number of Orders
+     * const count = await prisma.order.count({
+     *   where: {
+     *     // ... the filter for the Orders we want to count
+     *   }
+     * })
+    **/
+    count<T extends OrderCountArgs>(
+      args?: Subset<T, OrderCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OrderCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Order.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OrderAggregateArgs>(args: Subset<T, OrderAggregateArgs>): Prisma.PrismaPromise<GetOrderAggregateType<T>>
+
+    /**
+     * Group by Order.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OrderGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OrderGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OrderGroupByArgs['orderBy'] }
+        : { orderBy?: OrderGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OrderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOrderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Order model
+   */
+  readonly fields: OrderFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Order.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OrderClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    PaymentDetails<T extends Order$PaymentDetailsArgs<ExtArgs> = {}>(args?: Subset<T, Order$PaymentDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentDetailPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    ShippingDetails<T extends Order$ShippingDetailsArgs<ExtArgs> = {}>(args?: Subset<T, Order$ShippingDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShippingDetailPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    cartProducts<T extends Order$cartProductsArgs<ExtArgs> = {}>(args?: Subset<T, Order$cartProductsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the Order model
+   */ 
+  interface OrderFieldRefs {
+    readonly id: FieldRef<"Order", 'Int'>
+    readonly subTotal: FieldRef<"Order", 'Float'>
+    readonly quantity: FieldRef<"Order", 'Int'>
+    readonly shipping: FieldRef<"Order", 'Float'>
+    readonly discount: FieldRef<"Order", 'Float'>
+    readonly total: FieldRef<"Order", 'Float'>
+    readonly userId: FieldRef<"Order", 'Int'>
+    readonly createdAt: FieldRef<"Order", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * Order findUnique
+   */
+  export type OrderFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    /**
+     * Filter, which Order to fetch.
+     */
+    where: OrderWhereUniqueInput
+  }
+
+
+  /**
+   * Order findUniqueOrThrow
+   */
+  export type OrderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    /**
+     * Filter, which Order to fetch.
+     */
+    where: OrderWhereUniqueInput
+  }
+
+
+  /**
+   * Order findFirst
+   */
+  export type OrderFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    /**
+     * Filter, which Order to fetch.
+     */
+    where?: OrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Orders to fetch.
+     */
+    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Orders.
+     */
+    cursor?: OrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Orders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Orders.
+     */
+    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+
+  /**
+   * Order findFirstOrThrow
+   */
+  export type OrderFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    /**
+     * Filter, which Order to fetch.
+     */
+    where?: OrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Orders to fetch.
+     */
+    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Orders.
+     */
+    cursor?: OrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Orders.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Orders.
+     */
+    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+
+  /**
+   * Order findMany
+   */
+  export type OrderFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    /**
+     * Filter, which Orders to fetch.
+     */
+    where?: OrderWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Orders to fetch.
+     */
+    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Orders.
+     */
+    cursor?: OrderWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Orders from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Orders.
+     */
+    skip?: number
+    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
+  }
+
+
+  /**
+   * Order create
+   */
+  export type OrderCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Order.
+     */
+    data: XOR<OrderCreateInput, OrderUncheckedCreateInput>
+  }
+
+
+  /**
+   * Order createMany
+   */
+  export type OrderCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Orders.
+     */
+    data: OrderCreateManyInput | OrderCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * Order update
+   */
+  export type OrderUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Order.
+     */
+    data: XOR<OrderUpdateInput, OrderUncheckedUpdateInput>
+    /**
+     * Choose, which Order to update.
+     */
+    where: OrderWhereUniqueInput
+  }
+
+
+  /**
+   * Order updateMany
+   */
+  export type OrderUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Orders.
+     */
+    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyInput>
+    /**
+     * Filter which Orders to update
+     */
+    where?: OrderWhereInput
+  }
+
+
+  /**
+   * Order upsert
+   */
+  export type OrderUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Order to update in case it exists.
+     */
+    where: OrderWhereUniqueInput
+    /**
+     * In case the Order found by the `where` argument doesn't exist, create a new Order with this data.
+     */
+    create: XOR<OrderCreateInput, OrderUncheckedCreateInput>
+    /**
+     * In case the Order was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OrderUpdateInput, OrderUncheckedUpdateInput>
+  }
+
+
+  /**
+   * Order delete
+   */
+  export type OrderDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    /**
+     * Filter which Order to delete.
+     */
+    where: OrderWhereUniqueInput
+  }
+
+
+  /**
+   * Order deleteMany
+   */
+  export type OrderDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Orders to delete
+     */
+    where?: OrderWhereInput
+  }
+
+
+  /**
+   * Order.PaymentDetails
+   */
+  export type Order$PaymentDetailsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentDetail
+     */
+    select?: PaymentDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentDetailInclude<ExtArgs> | null
+    where?: PaymentDetailWhereInput
+    orderBy?: PaymentDetailOrderByWithRelationInput | PaymentDetailOrderByWithRelationInput[]
+    cursor?: PaymentDetailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PaymentDetailScalarFieldEnum | PaymentDetailScalarFieldEnum[]
+  }
+
+
+  /**
+   * Order.ShippingDetails
+   */
+  export type Order$ShippingDetailsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingDetail
+     */
+    select?: ShippingDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ShippingDetailInclude<ExtArgs> | null
+    where?: ShippingDetailWhereInput
+    orderBy?: ShippingDetailOrderByWithRelationInput | ShippingDetailOrderByWithRelationInput[]
+    cursor?: ShippingDetailWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ShippingDetailScalarFieldEnum | ShippingDetailScalarFieldEnum[]
+  }
+
+
+  /**
+   * Order.cartProducts
+   */
+  export type Order$cartProductsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CartProduct
+     */
+    select?: CartProductSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: CartProductInclude<ExtArgs> | null
+    where?: CartProductWhereInput
+    orderBy?: CartProductOrderByWithRelationInput | CartProductOrderByWithRelationInput[]
+    cursor?: CartProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CartProductScalarFieldEnum | CartProductScalarFieldEnum[]
+  }
+
+
+  /**
+   * Order without action
+   */
+  export type OrderDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model PaymentDetail
+   */
+
+  export type AggregatePaymentDetail = {
+    _count: PaymentDetailCountAggregateOutputType | null
+    _avg: PaymentDetailAvgAggregateOutputType | null
+    _sum: PaymentDetailSumAggregateOutputType | null
+    _min: PaymentDetailMinAggregateOutputType | null
+    _max: PaymentDetailMaxAggregateOutputType | null
+  }
+
+  export type PaymentDetailAvgAggregateOutputType = {
+    id: number | null
+    orderId: number | null
+  }
+
+  export type PaymentDetailSumAggregateOutputType = {
+    id: number | null
+    orderId: number | null
+  }
+
+  export type PaymentDetailMinAggregateOutputType = {
+    id: number | null
+    razorpayOrderId: string | null
+    razorpayPaymentId: string | null
+    orderId: number | null
+  }
+
+  export type PaymentDetailMaxAggregateOutputType = {
+    id: number | null
+    razorpayOrderId: string | null
+    razorpayPaymentId: string | null
+    orderId: number | null
+  }
+
+  export type PaymentDetailCountAggregateOutputType = {
+    id: number
+    razorpayOrderId: number
+    razorpayPaymentId: number
+    orderId: number
+    _all: number
+  }
+
+
+  export type PaymentDetailAvgAggregateInputType = {
+    id?: true
+    orderId?: true
+  }
+
+  export type PaymentDetailSumAggregateInputType = {
+    id?: true
+    orderId?: true
+  }
+
+  export type PaymentDetailMinAggregateInputType = {
+    id?: true
+    razorpayOrderId?: true
+    razorpayPaymentId?: true
+    orderId?: true
+  }
+
+  export type PaymentDetailMaxAggregateInputType = {
+    id?: true
+    razorpayOrderId?: true
+    razorpayPaymentId?: true
+    orderId?: true
+  }
+
+  export type PaymentDetailCountAggregateInputType = {
+    id?: true
+    razorpayOrderId?: true
+    razorpayPaymentId?: true
+    orderId?: true
+    _all?: true
+  }
+
+  export type PaymentDetailAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PaymentDetail to aggregate.
+     */
+    where?: PaymentDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentDetails to fetch.
+     */
+    orderBy?: PaymentDetailOrderByWithRelationInput | PaymentDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PaymentDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PaymentDetails
+    **/
+    _count?: true | PaymentDetailCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PaymentDetailAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PaymentDetailSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PaymentDetailMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PaymentDetailMaxAggregateInputType
+  }
+
+  export type GetPaymentDetailAggregateType<T extends PaymentDetailAggregateArgs> = {
+        [P in keyof T & keyof AggregatePaymentDetail]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePaymentDetail[P]>
+      : GetScalarType<T[P], AggregatePaymentDetail[P]>
+  }
+
+
+
+
+  export type PaymentDetailGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: PaymentDetailWhereInput
+    orderBy?: PaymentDetailOrderByWithAggregationInput | PaymentDetailOrderByWithAggregationInput[]
+    by: PaymentDetailScalarFieldEnum[] | PaymentDetailScalarFieldEnum
+    having?: PaymentDetailScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PaymentDetailCountAggregateInputType | true
+    _avg?: PaymentDetailAvgAggregateInputType
+    _sum?: PaymentDetailSumAggregateInputType
+    _min?: PaymentDetailMinAggregateInputType
+    _max?: PaymentDetailMaxAggregateInputType
+  }
+
+  export type PaymentDetailGroupByOutputType = {
+    id: number
+    razorpayOrderId: string
+    razorpayPaymentId: string
+    orderId: number | null
+    _count: PaymentDetailCountAggregateOutputType | null
+    _avg: PaymentDetailAvgAggregateOutputType | null
+    _sum: PaymentDetailSumAggregateOutputType | null
+    _min: PaymentDetailMinAggregateOutputType | null
+    _max: PaymentDetailMaxAggregateOutputType | null
+  }
+
+  type GetPaymentDetailGroupByPayload<T extends PaymentDetailGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PaymentDetailGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PaymentDetailGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PaymentDetailGroupByOutputType[P]>
+            : GetScalarType<T[P], PaymentDetailGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PaymentDetailSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    razorpayOrderId?: boolean
+    razorpayPaymentId?: boolean
+    orderId?: boolean
+    order?: boolean | PaymentDetail$orderArgs<ExtArgs>
+  }, ExtArgs["result"]["paymentDetail"]>
+
+  export type PaymentDetailSelectScalar = {
+    id?: boolean
+    razorpayOrderId?: boolean
+    razorpayPaymentId?: boolean
+    orderId?: boolean
+  }
+
+  export type PaymentDetailInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    order?: boolean | PaymentDetail$orderArgs<ExtArgs>
+  }
+
+
+  export type $PaymentDetailPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    name: "PaymentDetail"
+    objects: {
+      order: Prisma.$OrderPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetResult<{
+      id: number
+      razorpayOrderId: string
+      razorpayPaymentId: string
+      orderId: number | null
+    }, ExtArgs["result"]["paymentDetail"]>
+    composites: {}
+  }
+
+
+  type PaymentDetailGetPayload<S extends boolean | null | undefined | PaymentDetailDefaultArgs> = $Result.GetResult<Prisma.$PaymentDetailPayload, S>
+
+  type PaymentDetailCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<PaymentDetailFindManyArgs, 'select' | 'include'> & {
+      select?: PaymentDetailCountAggregateInputType | true
+    }
+
+  export interface PaymentDetailDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PaymentDetail'], meta: { name: 'PaymentDetail' } }
+    /**
+     * Find zero or one PaymentDetail that matches the filter.
+     * @param {PaymentDetailFindUniqueArgs} args - Arguments to find a PaymentDetail
+     * @example
+     * // Get one PaymentDetail
+     * const paymentDetail = await prisma.paymentDetail.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends PaymentDetailFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, PaymentDetailFindUniqueArgs<ExtArgs>>
+    ): Prisma__PaymentDetailClient<$Result.GetResult<Prisma.$PaymentDetailPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one PaymentDetail that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {PaymentDetailFindUniqueOrThrowArgs} args - Arguments to find a PaymentDetail
+     * @example
+     * // Get one PaymentDetail
+     * const paymentDetail = await prisma.paymentDetail.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends PaymentDetailFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PaymentDetailFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__PaymentDetailClient<$Result.GetResult<Prisma.$PaymentDetailPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first PaymentDetail that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentDetailFindFirstArgs} args - Arguments to find a PaymentDetail
+     * @example
+     * // Get one PaymentDetail
+     * const paymentDetail = await prisma.paymentDetail.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends PaymentDetailFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, PaymentDetailFindFirstArgs<ExtArgs>>
+    ): Prisma__PaymentDetailClient<$Result.GetResult<Prisma.$PaymentDetailPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first PaymentDetail that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentDetailFindFirstOrThrowArgs} args - Arguments to find a PaymentDetail
+     * @example
+     * // Get one PaymentDetail
+     * const paymentDetail = await prisma.paymentDetail.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends PaymentDetailFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, PaymentDetailFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__PaymentDetailClient<$Result.GetResult<Prisma.$PaymentDetailPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more PaymentDetails that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentDetailFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PaymentDetails
+     * const paymentDetails = await prisma.paymentDetail.findMany()
+     * 
+     * // Get first 10 PaymentDetails
+     * const paymentDetails = await prisma.paymentDetail.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const paymentDetailWithIdOnly = await prisma.paymentDetail.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends PaymentDetailFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PaymentDetailFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentDetailPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a PaymentDetail.
+     * @param {PaymentDetailCreateArgs} args - Arguments to create a PaymentDetail.
+     * @example
+     * // Create one PaymentDetail
+     * const PaymentDetail = await prisma.paymentDetail.create({
+     *   data: {
+     *     // ... data to create a PaymentDetail
+     *   }
+     * })
+     * 
+    **/
+    create<T extends PaymentDetailCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, PaymentDetailCreateArgs<ExtArgs>>
+    ): Prisma__PaymentDetailClient<$Result.GetResult<Prisma.$PaymentDetailPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many PaymentDetails.
+     *     @param {PaymentDetailCreateManyArgs} args - Arguments to create many PaymentDetails.
+     *     @example
+     *     // Create many PaymentDetails
+     *     const paymentDetail = await prisma.paymentDetail.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends PaymentDetailCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PaymentDetailCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a PaymentDetail.
+     * @param {PaymentDetailDeleteArgs} args - Arguments to delete one PaymentDetail.
+     * @example
+     * // Delete one PaymentDetail
+     * const PaymentDetail = await prisma.paymentDetail.delete({
+     *   where: {
+     *     // ... filter to delete one PaymentDetail
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends PaymentDetailDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, PaymentDetailDeleteArgs<ExtArgs>>
+    ): Prisma__PaymentDetailClient<$Result.GetResult<Prisma.$PaymentDetailPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one PaymentDetail.
+     * @param {PaymentDetailUpdateArgs} args - Arguments to update one PaymentDetail.
+     * @example
+     * // Update one PaymentDetail
+     * const paymentDetail = await prisma.paymentDetail.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends PaymentDetailUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, PaymentDetailUpdateArgs<ExtArgs>>
+    ): Prisma__PaymentDetailClient<$Result.GetResult<Prisma.$PaymentDetailPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more PaymentDetails.
+     * @param {PaymentDetailDeleteManyArgs} args - Arguments to filter PaymentDetails to delete.
+     * @example
+     * // Delete a few PaymentDetails
+     * const { count } = await prisma.paymentDetail.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends PaymentDetailDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, PaymentDetailDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PaymentDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentDetailUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PaymentDetails
+     * const paymentDetail = await prisma.paymentDetail.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends PaymentDetailUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, PaymentDetailUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one PaymentDetail.
+     * @param {PaymentDetailUpsertArgs} args - Arguments to update or create a PaymentDetail.
+     * @example
+     * // Update or create a PaymentDetail
+     * const paymentDetail = await prisma.paymentDetail.upsert({
+     *   create: {
+     *     // ... data to create a PaymentDetail
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the PaymentDetail we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends PaymentDetailUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, PaymentDetailUpsertArgs<ExtArgs>>
+    ): Prisma__PaymentDetailClient<$Result.GetResult<Prisma.$PaymentDetailPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of PaymentDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentDetailCountArgs} args - Arguments to filter PaymentDetails to count.
+     * @example
+     * // Count the number of PaymentDetails
+     * const count = await prisma.paymentDetail.count({
+     *   where: {
+     *     // ... the filter for the PaymentDetails we want to count
+     *   }
+     * })
+    **/
+    count<T extends PaymentDetailCountArgs>(
+      args?: Subset<T, PaymentDetailCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PaymentDetailCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PaymentDetail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentDetailAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PaymentDetailAggregateArgs>(args: Subset<T, PaymentDetailAggregateArgs>): Prisma.PrismaPromise<GetPaymentDetailAggregateType<T>>
+
+    /**
+     * Group by PaymentDetail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PaymentDetailGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PaymentDetailGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PaymentDetailGroupByArgs['orderBy'] }
+        : { orderBy?: PaymentDetailGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PaymentDetailGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPaymentDetailGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PaymentDetail model
+   */
+  readonly fields: PaymentDetailFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PaymentDetail.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PaymentDetailClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    order<T extends PaymentDetail$orderArgs<ExtArgs> = {}>(args?: Subset<T, PaymentDetail$orderArgs<ExtArgs>>): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the PaymentDetail model
+   */ 
+  interface PaymentDetailFieldRefs {
+    readonly id: FieldRef<"PaymentDetail", 'Int'>
+    readonly razorpayOrderId: FieldRef<"PaymentDetail", 'String'>
+    readonly razorpayPaymentId: FieldRef<"PaymentDetail", 'String'>
+    readonly orderId: FieldRef<"PaymentDetail", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * PaymentDetail findUnique
+   */
+  export type PaymentDetailFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentDetail
+     */
+    select?: PaymentDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which PaymentDetail to fetch.
+     */
+    where: PaymentDetailWhereUniqueInput
+  }
+
+
+  /**
+   * PaymentDetail findUniqueOrThrow
+   */
+  export type PaymentDetailFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentDetail
+     */
+    select?: PaymentDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which PaymentDetail to fetch.
+     */
+    where: PaymentDetailWhereUniqueInput
+  }
+
+
+  /**
+   * PaymentDetail findFirst
+   */
+  export type PaymentDetailFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentDetail
+     */
+    select?: PaymentDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which PaymentDetail to fetch.
+     */
+    where?: PaymentDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentDetails to fetch.
+     */
+    orderBy?: PaymentDetailOrderByWithRelationInput | PaymentDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PaymentDetails.
+     */
+    cursor?: PaymentDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PaymentDetails.
+     */
+    distinct?: PaymentDetailScalarFieldEnum | PaymentDetailScalarFieldEnum[]
+  }
+
+
+  /**
+   * PaymentDetail findFirstOrThrow
+   */
+  export type PaymentDetailFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentDetail
+     */
+    select?: PaymentDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which PaymentDetail to fetch.
+     */
+    where?: PaymentDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentDetails to fetch.
+     */
+    orderBy?: PaymentDetailOrderByWithRelationInput | PaymentDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PaymentDetails.
+     */
+    cursor?: PaymentDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PaymentDetails.
+     */
+    distinct?: PaymentDetailScalarFieldEnum | PaymentDetailScalarFieldEnum[]
+  }
+
+
+  /**
+   * PaymentDetail findMany
+   */
+  export type PaymentDetailFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentDetail
+     */
+    select?: PaymentDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which PaymentDetails to fetch.
+     */
+    where?: PaymentDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PaymentDetails to fetch.
+     */
+    orderBy?: PaymentDetailOrderByWithRelationInput | PaymentDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PaymentDetails.
+     */
+    cursor?: PaymentDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PaymentDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PaymentDetails.
+     */
+    skip?: number
+    distinct?: PaymentDetailScalarFieldEnum | PaymentDetailScalarFieldEnum[]
+  }
+
+
+  /**
+   * PaymentDetail create
+   */
+  export type PaymentDetailCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentDetail
+     */
+    select?: PaymentDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentDetailInclude<ExtArgs> | null
+    /**
+     * The data needed to create a PaymentDetail.
+     */
+    data: XOR<PaymentDetailCreateInput, PaymentDetailUncheckedCreateInput>
+  }
+
+
+  /**
+   * PaymentDetail createMany
+   */
+  export type PaymentDetailCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many PaymentDetails.
+     */
+    data: PaymentDetailCreateManyInput | PaymentDetailCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * PaymentDetail update
+   */
+  export type PaymentDetailUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentDetail
+     */
+    select?: PaymentDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentDetailInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PaymentDetail.
+     */
+    data: XOR<PaymentDetailUpdateInput, PaymentDetailUncheckedUpdateInput>
+    /**
+     * Choose, which PaymentDetail to update.
+     */
+    where: PaymentDetailWhereUniqueInput
+  }
+
+
+  /**
+   * PaymentDetail updateMany
+   */
+  export type PaymentDetailUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PaymentDetails.
+     */
+    data: XOR<PaymentDetailUpdateManyMutationInput, PaymentDetailUncheckedUpdateManyInput>
+    /**
+     * Filter which PaymentDetails to update
+     */
+    where?: PaymentDetailWhereInput
+  }
+
+
+  /**
+   * PaymentDetail upsert
+   */
+  export type PaymentDetailUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentDetail
+     */
+    select?: PaymentDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentDetailInclude<ExtArgs> | null
+    /**
+     * The filter to search for the PaymentDetail to update in case it exists.
+     */
+    where: PaymentDetailWhereUniqueInput
+    /**
+     * In case the PaymentDetail found by the `where` argument doesn't exist, create a new PaymentDetail with this data.
+     */
+    create: XOR<PaymentDetailCreateInput, PaymentDetailUncheckedCreateInput>
+    /**
+     * In case the PaymentDetail was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PaymentDetailUpdateInput, PaymentDetailUncheckedUpdateInput>
+  }
+
+
+  /**
+   * PaymentDetail delete
+   */
+  export type PaymentDetailDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentDetail
+     */
+    select?: PaymentDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentDetailInclude<ExtArgs> | null
+    /**
+     * Filter which PaymentDetail to delete.
+     */
+    where: PaymentDetailWhereUniqueInput
+  }
+
+
+  /**
+   * PaymentDetail deleteMany
+   */
+  export type PaymentDetailDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PaymentDetails to delete
+     */
+    where?: PaymentDetailWhereInput
+  }
+
+
+  /**
+   * PaymentDetail.order
+   */
+  export type PaymentDetail$orderArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    where?: OrderWhereInput
+  }
+
+
+  /**
+   * PaymentDetail without action
+   */
+  export type PaymentDetailDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentDetail
+     */
+    select?: PaymentDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentDetailInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model ShippingDetail
+   */
+
+  export type AggregateShippingDetail = {
+    _count: ShippingDetailCountAggregateOutputType | null
+    _avg: ShippingDetailAvgAggregateOutputType | null
+    _sum: ShippingDetailSumAggregateOutputType | null
+    _min: ShippingDetailMinAggregateOutputType | null
+    _max: ShippingDetailMaxAggregateOutputType | null
+  }
+
+  export type ShippingDetailAvgAggregateOutputType = {
+    id: number | null
+    pinCode: number | null
+    mobile: number | null
+    orderId: number | null
+  }
+
+  export type ShippingDetailSumAggregateOutputType = {
+    id: number | null
+    pinCode: number | null
+    mobile: number | null
+    orderId: number | null
+  }
+
+  export type ShippingDetailMinAggregateOutputType = {
+    id: number | null
+    firstName: string | null
+    lastName: string | null
+    addressLine1: string | null
+    addressLine2: string | null
+    locality: string | null
+    pinCode: number | null
+    state: string | null
+    country: string | null
+    email: string | null
+    mobile: number | null
+    orderId: number | null
+  }
+
+  export type ShippingDetailMaxAggregateOutputType = {
+    id: number | null
+    firstName: string | null
+    lastName: string | null
+    addressLine1: string | null
+    addressLine2: string | null
+    locality: string | null
+    pinCode: number | null
+    state: string | null
+    country: string | null
+    email: string | null
+    mobile: number | null
+    orderId: number | null
+  }
+
+  export type ShippingDetailCountAggregateOutputType = {
+    id: number
+    firstName: number
+    lastName: number
+    addressLine1: number
+    addressLine2: number
+    locality: number
+    pinCode: number
+    state: number
+    country: number
+    email: number
+    mobile: number
+    orderId: number
+    _all: number
+  }
+
+
+  export type ShippingDetailAvgAggregateInputType = {
+    id?: true
+    pinCode?: true
+    mobile?: true
+    orderId?: true
+  }
+
+  export type ShippingDetailSumAggregateInputType = {
+    id?: true
+    pinCode?: true
+    mobile?: true
+    orderId?: true
+  }
+
+  export type ShippingDetailMinAggregateInputType = {
+    id?: true
+    firstName?: true
+    lastName?: true
+    addressLine1?: true
+    addressLine2?: true
+    locality?: true
+    pinCode?: true
+    state?: true
+    country?: true
+    email?: true
+    mobile?: true
+    orderId?: true
+  }
+
+  export type ShippingDetailMaxAggregateInputType = {
+    id?: true
+    firstName?: true
+    lastName?: true
+    addressLine1?: true
+    addressLine2?: true
+    locality?: true
+    pinCode?: true
+    state?: true
+    country?: true
+    email?: true
+    mobile?: true
+    orderId?: true
+  }
+
+  export type ShippingDetailCountAggregateInputType = {
+    id?: true
+    firstName?: true
+    lastName?: true
+    addressLine1?: true
+    addressLine2?: true
+    locality?: true
+    pinCode?: true
+    state?: true
+    country?: true
+    email?: true
+    mobile?: true
+    orderId?: true
+    _all?: true
+  }
+
+  export type ShippingDetailAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ShippingDetail to aggregate.
+     */
+    where?: ShippingDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShippingDetails to fetch.
+     */
+    orderBy?: ShippingDetailOrderByWithRelationInput | ShippingDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ShippingDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShippingDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShippingDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ShippingDetails
+    **/
+    _count?: true | ShippingDetailCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ShippingDetailAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ShippingDetailSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ShippingDetailMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ShippingDetailMaxAggregateInputType
+  }
+
+  export type GetShippingDetailAggregateType<T extends ShippingDetailAggregateArgs> = {
+        [P in keyof T & keyof AggregateShippingDetail]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateShippingDetail[P]>
+      : GetScalarType<T[P], AggregateShippingDetail[P]>
+  }
+
+
+
+
+  export type ShippingDetailGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    where?: ShippingDetailWhereInput
+    orderBy?: ShippingDetailOrderByWithAggregationInput | ShippingDetailOrderByWithAggregationInput[]
+    by: ShippingDetailScalarFieldEnum[] | ShippingDetailScalarFieldEnum
+    having?: ShippingDetailScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ShippingDetailCountAggregateInputType | true
+    _avg?: ShippingDetailAvgAggregateInputType
+    _sum?: ShippingDetailSumAggregateInputType
+    _min?: ShippingDetailMinAggregateInputType
+    _max?: ShippingDetailMaxAggregateInputType
+  }
+
+  export type ShippingDetailGroupByOutputType = {
+    id: number
+    firstName: string
+    lastName: string
+    addressLine1: string
+    addressLine2: string | null
+    locality: string
+    pinCode: number
+    state: string
+    country: string
+    email: string
+    mobile: number
+    orderId: number | null
+    _count: ShippingDetailCountAggregateOutputType | null
+    _avg: ShippingDetailAvgAggregateOutputType | null
+    _sum: ShippingDetailSumAggregateOutputType | null
+    _min: ShippingDetailMinAggregateOutputType | null
+    _max: ShippingDetailMaxAggregateOutputType | null
+  }
+
+  type GetShippingDetailGroupByPayload<T extends ShippingDetailGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ShippingDetailGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ShippingDetailGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ShippingDetailGroupByOutputType[P]>
+            : GetScalarType<T[P], ShippingDetailGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ShippingDetailSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    addressLine1?: boolean
+    addressLine2?: boolean
+    locality?: boolean
+    pinCode?: boolean
+    state?: boolean
+    country?: boolean
+    email?: boolean
+    mobile?: boolean
+    orderId?: boolean
+    order?: boolean | ShippingDetail$orderArgs<ExtArgs>
+  }, ExtArgs["result"]["shippingDetail"]>
+
+  export type ShippingDetailSelectScalar = {
+    id?: boolean
+    firstName?: boolean
+    lastName?: boolean
+    addressLine1?: boolean
+    addressLine2?: boolean
+    locality?: boolean
+    pinCode?: boolean
+    state?: boolean
+    country?: boolean
+    email?: boolean
+    mobile?: boolean
+    orderId?: boolean
+  }
+
+  export type ShippingDetailInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    order?: boolean | ShippingDetail$orderArgs<ExtArgs>
+  }
+
+
+  export type $ShippingDetailPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    name: "ShippingDetail"
+    objects: {
+      order: Prisma.$OrderPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetResult<{
+      id: number
+      firstName: string
+      lastName: string
+      addressLine1: string
+      addressLine2: string | null
+      locality: string
+      pinCode: number
+      state: string
+      country: string
+      email: string
+      mobile: number
+      orderId: number | null
+    }, ExtArgs["result"]["shippingDetail"]>
+    composites: {}
+  }
+
+
+  type ShippingDetailGetPayload<S extends boolean | null | undefined | ShippingDetailDefaultArgs> = $Result.GetResult<Prisma.$ShippingDetailPayload, S>
+
+  type ShippingDetailCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
+    Omit<ShippingDetailFindManyArgs, 'select' | 'include'> & {
+      select?: ShippingDetailCountAggregateInputType | true
+    }
+
+  export interface ShippingDetailDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ShippingDetail'], meta: { name: 'ShippingDetail' } }
+    /**
+     * Find zero or one ShippingDetail that matches the filter.
+     * @param {ShippingDetailFindUniqueArgs} args - Arguments to find a ShippingDetail
+     * @example
+     * // Get one ShippingDetail
+     * const shippingDetail = await prisma.shippingDetail.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ShippingDetailFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ShippingDetailFindUniqueArgs<ExtArgs>>
+    ): Prisma__ShippingDetailClient<$Result.GetResult<Prisma.$ShippingDetailPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one ShippingDetail that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {ShippingDetailFindUniqueOrThrowArgs} args - Arguments to find a ShippingDetail
+     * @example
+     * // Get one ShippingDetail
+     * const shippingDetail = await prisma.shippingDetail.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ShippingDetailFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ShippingDetailFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ShippingDetailClient<$Result.GetResult<Prisma.$ShippingDetailPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first ShippingDetail that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingDetailFindFirstArgs} args - Arguments to find a ShippingDetail
+     * @example
+     * // Get one ShippingDetail
+     * const shippingDetail = await prisma.shippingDetail.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ShippingDetailFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ShippingDetailFindFirstArgs<ExtArgs>>
+    ): Prisma__ShippingDetailClient<$Result.GetResult<Prisma.$ShippingDetailPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first ShippingDetail that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingDetailFindFirstOrThrowArgs} args - Arguments to find a ShippingDetail
+     * @example
+     * // Get one ShippingDetail
+     * const shippingDetail = await prisma.shippingDetail.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ShippingDetailFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ShippingDetailFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ShippingDetailClient<$Result.GetResult<Prisma.$ShippingDetailPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more ShippingDetails that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingDetailFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ShippingDetails
+     * const shippingDetails = await prisma.shippingDetail.findMany()
+     * 
+     * // Get first 10 ShippingDetails
+     * const shippingDetails = await prisma.shippingDetail.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const shippingDetailWithIdOnly = await prisma.shippingDetail.findMany({ select: { id: true } })
+     * 
+    **/
+    findMany<T extends ShippingDetailFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ShippingDetailFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ShippingDetailPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a ShippingDetail.
+     * @param {ShippingDetailCreateArgs} args - Arguments to create a ShippingDetail.
+     * @example
+     * // Create one ShippingDetail
+     * const ShippingDetail = await prisma.shippingDetail.create({
+     *   data: {
+     *     // ... data to create a ShippingDetail
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ShippingDetailCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ShippingDetailCreateArgs<ExtArgs>>
+    ): Prisma__ShippingDetailClient<$Result.GetResult<Prisma.$ShippingDetailPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many ShippingDetails.
+     *     @param {ShippingDetailCreateManyArgs} args - Arguments to create many ShippingDetails.
+     *     @example
+     *     // Create many ShippingDetails
+     *     const shippingDetail = await prisma.shippingDetail.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ShippingDetailCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ShippingDetailCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ShippingDetail.
+     * @param {ShippingDetailDeleteArgs} args - Arguments to delete one ShippingDetail.
+     * @example
+     * // Delete one ShippingDetail
+     * const ShippingDetail = await prisma.shippingDetail.delete({
+     *   where: {
+     *     // ... filter to delete one ShippingDetail
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ShippingDetailDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ShippingDetailDeleteArgs<ExtArgs>>
+    ): Prisma__ShippingDetailClient<$Result.GetResult<Prisma.$ShippingDetailPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one ShippingDetail.
+     * @param {ShippingDetailUpdateArgs} args - Arguments to update one ShippingDetail.
+     * @example
+     * // Update one ShippingDetail
+     * const shippingDetail = await prisma.shippingDetail.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ShippingDetailUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ShippingDetailUpdateArgs<ExtArgs>>
+    ): Prisma__ShippingDetailClient<$Result.GetResult<Prisma.$ShippingDetailPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more ShippingDetails.
+     * @param {ShippingDetailDeleteManyArgs} args - Arguments to filter ShippingDetails to delete.
+     * @example
+     * // Delete a few ShippingDetails
+     * const { count } = await prisma.shippingDetail.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ShippingDetailDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ShippingDetailDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ShippingDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingDetailUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ShippingDetails
+     * const shippingDetail = await prisma.shippingDetail.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ShippingDetailUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ShippingDetailUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ShippingDetail.
+     * @param {ShippingDetailUpsertArgs} args - Arguments to update or create a ShippingDetail.
+     * @example
+     * // Update or create a ShippingDetail
+     * const shippingDetail = await prisma.shippingDetail.upsert({
+     *   create: {
+     *     // ... data to create a ShippingDetail
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ShippingDetail we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ShippingDetailUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ShippingDetailUpsertArgs<ExtArgs>>
+    ): Prisma__ShippingDetailClient<$Result.GetResult<Prisma.$ShippingDetailPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of ShippingDetails.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingDetailCountArgs} args - Arguments to filter ShippingDetails to count.
+     * @example
+     * // Count the number of ShippingDetails
+     * const count = await prisma.shippingDetail.count({
+     *   where: {
+     *     // ... the filter for the ShippingDetails we want to count
+     *   }
+     * })
+    **/
+    count<T extends ShippingDetailCountArgs>(
+      args?: Subset<T, ShippingDetailCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ShippingDetailCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ShippingDetail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingDetailAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ShippingDetailAggregateArgs>(args: Subset<T, ShippingDetailAggregateArgs>): Prisma.PrismaPromise<GetShippingDetailAggregateType<T>>
+
+    /**
+     * Group by ShippingDetail.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ShippingDetailGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ShippingDetailGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ShippingDetailGroupByArgs['orderBy'] }
+        : { orderBy?: ShippingDetailGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ShippingDetailGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetShippingDetailGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ShippingDetail model
+   */
+  readonly fields: ShippingDetailFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ShippingDetail.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ShippingDetailClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+    order<T extends ShippingDetail$orderArgs<ExtArgs> = {}>(args?: Subset<T, ShippingDetail$orderArgs<ExtArgs>>): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the ShippingDetail model
+   */ 
+  interface ShippingDetailFieldRefs {
+    readonly id: FieldRef<"ShippingDetail", 'Int'>
+    readonly firstName: FieldRef<"ShippingDetail", 'String'>
+    readonly lastName: FieldRef<"ShippingDetail", 'String'>
+    readonly addressLine1: FieldRef<"ShippingDetail", 'String'>
+    readonly addressLine2: FieldRef<"ShippingDetail", 'String'>
+    readonly locality: FieldRef<"ShippingDetail", 'String'>
+    readonly pinCode: FieldRef<"ShippingDetail", 'Int'>
+    readonly state: FieldRef<"ShippingDetail", 'String'>
+    readonly country: FieldRef<"ShippingDetail", 'String'>
+    readonly email: FieldRef<"ShippingDetail", 'String'>
+    readonly mobile: FieldRef<"ShippingDetail", 'Int'>
+    readonly orderId: FieldRef<"ShippingDetail", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * ShippingDetail findUnique
+   */
+  export type ShippingDetailFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingDetail
+     */
+    select?: ShippingDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ShippingDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which ShippingDetail to fetch.
+     */
+    where: ShippingDetailWhereUniqueInput
+  }
+
+
+  /**
+   * ShippingDetail findUniqueOrThrow
+   */
+  export type ShippingDetailFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingDetail
+     */
+    select?: ShippingDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ShippingDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which ShippingDetail to fetch.
+     */
+    where: ShippingDetailWhereUniqueInput
+  }
+
+
+  /**
+   * ShippingDetail findFirst
+   */
+  export type ShippingDetailFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingDetail
+     */
+    select?: ShippingDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ShippingDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which ShippingDetail to fetch.
+     */
+    where?: ShippingDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShippingDetails to fetch.
+     */
+    orderBy?: ShippingDetailOrderByWithRelationInput | ShippingDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ShippingDetails.
+     */
+    cursor?: ShippingDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShippingDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShippingDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ShippingDetails.
+     */
+    distinct?: ShippingDetailScalarFieldEnum | ShippingDetailScalarFieldEnum[]
+  }
+
+
+  /**
+   * ShippingDetail findFirstOrThrow
+   */
+  export type ShippingDetailFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingDetail
+     */
+    select?: ShippingDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ShippingDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which ShippingDetail to fetch.
+     */
+    where?: ShippingDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShippingDetails to fetch.
+     */
+    orderBy?: ShippingDetailOrderByWithRelationInput | ShippingDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ShippingDetails.
+     */
+    cursor?: ShippingDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShippingDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShippingDetails.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ShippingDetails.
+     */
+    distinct?: ShippingDetailScalarFieldEnum | ShippingDetailScalarFieldEnum[]
+  }
+
+
+  /**
+   * ShippingDetail findMany
+   */
+  export type ShippingDetailFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingDetail
+     */
+    select?: ShippingDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ShippingDetailInclude<ExtArgs> | null
+    /**
+     * Filter, which ShippingDetails to fetch.
+     */
+    where?: ShippingDetailWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ShippingDetails to fetch.
+     */
+    orderBy?: ShippingDetailOrderByWithRelationInput | ShippingDetailOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ShippingDetails.
+     */
+    cursor?: ShippingDetailWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ShippingDetails from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ShippingDetails.
+     */
+    skip?: number
+    distinct?: ShippingDetailScalarFieldEnum | ShippingDetailScalarFieldEnum[]
+  }
+
+
+  /**
+   * ShippingDetail create
+   */
+  export type ShippingDetailCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingDetail
+     */
+    select?: ShippingDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ShippingDetailInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ShippingDetail.
+     */
+    data: XOR<ShippingDetailCreateInput, ShippingDetailUncheckedCreateInput>
+  }
+
+
+  /**
+   * ShippingDetail createMany
+   */
+  export type ShippingDetailCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ShippingDetails.
+     */
+    data: ShippingDetailCreateManyInput | ShippingDetailCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * ShippingDetail update
+   */
+  export type ShippingDetailUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingDetail
+     */
+    select?: ShippingDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ShippingDetailInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ShippingDetail.
+     */
+    data: XOR<ShippingDetailUpdateInput, ShippingDetailUncheckedUpdateInput>
+    /**
+     * Choose, which ShippingDetail to update.
+     */
+    where: ShippingDetailWhereUniqueInput
+  }
+
+
+  /**
+   * ShippingDetail updateMany
+   */
+  export type ShippingDetailUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ShippingDetails.
+     */
+    data: XOR<ShippingDetailUpdateManyMutationInput, ShippingDetailUncheckedUpdateManyInput>
+    /**
+     * Filter which ShippingDetails to update
+     */
+    where?: ShippingDetailWhereInput
+  }
+
+
+  /**
+   * ShippingDetail upsert
+   */
+  export type ShippingDetailUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingDetail
+     */
+    select?: ShippingDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ShippingDetailInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ShippingDetail to update in case it exists.
+     */
+    where: ShippingDetailWhereUniqueInput
+    /**
+     * In case the ShippingDetail found by the `where` argument doesn't exist, create a new ShippingDetail with this data.
+     */
+    create: XOR<ShippingDetailCreateInput, ShippingDetailUncheckedCreateInput>
+    /**
+     * In case the ShippingDetail was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ShippingDetailUpdateInput, ShippingDetailUncheckedUpdateInput>
+  }
+
+
+  /**
+   * ShippingDetail delete
+   */
+  export type ShippingDetailDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingDetail
+     */
+    select?: ShippingDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ShippingDetailInclude<ExtArgs> | null
+    /**
+     * Filter which ShippingDetail to delete.
+     */
+    where: ShippingDetailWhereUniqueInput
+  }
+
+
+  /**
+   * ShippingDetail deleteMany
+   */
+  export type ShippingDetailDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ShippingDetails to delete
+     */
+    where?: ShippingDetailWhereInput
+  }
+
+
+  /**
+   * ShippingDetail.order
+   */
+  export type ShippingDetail$orderArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Order
+     */
+    select?: OrderSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: OrderInclude<ExtArgs> | null
+    where?: OrderWhereInput
+  }
+
+
+  /**
+   * ShippingDetail without action
+   */
+  export type ShippingDetailDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ShippingDetail
+     */
+    select?: ShippingDetailSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: ShippingDetailInclude<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -5092,17 +9829,6 @@ export namespace Prisma {
   export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
 
 
-  export const OrderScalarFieldEnum: {
-    id: 'id',
-    orderNumber: 'orderNumber',
-    totalAmount: 'totalAmount',
-    userId: 'userId',
-    createdAt: 'createdAt'
-  };
-
-  export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
-
-
   export const ProductScalarFieldEnum: {
     id: 'id',
     title: 'title',
@@ -5117,6 +9843,84 @@ export namespace Prisma {
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+  export const CartProductScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    gender: 'gender',
+    description: 'description',
+    category: 'category',
+    price: 'price',
+    size: 'size',
+    color: 'color',
+    rating: 'rating',
+    img: 'img',
+    quantity: 'quantity',
+    userId: 'userId'
+  };
+
+  export type CartProductScalarFieldEnum = (typeof CartProductScalarFieldEnum)[keyof typeof CartProductScalarFieldEnum]
+
+
+  export const FavoriteScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    gender: 'gender',
+    description: 'description',
+    category: 'category',
+    price: 'price',
+    size: 'size',
+    color: 'color',
+    rating: 'rating',
+    img: 'img',
+    userId: 'userId',
+    createdAt: 'createdAt'
+  };
+
+  export type FavoriteScalarFieldEnum = (typeof FavoriteScalarFieldEnum)[keyof typeof FavoriteScalarFieldEnum]
+
+
+  export const OrderScalarFieldEnum: {
+    id: 'id',
+    subTotal: 'subTotal',
+    quantity: 'quantity',
+    shipping: 'shipping',
+    discount: 'discount',
+    total: 'total',
+    userId: 'userId',
+    createdAt: 'createdAt'
+  };
+
+  export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+  export const PaymentDetailScalarFieldEnum: {
+    id: 'id',
+    razorpayOrderId: 'razorpayOrderId',
+    razorpayPaymentId: 'razorpayPaymentId',
+    orderId: 'orderId'
+  };
+
+  export type PaymentDetailScalarFieldEnum = (typeof PaymentDetailScalarFieldEnum)[keyof typeof PaymentDetailScalarFieldEnum]
+
+
+  export const ShippingDetailScalarFieldEnum: {
+    id: 'id',
+    firstName: 'firstName',
+    lastName: 'lastName',
+    addressLine1: 'addressLine1',
+    addressLine2: 'addressLine2',
+    locality: 'locality',
+    pinCode: 'pinCode',
+    state: 'state',
+    country: 'country',
+    email: 'email',
+    mobile: 'mobile',
+    orderId: 'orderId'
+  };
+
+  export type ShippingDetailScalarFieldEnum = (typeof ShippingDetailScalarFieldEnum)[keyof typeof ShippingDetailScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5220,6 +10024,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     addresses?: AddressListRelationFilter
     orders?: OrderListRelationFilter
+    cartItems?: CartProductListRelationFilter
+    favoriteItems?: FavoriteListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -5232,6 +10038,8 @@ export namespace Prisma {
     updatedAt?: SortOrder
     addresses?: AddressOrderByRelationAggregateInput
     orders?: OrderOrderByRelationAggregateInput
+    cartItems?: CartProductOrderByRelationAggregateInput
+    favoriteItems?: FavoriteOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -5247,6 +10055,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
     addresses?: AddressListRelationFilter
     orders?: OrderListRelationFilter
+    cartItems?: CartProductListRelationFilter
+    favoriteItems?: FavoriteListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -5339,63 +10149,6 @@ export namespace Prisma {
     userId?: IntWithAggregatesFilter<"Address"> | number
   }
 
-  export type OrderWhereInput = {
-    AND?: OrderWhereInput | OrderWhereInput[]
-    OR?: OrderWhereInput[]
-    NOT?: OrderWhereInput | OrderWhereInput[]
-    id?: IntFilter<"Order"> | number
-    orderNumber?: StringFilter<"Order"> | string
-    totalAmount?: FloatFilter<"Order"> | number
-    userId?: IntFilter<"Order"> | number
-    createdAt?: DateTimeFilter<"Order"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
-  }
-
-  export type OrderOrderByWithRelationInput = {
-    id?: SortOrder
-    orderNumber?: SortOrder
-    totalAmount?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type OrderWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: OrderWhereInput | OrderWhereInput[]
-    OR?: OrderWhereInput[]
-    NOT?: OrderWhereInput | OrderWhereInput[]
-    orderNumber?: StringFilter<"Order"> | string
-    totalAmount?: FloatFilter<"Order"> | number
-    userId?: IntFilter<"Order"> | number
-    createdAt?: DateTimeFilter<"Order"> | Date | string
-    user?: XOR<UserRelationFilter, UserWhereInput>
-  }, "id">
-
-  export type OrderOrderByWithAggregationInput = {
-    id?: SortOrder
-    orderNumber?: SortOrder
-    totalAmount?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-    _count?: OrderCountOrderByAggregateInput
-    _avg?: OrderAvgOrderByAggregateInput
-    _max?: OrderMaxOrderByAggregateInput
-    _min?: OrderMinOrderByAggregateInput
-    _sum?: OrderSumOrderByAggregateInput
-  }
-
-  export type OrderScalarWhereWithAggregatesInput = {
-    AND?: OrderScalarWhereWithAggregatesInput | OrderScalarWhereWithAggregatesInput[]
-    OR?: OrderScalarWhereWithAggregatesInput[]
-    NOT?: OrderScalarWhereWithAggregatesInput | OrderScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Order"> | number
-    orderNumber?: StringWithAggregatesFilter<"Order"> | string
-    totalAmount?: FloatWithAggregatesFilter<"Order"> | number
-    userId?: IntWithAggregatesFilter<"Order"> | number
-    createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
-  }
-
   export type ProductWhereInput = {
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
@@ -5475,6 +10228,418 @@ export namespace Prisma {
     img?: StringNullableListFilter<"Product">
   }
 
+  export type CartProductWhereInput = {
+    AND?: CartProductWhereInput | CartProductWhereInput[]
+    OR?: CartProductWhereInput[]
+    NOT?: CartProductWhereInput | CartProductWhereInput[]
+    id?: IntFilter<"CartProduct"> | number
+    title?: StringFilter<"CartProduct"> | string
+    gender?: StringFilter<"CartProduct"> | string
+    description?: StringFilter<"CartProduct"> | string
+    category?: StringFilter<"CartProduct"> | string
+    price?: FloatFilter<"CartProduct"> | number
+    size?: StringFilter<"CartProduct"> | string
+    color?: StringFilter<"CartProduct"> | string
+    rating?: FloatFilter<"CartProduct"> | number
+    img?: StringNullableListFilter<"CartProduct">
+    quantity?: IntFilter<"CartProduct"> | number
+    userId?: IntFilter<"CartProduct"> | number
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    orders?: OrderListRelationFilter
+  }
+
+  export type CartProductOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    gender?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    price?: SortOrder
+    size?: SortOrder
+    color?: SortOrder
+    rating?: SortOrder
+    img?: SortOrder
+    quantity?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    orders?: OrderOrderByRelationAggregateInput
+  }
+
+  export type CartProductWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId?: number
+    AND?: CartProductWhereInput | CartProductWhereInput[]
+    OR?: CartProductWhereInput[]
+    NOT?: CartProductWhereInput | CartProductWhereInput[]
+    title?: StringFilter<"CartProduct"> | string
+    gender?: StringFilter<"CartProduct"> | string
+    description?: StringFilter<"CartProduct"> | string
+    category?: StringFilter<"CartProduct"> | string
+    price?: FloatFilter<"CartProduct"> | number
+    size?: StringFilter<"CartProduct"> | string
+    color?: StringFilter<"CartProduct"> | string
+    rating?: FloatFilter<"CartProduct"> | number
+    img?: StringNullableListFilter<"CartProduct">
+    quantity?: IntFilter<"CartProduct"> | number
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    orders?: OrderListRelationFilter
+  }, "id" | "userId">
+
+  export type CartProductOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    gender?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    price?: SortOrder
+    size?: SortOrder
+    color?: SortOrder
+    rating?: SortOrder
+    img?: SortOrder
+    quantity?: SortOrder
+    userId?: SortOrder
+    _count?: CartProductCountOrderByAggregateInput
+    _avg?: CartProductAvgOrderByAggregateInput
+    _max?: CartProductMaxOrderByAggregateInput
+    _min?: CartProductMinOrderByAggregateInput
+    _sum?: CartProductSumOrderByAggregateInput
+  }
+
+  export type CartProductScalarWhereWithAggregatesInput = {
+    AND?: CartProductScalarWhereWithAggregatesInput | CartProductScalarWhereWithAggregatesInput[]
+    OR?: CartProductScalarWhereWithAggregatesInput[]
+    NOT?: CartProductScalarWhereWithAggregatesInput | CartProductScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"CartProduct"> | number
+    title?: StringWithAggregatesFilter<"CartProduct"> | string
+    gender?: StringWithAggregatesFilter<"CartProduct"> | string
+    description?: StringWithAggregatesFilter<"CartProduct"> | string
+    category?: StringWithAggregatesFilter<"CartProduct"> | string
+    price?: FloatWithAggregatesFilter<"CartProduct"> | number
+    size?: StringWithAggregatesFilter<"CartProduct"> | string
+    color?: StringWithAggregatesFilter<"CartProduct"> | string
+    rating?: FloatWithAggregatesFilter<"CartProduct"> | number
+    img?: StringNullableListFilter<"CartProduct">
+    quantity?: IntWithAggregatesFilter<"CartProduct"> | number
+    userId?: IntWithAggregatesFilter<"CartProduct"> | number
+  }
+
+  export type FavoriteWhereInput = {
+    AND?: FavoriteWhereInput | FavoriteWhereInput[]
+    OR?: FavoriteWhereInput[]
+    NOT?: FavoriteWhereInput | FavoriteWhereInput[]
+    id?: IntFilter<"Favorite"> | number
+    title?: StringFilter<"Favorite"> | string
+    gender?: StringFilter<"Favorite"> | string
+    description?: StringFilter<"Favorite"> | string
+    category?: StringFilter<"Favorite"> | string
+    price?: FloatFilter<"Favorite"> | number
+    size?: StringNullableListFilter<"Favorite">
+    color?: StringFilter<"Favorite"> | string
+    rating?: FloatFilter<"Favorite"> | number
+    img?: StringNullableListFilter<"Favorite">
+    userId?: IntFilter<"Favorite"> | number
+    createdAt?: DateTimeFilter<"Favorite"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }
+
+  export type FavoriteOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    gender?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    price?: SortOrder
+    size?: SortOrder
+    color?: SortOrder
+    rating?: SortOrder
+    img?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type FavoriteWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId?: number
+    AND?: FavoriteWhereInput | FavoriteWhereInput[]
+    OR?: FavoriteWhereInput[]
+    NOT?: FavoriteWhereInput | FavoriteWhereInput[]
+    title?: StringFilter<"Favorite"> | string
+    gender?: StringFilter<"Favorite"> | string
+    description?: StringFilter<"Favorite"> | string
+    category?: StringFilter<"Favorite"> | string
+    price?: FloatFilter<"Favorite"> | number
+    size?: StringNullableListFilter<"Favorite">
+    color?: StringFilter<"Favorite"> | string
+    rating?: FloatFilter<"Favorite"> | number
+    img?: StringNullableListFilter<"Favorite">
+    createdAt?: DateTimeFilter<"Favorite"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type FavoriteOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    gender?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    price?: SortOrder
+    size?: SortOrder
+    color?: SortOrder
+    rating?: SortOrder
+    img?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    _count?: FavoriteCountOrderByAggregateInput
+    _avg?: FavoriteAvgOrderByAggregateInput
+    _max?: FavoriteMaxOrderByAggregateInput
+    _min?: FavoriteMinOrderByAggregateInput
+    _sum?: FavoriteSumOrderByAggregateInput
+  }
+
+  export type FavoriteScalarWhereWithAggregatesInput = {
+    AND?: FavoriteScalarWhereWithAggregatesInput | FavoriteScalarWhereWithAggregatesInput[]
+    OR?: FavoriteScalarWhereWithAggregatesInput[]
+    NOT?: FavoriteScalarWhereWithAggregatesInput | FavoriteScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Favorite"> | number
+    title?: StringWithAggregatesFilter<"Favorite"> | string
+    gender?: StringWithAggregatesFilter<"Favorite"> | string
+    description?: StringWithAggregatesFilter<"Favorite"> | string
+    category?: StringWithAggregatesFilter<"Favorite"> | string
+    price?: FloatWithAggregatesFilter<"Favorite"> | number
+    size?: StringNullableListFilter<"Favorite">
+    color?: StringWithAggregatesFilter<"Favorite"> | string
+    rating?: FloatWithAggregatesFilter<"Favorite"> | number
+    img?: StringNullableListFilter<"Favorite">
+    userId?: IntWithAggregatesFilter<"Favorite"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Favorite"> | Date | string
+  }
+
+  export type OrderWhereInput = {
+    AND?: OrderWhereInput | OrderWhereInput[]
+    OR?: OrderWhereInput[]
+    NOT?: OrderWhereInput | OrderWhereInput[]
+    id?: IntFilter<"Order"> | number
+    subTotal?: FloatFilter<"Order"> | number
+    quantity?: IntFilter<"Order"> | number
+    shipping?: FloatFilter<"Order"> | number
+    discount?: FloatFilter<"Order"> | number
+    total?: FloatFilter<"Order"> | number
+    userId?: IntFilter<"Order"> | number
+    createdAt?: DateTimeFilter<"Order"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    PaymentDetails?: PaymentDetailListRelationFilter
+    ShippingDetails?: ShippingDetailListRelationFilter
+    cartProducts?: CartProductListRelationFilter
+  }
+
+  export type OrderOrderByWithRelationInput = {
+    id?: SortOrder
+    subTotal?: SortOrder
+    quantity?: SortOrder
+    shipping?: SortOrder
+    discount?: SortOrder
+    total?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    PaymentDetails?: PaymentDetailOrderByRelationAggregateInput
+    ShippingDetails?: ShippingDetailOrderByRelationAggregateInput
+    cartProducts?: CartProductOrderByRelationAggregateInput
+  }
+
+  export type OrderWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: OrderWhereInput | OrderWhereInput[]
+    OR?: OrderWhereInput[]
+    NOT?: OrderWhereInput | OrderWhereInput[]
+    subTotal?: FloatFilter<"Order"> | number
+    quantity?: IntFilter<"Order"> | number
+    shipping?: FloatFilter<"Order"> | number
+    discount?: FloatFilter<"Order"> | number
+    total?: FloatFilter<"Order"> | number
+    userId?: IntFilter<"Order"> | number
+    createdAt?: DateTimeFilter<"Order"> | Date | string
+    user?: XOR<UserRelationFilter, UserWhereInput>
+    PaymentDetails?: PaymentDetailListRelationFilter
+    ShippingDetails?: ShippingDetailListRelationFilter
+    cartProducts?: CartProductListRelationFilter
+  }, "id">
+
+  export type OrderOrderByWithAggregationInput = {
+    id?: SortOrder
+    subTotal?: SortOrder
+    quantity?: SortOrder
+    shipping?: SortOrder
+    discount?: SortOrder
+    total?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    _count?: OrderCountOrderByAggregateInput
+    _avg?: OrderAvgOrderByAggregateInput
+    _max?: OrderMaxOrderByAggregateInput
+    _min?: OrderMinOrderByAggregateInput
+    _sum?: OrderSumOrderByAggregateInput
+  }
+
+  export type OrderScalarWhereWithAggregatesInput = {
+    AND?: OrderScalarWhereWithAggregatesInput | OrderScalarWhereWithAggregatesInput[]
+    OR?: OrderScalarWhereWithAggregatesInput[]
+    NOT?: OrderScalarWhereWithAggregatesInput | OrderScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Order"> | number
+    subTotal?: FloatWithAggregatesFilter<"Order"> | number
+    quantity?: IntWithAggregatesFilter<"Order"> | number
+    shipping?: FloatWithAggregatesFilter<"Order"> | number
+    discount?: FloatWithAggregatesFilter<"Order"> | number
+    total?: FloatWithAggregatesFilter<"Order"> | number
+    userId?: IntWithAggregatesFilter<"Order"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Order"> | Date | string
+  }
+
+  export type PaymentDetailWhereInput = {
+    AND?: PaymentDetailWhereInput | PaymentDetailWhereInput[]
+    OR?: PaymentDetailWhereInput[]
+    NOT?: PaymentDetailWhereInput | PaymentDetailWhereInput[]
+    id?: IntFilter<"PaymentDetail"> | number
+    razorpayOrderId?: StringFilter<"PaymentDetail"> | string
+    razorpayPaymentId?: StringFilter<"PaymentDetail"> | string
+    orderId?: IntNullableFilter<"PaymentDetail"> | number | null
+    order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
+  }
+
+  export type PaymentDetailOrderByWithRelationInput = {
+    id?: SortOrder
+    razorpayOrderId?: SortOrder
+    razorpayPaymentId?: SortOrder
+    orderId?: SortOrderInput | SortOrder
+    order?: OrderOrderByWithRelationInput
+  }
+
+  export type PaymentDetailWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PaymentDetailWhereInput | PaymentDetailWhereInput[]
+    OR?: PaymentDetailWhereInput[]
+    NOT?: PaymentDetailWhereInput | PaymentDetailWhereInput[]
+    razorpayOrderId?: StringFilter<"PaymentDetail"> | string
+    razorpayPaymentId?: StringFilter<"PaymentDetail"> | string
+    orderId?: IntNullableFilter<"PaymentDetail"> | number | null
+    order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
+  }, "id">
+
+  export type PaymentDetailOrderByWithAggregationInput = {
+    id?: SortOrder
+    razorpayOrderId?: SortOrder
+    razorpayPaymentId?: SortOrder
+    orderId?: SortOrderInput | SortOrder
+    _count?: PaymentDetailCountOrderByAggregateInput
+    _avg?: PaymentDetailAvgOrderByAggregateInput
+    _max?: PaymentDetailMaxOrderByAggregateInput
+    _min?: PaymentDetailMinOrderByAggregateInput
+    _sum?: PaymentDetailSumOrderByAggregateInput
+  }
+
+  export type PaymentDetailScalarWhereWithAggregatesInput = {
+    AND?: PaymentDetailScalarWhereWithAggregatesInput | PaymentDetailScalarWhereWithAggregatesInput[]
+    OR?: PaymentDetailScalarWhereWithAggregatesInput[]
+    NOT?: PaymentDetailScalarWhereWithAggregatesInput | PaymentDetailScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PaymentDetail"> | number
+    razorpayOrderId?: StringWithAggregatesFilter<"PaymentDetail"> | string
+    razorpayPaymentId?: StringWithAggregatesFilter<"PaymentDetail"> | string
+    orderId?: IntNullableWithAggregatesFilter<"PaymentDetail"> | number | null
+  }
+
+  export type ShippingDetailWhereInput = {
+    AND?: ShippingDetailWhereInput | ShippingDetailWhereInput[]
+    OR?: ShippingDetailWhereInput[]
+    NOT?: ShippingDetailWhereInput | ShippingDetailWhereInput[]
+    id?: IntFilter<"ShippingDetail"> | number
+    firstName?: StringFilter<"ShippingDetail"> | string
+    lastName?: StringFilter<"ShippingDetail"> | string
+    addressLine1?: StringFilter<"ShippingDetail"> | string
+    addressLine2?: StringNullableFilter<"ShippingDetail"> | string | null
+    locality?: StringFilter<"ShippingDetail"> | string
+    pinCode?: IntFilter<"ShippingDetail"> | number
+    state?: StringFilter<"ShippingDetail"> | string
+    country?: StringFilter<"ShippingDetail"> | string
+    email?: StringFilter<"ShippingDetail"> | string
+    mobile?: IntFilter<"ShippingDetail"> | number
+    orderId?: IntNullableFilter<"ShippingDetail"> | number | null
+    order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
+  }
+
+  export type ShippingDetailOrderByWithRelationInput = {
+    id?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    addressLine1?: SortOrder
+    addressLine2?: SortOrderInput | SortOrder
+    locality?: SortOrder
+    pinCode?: SortOrder
+    state?: SortOrder
+    country?: SortOrder
+    email?: SortOrder
+    mobile?: SortOrder
+    orderId?: SortOrderInput | SortOrder
+    order?: OrderOrderByWithRelationInput
+  }
+
+  export type ShippingDetailWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ShippingDetailWhereInput | ShippingDetailWhereInput[]
+    OR?: ShippingDetailWhereInput[]
+    NOT?: ShippingDetailWhereInput | ShippingDetailWhereInput[]
+    firstName?: StringFilter<"ShippingDetail"> | string
+    lastName?: StringFilter<"ShippingDetail"> | string
+    addressLine1?: StringFilter<"ShippingDetail"> | string
+    addressLine2?: StringNullableFilter<"ShippingDetail"> | string | null
+    locality?: StringFilter<"ShippingDetail"> | string
+    pinCode?: IntFilter<"ShippingDetail"> | number
+    state?: StringFilter<"ShippingDetail"> | string
+    country?: StringFilter<"ShippingDetail"> | string
+    email?: StringFilter<"ShippingDetail"> | string
+    mobile?: IntFilter<"ShippingDetail"> | number
+    orderId?: IntNullableFilter<"ShippingDetail"> | number | null
+    order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
+  }, "id">
+
+  export type ShippingDetailOrderByWithAggregationInput = {
+    id?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    addressLine1?: SortOrder
+    addressLine2?: SortOrderInput | SortOrder
+    locality?: SortOrder
+    pinCode?: SortOrder
+    state?: SortOrder
+    country?: SortOrder
+    email?: SortOrder
+    mobile?: SortOrder
+    orderId?: SortOrderInput | SortOrder
+    _count?: ShippingDetailCountOrderByAggregateInput
+    _avg?: ShippingDetailAvgOrderByAggregateInput
+    _max?: ShippingDetailMaxOrderByAggregateInput
+    _min?: ShippingDetailMinOrderByAggregateInput
+    _sum?: ShippingDetailSumOrderByAggregateInput
+  }
+
+  export type ShippingDetailScalarWhereWithAggregatesInput = {
+    AND?: ShippingDetailScalarWhereWithAggregatesInput | ShippingDetailScalarWhereWithAggregatesInput[]
+    OR?: ShippingDetailScalarWhereWithAggregatesInput[]
+    NOT?: ShippingDetailScalarWhereWithAggregatesInput | ShippingDetailScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ShippingDetail"> | number
+    firstName?: StringWithAggregatesFilter<"ShippingDetail"> | string
+    lastName?: StringWithAggregatesFilter<"ShippingDetail"> | string
+    addressLine1?: StringWithAggregatesFilter<"ShippingDetail"> | string
+    addressLine2?: StringNullableWithAggregatesFilter<"ShippingDetail"> | string | null
+    locality?: StringWithAggregatesFilter<"ShippingDetail"> | string
+    pinCode?: IntWithAggregatesFilter<"ShippingDetail"> | number
+    state?: StringWithAggregatesFilter<"ShippingDetail"> | string
+    country?: StringWithAggregatesFilter<"ShippingDetail"> | string
+    email?: StringWithAggregatesFilter<"ShippingDetail"> | string
+    mobile?: IntWithAggregatesFilter<"ShippingDetail"> | number
+    orderId?: IntNullableWithAggregatesFilter<"ShippingDetail"> | number | null
+  }
+
   export type UserCreateInput = {
     email: string
     password: string
@@ -5484,6 +10649,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     addresses?: AddressCreateNestedManyWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
+    cartItems?: CartProductCreateNestedManyWithoutUserInput
+    favoriteItems?: FavoriteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -5496,6 +10663,8 @@ export namespace Prisma {
     updatedAt?: Date | string
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    cartItems?: CartProductUncheckedCreateNestedManyWithoutUserInput
+    favoriteItems?: FavoriteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -5507,6 +10676,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUpdateManyWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
+    cartItems?: CartProductUpdateManyWithoutUserNestedInput
+    favoriteItems?: FavoriteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -5519,6 +10690,8 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    cartItems?: CartProductUncheckedUpdateManyWithoutUserNestedInput
+    favoriteItems?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -5609,58 +10782,6 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type OrderCreateInput = {
-    orderNumber: string
-    totalAmount: number
-    createdAt?: Date | string
-    user: UserCreateNestedOneWithoutOrdersInput
-  }
-
-  export type OrderUncheckedCreateInput = {
-    id?: number
-    orderNumber: string
-    totalAmount: number
-    userId: number
-    createdAt?: Date | string
-  }
-
-  export type OrderUpdateInput = {
-    orderNumber?: StringFieldUpdateOperationsInput | string
-    totalAmount?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutOrdersNestedInput
-  }
-
-  export type OrderUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    orderNumber?: StringFieldUpdateOperationsInput | string
-    totalAmount?: FloatFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type OrderCreateManyInput = {
-    id?: number
-    orderNumber: string
-    totalAmount: number
-    userId: number
-    createdAt?: Date | string
-  }
-
-  export type OrderUpdateManyMutationInput = {
-    orderNumber?: StringFieldUpdateOperationsInput | string
-    totalAmount?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type OrderUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    orderNumber?: StringFieldUpdateOperationsInput | string
-    totalAmount?: FloatFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type ProductCreateInput = {
     title: string
     gender: string
@@ -5749,6 +10870,443 @@ export namespace Prisma {
     img?: ProductUpdateimgInput | string[]
   }
 
+  export type CartProductCreateInput = {
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size: string
+    color: string
+    rating: number
+    img?: CartProductCreateimgInput | string[]
+    quantity: number
+    user: UserCreateNestedOneWithoutCartItemsInput
+    orders?: OrderCreateNestedManyWithoutCartProductsInput
+  }
+
+  export type CartProductUncheckedCreateInput = {
+    id?: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size: string
+    color: string
+    rating: number
+    img?: CartProductCreateimgInput | string[]
+    quantity: number
+    userId: number
+    orders?: OrderUncheckedCreateNestedManyWithoutCartProductsInput
+  }
+
+  export type CartProductUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: CartProductUpdateimgInput | string[]
+    quantity?: IntFieldUpdateOperationsInput | number
+    user?: UserUpdateOneRequiredWithoutCartItemsNestedInput
+    orders?: OrderUpdateManyWithoutCartProductsNestedInput
+  }
+
+  export type CartProductUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: CartProductUpdateimgInput | string[]
+    quantity?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    orders?: OrderUncheckedUpdateManyWithoutCartProductsNestedInput
+  }
+
+  export type CartProductCreateManyInput = {
+    id?: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size: string
+    color: string
+    rating: number
+    img?: CartProductCreateimgInput | string[]
+    quantity: number
+    userId: number
+  }
+
+  export type CartProductUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: CartProductUpdateimgInput | string[]
+    quantity?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CartProductUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: CartProductUpdateimgInput | string[]
+    quantity?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FavoriteCreateInput = {
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size?: FavoriteCreatesizeInput | string[]
+    color: string
+    rating: number
+    img?: FavoriteCreateimgInput | string[]
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutFavoriteItemsInput
+  }
+
+  export type FavoriteUncheckedCreateInput = {
+    id?: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size?: FavoriteCreatesizeInput | string[]
+    color: string
+    rating: number
+    img?: FavoriteCreateimgInput | string[]
+    userId: number
+    createdAt?: Date | string
+  }
+
+  export type FavoriteUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: FavoriteUpdatesizeInput | string[]
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: FavoriteUpdateimgInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutFavoriteItemsNestedInput
+  }
+
+  export type FavoriteUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: FavoriteUpdatesizeInput | string[]
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: FavoriteUpdateimgInput | string[]
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FavoriteCreateManyInput = {
+    id?: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size?: FavoriteCreatesizeInput | string[]
+    color: string
+    rating: number
+    img?: FavoriteCreateimgInput | string[]
+    userId: number
+    createdAt?: Date | string
+  }
+
+  export type FavoriteUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: FavoriteUpdatesizeInput | string[]
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: FavoriteUpdateimgInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FavoriteUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: FavoriteUpdatesizeInput | string[]
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: FavoriteUpdateimgInput | string[]
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderCreateInput = {
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutOrdersInput
+    PaymentDetails?: PaymentDetailCreateNestedManyWithoutOrderInput
+    ShippingDetails?: ShippingDetailCreateNestedManyWithoutOrderInput
+    cartProducts?: CartProductCreateNestedManyWithoutOrdersInput
+  }
+
+  export type OrderUncheckedCreateInput = {
+    id?: number
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    userId: number
+    createdAt?: Date | string
+    PaymentDetails?: PaymentDetailUncheckedCreateNestedManyWithoutOrderInput
+    ShippingDetails?: ShippingDetailUncheckedCreateNestedManyWithoutOrderInput
+    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrdersInput
+  }
+
+  export type OrderUpdateInput = {
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    PaymentDetails?: PaymentDetailUpdateManyWithoutOrderNestedInput
+    ShippingDetails?: ShippingDetailUpdateManyWithoutOrderNestedInput
+    cartProducts?: CartProductUpdateManyWithoutOrdersNestedInput
+  }
+
+  export type OrderUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PaymentDetails?: PaymentDetailUncheckedUpdateManyWithoutOrderNestedInput
+    ShippingDetails?: ShippingDetailUncheckedUpdateManyWithoutOrderNestedInput
+    cartProducts?: CartProductUncheckedUpdateManyWithoutOrdersNestedInput
+  }
+
+  export type OrderCreateManyInput = {
+    id?: number
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    userId: number
+    createdAt?: Date | string
+  }
+
+  export type OrderUpdateManyMutationInput = {
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaymentDetailCreateInput = {
+    razorpayOrderId: string
+    razorpayPaymentId: string
+    order?: OrderCreateNestedOneWithoutPaymentDetailsInput
+  }
+
+  export type PaymentDetailUncheckedCreateInput = {
+    id?: number
+    razorpayOrderId: string
+    razorpayPaymentId: string
+    orderId?: number | null
+  }
+
+  export type PaymentDetailUpdateInput = {
+    razorpayOrderId?: StringFieldUpdateOperationsInput | string
+    razorpayPaymentId?: StringFieldUpdateOperationsInput | string
+    order?: OrderUpdateOneWithoutPaymentDetailsNestedInput
+  }
+
+  export type PaymentDetailUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    razorpayOrderId?: StringFieldUpdateOperationsInput | string
+    razorpayPaymentId?: StringFieldUpdateOperationsInput | string
+    orderId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type PaymentDetailCreateManyInput = {
+    id?: number
+    razorpayOrderId: string
+    razorpayPaymentId: string
+    orderId?: number | null
+  }
+
+  export type PaymentDetailUpdateManyMutationInput = {
+    razorpayOrderId?: StringFieldUpdateOperationsInput | string
+    razorpayPaymentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PaymentDetailUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    razorpayOrderId?: StringFieldUpdateOperationsInput | string
+    razorpayPaymentId?: StringFieldUpdateOperationsInput | string
+    orderId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ShippingDetailCreateInput = {
+    firstName: string
+    lastName: string
+    addressLine1: string
+    addressLine2?: string | null
+    locality: string
+    pinCode: number
+    state: string
+    country: string
+    email: string
+    mobile: number
+    order?: OrderCreateNestedOneWithoutShippingDetailsInput
+  }
+
+  export type ShippingDetailUncheckedCreateInput = {
+    id?: number
+    firstName: string
+    lastName: string
+    addressLine1: string
+    addressLine2?: string | null
+    locality: string
+    pinCode: number
+    state: string
+    country: string
+    email: string
+    mobile: number
+    orderId?: number | null
+  }
+
+  export type ShippingDetailUpdateInput = {
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    addressLine1?: StringFieldUpdateOperationsInput | string
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
+    locality?: StringFieldUpdateOperationsInput | string
+    pinCode?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    mobile?: IntFieldUpdateOperationsInput | number
+    order?: OrderUpdateOneWithoutShippingDetailsNestedInput
+  }
+
+  export type ShippingDetailUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    addressLine1?: StringFieldUpdateOperationsInput | string
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
+    locality?: StringFieldUpdateOperationsInput | string
+    pinCode?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    mobile?: IntFieldUpdateOperationsInput | number
+    orderId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ShippingDetailCreateManyInput = {
+    id?: number
+    firstName: string
+    lastName: string
+    addressLine1: string
+    addressLine2?: string | null
+    locality: string
+    pinCode: number
+    state: string
+    country: string
+    email: string
+    mobile: number
+    orderId?: number | null
+  }
+
+  export type ShippingDetailUpdateManyMutationInput = {
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    addressLine1?: StringFieldUpdateOperationsInput | string
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
+    locality?: StringFieldUpdateOperationsInput | string
+    pinCode?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    mobile?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ShippingDetailUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    addressLine1?: StringFieldUpdateOperationsInput | string
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
+    locality?: StringFieldUpdateOperationsInput | string
+    pinCode?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    mobile?: IntFieldUpdateOperationsInput | number
+    orderId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -5813,6 +11371,18 @@ export namespace Prisma {
     none?: OrderWhereInput
   }
 
+  export type CartProductListRelationFilter = {
+    every?: CartProductWhereInput
+    some?: CartProductWhereInput
+    none?: CartProductWhereInput
+  }
+
+  export type FavoriteListRelationFilter = {
+    every?: FavoriteWhereInput
+    some?: FavoriteWhereInput
+    none?: FavoriteWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -5823,6 +11393,14 @@ export namespace Prisma {
   }
 
   export type OrderOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CartProductOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FavoriteOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -5972,6 +11550,14 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -5981,66 +11567,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type OrderCountOrderByAggregateInput = {
-    id?: SortOrder
-    orderNumber?: SortOrder
-    totalAmount?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type OrderAvgOrderByAggregateInput = {
-    id?: SortOrder
-    totalAmount?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type OrderMaxOrderByAggregateInput = {
-    id?: SortOrder
-    orderNumber?: SortOrder
-    totalAmount?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type OrderMinOrderByAggregateInput = {
-    id?: SortOrder
-    orderNumber?: SortOrder
-    totalAmount?: SortOrder
-    userId?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type OrderSumOrderByAggregateInput = {
-    id?: SortOrder
-    totalAmount?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
-  }
-
-  export type StringNullableListFilter<$PrismaModel = never> = {
-    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    has?: string | StringFieldRefInput<$PrismaModel> | null
-    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
-    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
-    isEmpty?: boolean
   }
 
   export type ProductCountOrderByAggregateInput = {
@@ -6090,6 +11616,331 @@ export namespace Prisma {
     rating?: SortOrder
   }
 
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type CartProductCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    gender?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    price?: SortOrder
+    size?: SortOrder
+    color?: SortOrder
+    rating?: SortOrder
+    img?: SortOrder
+    quantity?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type CartProductAvgOrderByAggregateInput = {
+    id?: SortOrder
+    price?: SortOrder
+    rating?: SortOrder
+    quantity?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type CartProductMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    gender?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    price?: SortOrder
+    size?: SortOrder
+    color?: SortOrder
+    rating?: SortOrder
+    quantity?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type CartProductMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    gender?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    price?: SortOrder
+    size?: SortOrder
+    color?: SortOrder
+    rating?: SortOrder
+    quantity?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type CartProductSumOrderByAggregateInput = {
+    id?: SortOrder
+    price?: SortOrder
+    rating?: SortOrder
+    quantity?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type FavoriteCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    gender?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    price?: SortOrder
+    size?: SortOrder
+    color?: SortOrder
+    rating?: SortOrder
+    img?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FavoriteAvgOrderByAggregateInput = {
+    id?: SortOrder
+    price?: SortOrder
+    rating?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type FavoriteMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    gender?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    price?: SortOrder
+    color?: SortOrder
+    rating?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FavoriteMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    gender?: SortOrder
+    description?: SortOrder
+    category?: SortOrder
+    price?: SortOrder
+    color?: SortOrder
+    rating?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type FavoriteSumOrderByAggregateInput = {
+    id?: SortOrder
+    price?: SortOrder
+    rating?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type PaymentDetailListRelationFilter = {
+    every?: PaymentDetailWhereInput
+    some?: PaymentDetailWhereInput
+    none?: PaymentDetailWhereInput
+  }
+
+  export type ShippingDetailListRelationFilter = {
+    every?: ShippingDetailWhereInput
+    some?: ShippingDetailWhereInput
+    none?: ShippingDetailWhereInput
+  }
+
+  export type PaymentDetailOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ShippingDetailOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type OrderCountOrderByAggregateInput = {
+    id?: SortOrder
+    subTotal?: SortOrder
+    quantity?: SortOrder
+    shipping?: SortOrder
+    discount?: SortOrder
+    total?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OrderAvgOrderByAggregateInput = {
+    id?: SortOrder
+    subTotal?: SortOrder
+    quantity?: SortOrder
+    shipping?: SortOrder
+    discount?: SortOrder
+    total?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type OrderMaxOrderByAggregateInput = {
+    id?: SortOrder
+    subTotal?: SortOrder
+    quantity?: SortOrder
+    shipping?: SortOrder
+    discount?: SortOrder
+    total?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OrderMinOrderByAggregateInput = {
+    id?: SortOrder
+    subTotal?: SortOrder
+    quantity?: SortOrder
+    shipping?: SortOrder
+    discount?: SortOrder
+    total?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type OrderSumOrderByAggregateInput = {
+    id?: SortOrder
+    subTotal?: SortOrder
+    quantity?: SortOrder
+    shipping?: SortOrder
+    discount?: SortOrder
+    total?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type OrderNullableRelationFilter = {
+    is?: OrderWhereInput | null
+    isNot?: OrderWhereInput | null
+  }
+
+  export type PaymentDetailCountOrderByAggregateInput = {
+    id?: SortOrder
+    razorpayOrderId?: SortOrder
+    razorpayPaymentId?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type PaymentDetailAvgOrderByAggregateInput = {
+    id?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type PaymentDetailMaxOrderByAggregateInput = {
+    id?: SortOrder
+    razorpayOrderId?: SortOrder
+    razorpayPaymentId?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type PaymentDetailMinOrderByAggregateInput = {
+    id?: SortOrder
+    razorpayOrderId?: SortOrder
+    razorpayPaymentId?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type PaymentDetailSumOrderByAggregateInput = {
+    id?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type ShippingDetailCountOrderByAggregateInput = {
+    id?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    addressLine1?: SortOrder
+    addressLine2?: SortOrder
+    locality?: SortOrder
+    pinCode?: SortOrder
+    state?: SortOrder
+    country?: SortOrder
+    email?: SortOrder
+    mobile?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type ShippingDetailAvgOrderByAggregateInput = {
+    id?: SortOrder
+    pinCode?: SortOrder
+    mobile?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type ShippingDetailMaxOrderByAggregateInput = {
+    id?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    addressLine1?: SortOrder
+    addressLine2?: SortOrder
+    locality?: SortOrder
+    pinCode?: SortOrder
+    state?: SortOrder
+    country?: SortOrder
+    email?: SortOrder
+    mobile?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type ShippingDetailMinOrderByAggregateInput = {
+    id?: SortOrder
+    firstName?: SortOrder
+    lastName?: SortOrder
+    addressLine1?: SortOrder
+    addressLine2?: SortOrder
+    locality?: SortOrder
+    pinCode?: SortOrder
+    state?: SortOrder
+    country?: SortOrder
+    email?: SortOrder
+    mobile?: SortOrder
+    orderId?: SortOrder
+  }
+
+  export type ShippingDetailSumOrderByAggregateInput = {
+    id?: SortOrder
+    pinCode?: SortOrder
+    mobile?: SortOrder
+    orderId?: SortOrder
+  }
+
   export type AddressCreateNestedManyWithoutUserInput = {
     create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput> | AddressCreateWithoutUserInput[] | AddressUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AddressCreateOrConnectWithoutUserInput | AddressCreateOrConnectWithoutUserInput[]
@@ -6104,6 +11955,20 @@ export namespace Prisma {
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
   }
 
+  export type CartProductCreateNestedManyWithoutUserInput = {
+    create?: XOR<CartProductCreateWithoutUserInput, CartProductUncheckedCreateWithoutUserInput> | CartProductCreateWithoutUserInput[] | CartProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutUserInput | CartProductCreateOrConnectWithoutUserInput[]
+    createMany?: CartProductCreateManyUserInputEnvelope
+    connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+  }
+
+  export type FavoriteCreateNestedManyWithoutUserInput = {
+    create?: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput> | FavoriteCreateWithoutUserInput[] | FavoriteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavoriteCreateOrConnectWithoutUserInput | FavoriteCreateOrConnectWithoutUserInput[]
+    createMany?: FavoriteCreateManyUserInputEnvelope
+    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+  }
+
   export type AddressUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput> | AddressCreateWithoutUserInput[] | AddressUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AddressCreateOrConnectWithoutUserInput | AddressCreateOrConnectWithoutUserInput[]
@@ -6116,6 +11981,20 @@ export namespace Prisma {
     connectOrCreate?: OrderCreateOrConnectWithoutUserInput | OrderCreateOrConnectWithoutUserInput[]
     createMany?: OrderCreateManyUserInputEnvelope
     connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type CartProductUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CartProductCreateWithoutUserInput, CartProductUncheckedCreateWithoutUserInput> | CartProductCreateWithoutUserInput[] | CartProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutUserInput | CartProductCreateOrConnectWithoutUserInput[]
+    createMany?: CartProductCreateManyUserInputEnvelope
+    connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+  }
+
+  export type FavoriteUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput> | FavoriteCreateWithoutUserInput[] | FavoriteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavoriteCreateOrConnectWithoutUserInput | FavoriteCreateOrConnectWithoutUserInput[]
+    createMany?: FavoriteCreateManyUserInputEnvelope
+    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -6158,6 +12037,34 @@ export namespace Prisma {
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
   }
 
+  export type CartProductUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CartProductCreateWithoutUserInput, CartProductUncheckedCreateWithoutUserInput> | CartProductCreateWithoutUserInput[] | CartProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutUserInput | CartProductCreateOrConnectWithoutUserInput[]
+    upsert?: CartProductUpsertWithWhereUniqueWithoutUserInput | CartProductUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CartProductCreateManyUserInputEnvelope
+    set?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    disconnect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    delete?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    update?: CartProductUpdateWithWhereUniqueWithoutUserInput | CartProductUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CartProductUpdateManyWithWhereWithoutUserInput | CartProductUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CartProductScalarWhereInput | CartProductScalarWhereInput[]
+  }
+
+  export type FavoriteUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput> | FavoriteCreateWithoutUserInput[] | FavoriteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavoriteCreateOrConnectWithoutUserInput | FavoriteCreateOrConnectWithoutUserInput[]
+    upsert?: FavoriteUpsertWithWhereUniqueWithoutUserInput | FavoriteUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FavoriteCreateManyUserInputEnvelope
+    set?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+    disconnect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+    delete?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+    update?: FavoriteUpdateWithWhereUniqueWithoutUserInput | FavoriteUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FavoriteUpdateManyWithWhereWithoutUserInput | FavoriteUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -6194,6 +12101,34 @@ export namespace Prisma {
     deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
   }
 
+  export type CartProductUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CartProductCreateWithoutUserInput, CartProductUncheckedCreateWithoutUserInput> | CartProductCreateWithoutUserInput[] | CartProductUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutUserInput | CartProductCreateOrConnectWithoutUserInput[]
+    upsert?: CartProductUpsertWithWhereUniqueWithoutUserInput | CartProductUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CartProductCreateManyUserInputEnvelope
+    set?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    disconnect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    delete?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    update?: CartProductUpdateWithWhereUniqueWithoutUserInput | CartProductUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CartProductUpdateManyWithWhereWithoutUserInput | CartProductUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CartProductScalarWhereInput | CartProductScalarWhereInput[]
+  }
+
+  export type FavoriteUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput> | FavoriteCreateWithoutUserInput[] | FavoriteUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: FavoriteCreateOrConnectWithoutUserInput | FavoriteCreateOrConnectWithoutUserInput[]
+    upsert?: FavoriteUpsertWithWhereUniqueWithoutUserInput | FavoriteUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: FavoriteCreateManyUserInputEnvelope
+    set?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+    disconnect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+    delete?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+    connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
+    update?: FavoriteUpdateWithWhereUniqueWithoutUserInput | FavoriteUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: FavoriteUpdateManyWithWhereWithoutUserInput | FavoriteUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutAddressesInput = {
     create?: XOR<UserCreateWithoutAddressesInput, UserUncheckedCreateWithoutAddressesInput>
     connectOrCreate?: UserCreateOrConnectWithoutAddressesInput
@@ -6206,28 +12141,6 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutAddressesInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAddressesInput, UserUpdateWithoutAddressesInput>, UserUncheckedUpdateWithoutAddressesInput>
-  }
-
-  export type UserCreateNestedOneWithoutOrdersInput = {
-    create?: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOrdersInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type UserUpdateOneRequiredWithoutOrdersNestedInput = {
-    create?: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
-    connectOrCreate?: UserCreateOrConnectWithoutOrdersInput
-    upsert?: UserUpsertWithoutOrdersInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOrdersInput, UserUpdateWithoutOrdersInput>, UserUncheckedUpdateWithoutOrdersInput>
   }
 
   export type ProductCreatesizeInput = {
@@ -6243,9 +12156,286 @@ export namespace Prisma {
     push?: string | string[]
   }
 
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type ProductUpdateimgInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type CartProductCreateimgInput = {
+    set: string[]
+  }
+
+  export type UserCreateNestedOneWithoutCartItemsInput = {
+    create?: XOR<UserCreateWithoutCartItemsInput, UserUncheckedCreateWithoutCartItemsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCartItemsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type OrderCreateNestedManyWithoutCartProductsInput = {
+    create?: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput> | OrderCreateWithoutCartProductsInput[] | OrderUncheckedCreateWithoutCartProductsInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutCartProductsInput | OrderCreateOrConnectWithoutCartProductsInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type OrderUncheckedCreateNestedManyWithoutCartProductsInput = {
+    create?: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput> | OrderCreateWithoutCartProductsInput[] | OrderUncheckedCreateWithoutCartProductsInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutCartProductsInput | OrderCreateOrConnectWithoutCartProductsInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+  }
+
+  export type CartProductUpdateimgInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type UserUpdateOneRequiredWithoutCartItemsNestedInput = {
+    create?: XOR<UserCreateWithoutCartItemsInput, UserUncheckedCreateWithoutCartItemsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCartItemsInput
+    upsert?: UserUpsertWithoutCartItemsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCartItemsInput, UserUpdateWithoutCartItemsInput>, UserUncheckedUpdateWithoutCartItemsInput>
+  }
+
+  export type OrderUpdateManyWithoutCartProductsNestedInput = {
+    create?: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput> | OrderCreateWithoutCartProductsInput[] | OrderUncheckedCreateWithoutCartProductsInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutCartProductsInput | OrderCreateOrConnectWithoutCartProductsInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutCartProductsInput | OrderUpsertWithWhereUniqueWithoutCartProductsInput[]
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutCartProductsInput | OrderUpdateWithWhereUniqueWithoutCartProductsInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutCartProductsInput | OrderUpdateManyWithWhereWithoutCartProductsInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type OrderUncheckedUpdateManyWithoutCartProductsNestedInput = {
+    create?: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput> | OrderCreateWithoutCartProductsInput[] | OrderUncheckedCreateWithoutCartProductsInput[]
+    connectOrCreate?: OrderCreateOrConnectWithoutCartProductsInput | OrderCreateOrConnectWithoutCartProductsInput[]
+    upsert?: OrderUpsertWithWhereUniqueWithoutCartProductsInput | OrderUpsertWithWhereUniqueWithoutCartProductsInput[]
+    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
+    update?: OrderUpdateWithWhereUniqueWithoutCartProductsInput | OrderUpdateWithWhereUniqueWithoutCartProductsInput[]
+    updateMany?: OrderUpdateManyWithWhereWithoutCartProductsInput | OrderUpdateManyWithWhereWithoutCartProductsInput[]
+    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  }
+
+  export type FavoriteCreatesizeInput = {
+    set: string[]
+  }
+
+  export type FavoriteCreateimgInput = {
+    set: string[]
+  }
+
+  export type UserCreateNestedOneWithoutFavoriteItemsInput = {
+    create?: XOR<UserCreateWithoutFavoriteItemsInput, UserUncheckedCreateWithoutFavoriteItemsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFavoriteItemsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type FavoriteUpdatesizeInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type FavoriteUpdateimgInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type UserUpdateOneRequiredWithoutFavoriteItemsNestedInput = {
+    create?: XOR<UserCreateWithoutFavoriteItemsInput, UserUncheckedCreateWithoutFavoriteItemsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFavoriteItemsInput
+    upsert?: UserUpsertWithoutFavoriteItemsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFavoriteItemsInput, UserUpdateWithoutFavoriteItemsInput>, UserUncheckedUpdateWithoutFavoriteItemsInput>
+  }
+
+  export type UserCreateNestedOneWithoutOrdersInput = {
+    create?: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOrdersInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type PaymentDetailCreateNestedManyWithoutOrderInput = {
+    create?: XOR<PaymentDetailCreateWithoutOrderInput, PaymentDetailUncheckedCreateWithoutOrderInput> | PaymentDetailCreateWithoutOrderInput[] | PaymentDetailUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: PaymentDetailCreateOrConnectWithoutOrderInput | PaymentDetailCreateOrConnectWithoutOrderInput[]
+    createMany?: PaymentDetailCreateManyOrderInputEnvelope
+    connect?: PaymentDetailWhereUniqueInput | PaymentDetailWhereUniqueInput[]
+  }
+
+  export type ShippingDetailCreateNestedManyWithoutOrderInput = {
+    create?: XOR<ShippingDetailCreateWithoutOrderInput, ShippingDetailUncheckedCreateWithoutOrderInput> | ShippingDetailCreateWithoutOrderInput[] | ShippingDetailUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: ShippingDetailCreateOrConnectWithoutOrderInput | ShippingDetailCreateOrConnectWithoutOrderInput[]
+    createMany?: ShippingDetailCreateManyOrderInputEnvelope
+    connect?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
+  }
+
+  export type CartProductCreateNestedManyWithoutOrdersInput = {
+    create?: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput> | CartProductCreateWithoutOrdersInput[] | CartProductUncheckedCreateWithoutOrdersInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutOrdersInput | CartProductCreateOrConnectWithoutOrdersInput[]
+    connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+  }
+
+  export type PaymentDetailUncheckedCreateNestedManyWithoutOrderInput = {
+    create?: XOR<PaymentDetailCreateWithoutOrderInput, PaymentDetailUncheckedCreateWithoutOrderInput> | PaymentDetailCreateWithoutOrderInput[] | PaymentDetailUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: PaymentDetailCreateOrConnectWithoutOrderInput | PaymentDetailCreateOrConnectWithoutOrderInput[]
+    createMany?: PaymentDetailCreateManyOrderInputEnvelope
+    connect?: PaymentDetailWhereUniqueInput | PaymentDetailWhereUniqueInput[]
+  }
+
+  export type ShippingDetailUncheckedCreateNestedManyWithoutOrderInput = {
+    create?: XOR<ShippingDetailCreateWithoutOrderInput, ShippingDetailUncheckedCreateWithoutOrderInput> | ShippingDetailCreateWithoutOrderInput[] | ShippingDetailUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: ShippingDetailCreateOrConnectWithoutOrderInput | ShippingDetailCreateOrConnectWithoutOrderInput[]
+    createMany?: ShippingDetailCreateManyOrderInputEnvelope
+    connect?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
+  }
+
+  export type CartProductUncheckedCreateNestedManyWithoutOrdersInput = {
+    create?: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput> | CartProductCreateWithoutOrdersInput[] | CartProductUncheckedCreateWithoutOrdersInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutOrdersInput | CartProductCreateOrConnectWithoutOrdersInput[]
+    connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutOrdersNestedInput = {
+    create?: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
+    connectOrCreate?: UserCreateOrConnectWithoutOrdersInput
+    upsert?: UserUpsertWithoutOrdersInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOrdersInput, UserUpdateWithoutOrdersInput>, UserUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type PaymentDetailUpdateManyWithoutOrderNestedInput = {
+    create?: XOR<PaymentDetailCreateWithoutOrderInput, PaymentDetailUncheckedCreateWithoutOrderInput> | PaymentDetailCreateWithoutOrderInput[] | PaymentDetailUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: PaymentDetailCreateOrConnectWithoutOrderInput | PaymentDetailCreateOrConnectWithoutOrderInput[]
+    upsert?: PaymentDetailUpsertWithWhereUniqueWithoutOrderInput | PaymentDetailUpsertWithWhereUniqueWithoutOrderInput[]
+    createMany?: PaymentDetailCreateManyOrderInputEnvelope
+    set?: PaymentDetailWhereUniqueInput | PaymentDetailWhereUniqueInput[]
+    disconnect?: PaymentDetailWhereUniqueInput | PaymentDetailWhereUniqueInput[]
+    delete?: PaymentDetailWhereUniqueInput | PaymentDetailWhereUniqueInput[]
+    connect?: PaymentDetailWhereUniqueInput | PaymentDetailWhereUniqueInput[]
+    update?: PaymentDetailUpdateWithWhereUniqueWithoutOrderInput | PaymentDetailUpdateWithWhereUniqueWithoutOrderInput[]
+    updateMany?: PaymentDetailUpdateManyWithWhereWithoutOrderInput | PaymentDetailUpdateManyWithWhereWithoutOrderInput[]
+    deleteMany?: PaymentDetailScalarWhereInput | PaymentDetailScalarWhereInput[]
+  }
+
+  export type ShippingDetailUpdateManyWithoutOrderNestedInput = {
+    create?: XOR<ShippingDetailCreateWithoutOrderInput, ShippingDetailUncheckedCreateWithoutOrderInput> | ShippingDetailCreateWithoutOrderInput[] | ShippingDetailUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: ShippingDetailCreateOrConnectWithoutOrderInput | ShippingDetailCreateOrConnectWithoutOrderInput[]
+    upsert?: ShippingDetailUpsertWithWhereUniqueWithoutOrderInput | ShippingDetailUpsertWithWhereUniqueWithoutOrderInput[]
+    createMany?: ShippingDetailCreateManyOrderInputEnvelope
+    set?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
+    disconnect?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
+    delete?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
+    connect?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
+    update?: ShippingDetailUpdateWithWhereUniqueWithoutOrderInput | ShippingDetailUpdateWithWhereUniqueWithoutOrderInput[]
+    updateMany?: ShippingDetailUpdateManyWithWhereWithoutOrderInput | ShippingDetailUpdateManyWithWhereWithoutOrderInput[]
+    deleteMany?: ShippingDetailScalarWhereInput | ShippingDetailScalarWhereInput[]
+  }
+
+  export type CartProductUpdateManyWithoutOrdersNestedInput = {
+    create?: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput> | CartProductCreateWithoutOrdersInput[] | CartProductUncheckedCreateWithoutOrdersInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutOrdersInput | CartProductCreateOrConnectWithoutOrdersInput[]
+    upsert?: CartProductUpsertWithWhereUniqueWithoutOrdersInput | CartProductUpsertWithWhereUniqueWithoutOrdersInput[]
+    set?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    disconnect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    delete?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    update?: CartProductUpdateWithWhereUniqueWithoutOrdersInput | CartProductUpdateWithWhereUniqueWithoutOrdersInput[]
+    updateMany?: CartProductUpdateManyWithWhereWithoutOrdersInput | CartProductUpdateManyWithWhereWithoutOrdersInput[]
+    deleteMany?: CartProductScalarWhereInput | CartProductScalarWhereInput[]
+  }
+
+  export type PaymentDetailUncheckedUpdateManyWithoutOrderNestedInput = {
+    create?: XOR<PaymentDetailCreateWithoutOrderInput, PaymentDetailUncheckedCreateWithoutOrderInput> | PaymentDetailCreateWithoutOrderInput[] | PaymentDetailUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: PaymentDetailCreateOrConnectWithoutOrderInput | PaymentDetailCreateOrConnectWithoutOrderInput[]
+    upsert?: PaymentDetailUpsertWithWhereUniqueWithoutOrderInput | PaymentDetailUpsertWithWhereUniqueWithoutOrderInput[]
+    createMany?: PaymentDetailCreateManyOrderInputEnvelope
+    set?: PaymentDetailWhereUniqueInput | PaymentDetailWhereUniqueInput[]
+    disconnect?: PaymentDetailWhereUniqueInput | PaymentDetailWhereUniqueInput[]
+    delete?: PaymentDetailWhereUniqueInput | PaymentDetailWhereUniqueInput[]
+    connect?: PaymentDetailWhereUniqueInput | PaymentDetailWhereUniqueInput[]
+    update?: PaymentDetailUpdateWithWhereUniqueWithoutOrderInput | PaymentDetailUpdateWithWhereUniqueWithoutOrderInput[]
+    updateMany?: PaymentDetailUpdateManyWithWhereWithoutOrderInput | PaymentDetailUpdateManyWithWhereWithoutOrderInput[]
+    deleteMany?: PaymentDetailScalarWhereInput | PaymentDetailScalarWhereInput[]
+  }
+
+  export type ShippingDetailUncheckedUpdateManyWithoutOrderNestedInput = {
+    create?: XOR<ShippingDetailCreateWithoutOrderInput, ShippingDetailUncheckedCreateWithoutOrderInput> | ShippingDetailCreateWithoutOrderInput[] | ShippingDetailUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: ShippingDetailCreateOrConnectWithoutOrderInput | ShippingDetailCreateOrConnectWithoutOrderInput[]
+    upsert?: ShippingDetailUpsertWithWhereUniqueWithoutOrderInput | ShippingDetailUpsertWithWhereUniqueWithoutOrderInput[]
+    createMany?: ShippingDetailCreateManyOrderInputEnvelope
+    set?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
+    disconnect?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
+    delete?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
+    connect?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
+    update?: ShippingDetailUpdateWithWhereUniqueWithoutOrderInput | ShippingDetailUpdateWithWhereUniqueWithoutOrderInput[]
+    updateMany?: ShippingDetailUpdateManyWithWhereWithoutOrderInput | ShippingDetailUpdateManyWithWhereWithoutOrderInput[]
+    deleteMany?: ShippingDetailScalarWhereInput | ShippingDetailScalarWhereInput[]
+  }
+
+  export type CartProductUncheckedUpdateManyWithoutOrdersNestedInput = {
+    create?: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput> | CartProductCreateWithoutOrdersInput[] | CartProductUncheckedCreateWithoutOrdersInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutOrdersInput | CartProductCreateOrConnectWithoutOrdersInput[]
+    upsert?: CartProductUpsertWithWhereUniqueWithoutOrdersInput | CartProductUpsertWithWhereUniqueWithoutOrdersInput[]
+    set?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    disconnect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    delete?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
+    update?: CartProductUpdateWithWhereUniqueWithoutOrdersInput | CartProductUpdateWithWhereUniqueWithoutOrdersInput[]
+    updateMany?: CartProductUpdateManyWithWhereWithoutOrdersInput | CartProductUpdateManyWithWhereWithoutOrdersInput[]
+    deleteMany?: CartProductScalarWhereInput | CartProductScalarWhereInput[]
+  }
+
+  export type OrderCreateNestedOneWithoutPaymentDetailsInput = {
+    create?: XOR<OrderCreateWithoutPaymentDetailsInput, OrderUncheckedCreateWithoutPaymentDetailsInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutPaymentDetailsInput
+    connect?: OrderWhereUniqueInput
+  }
+
+  export type OrderUpdateOneWithoutPaymentDetailsNestedInput = {
+    create?: XOR<OrderCreateWithoutPaymentDetailsInput, OrderUncheckedCreateWithoutPaymentDetailsInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutPaymentDetailsInput
+    upsert?: OrderUpsertWithoutPaymentDetailsInput
+    disconnect?: OrderWhereInput | boolean
+    delete?: OrderWhereInput | boolean
+    connect?: OrderWhereUniqueInput
+    update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutPaymentDetailsInput, OrderUpdateWithoutPaymentDetailsInput>, OrderUncheckedUpdateWithoutPaymentDetailsInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type OrderCreateNestedOneWithoutShippingDetailsInput = {
+    create?: XOR<OrderCreateWithoutShippingDetailsInput, OrderUncheckedCreateWithoutShippingDetailsInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutShippingDetailsInput
+    connect?: OrderWhereUniqueInput
+  }
+
+  export type OrderUpdateOneWithoutShippingDetailsNestedInput = {
+    create?: XOR<OrderCreateWithoutShippingDetailsInput, OrderUncheckedCreateWithoutShippingDetailsInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutShippingDetailsInput
+    upsert?: OrderUpsertWithoutShippingDetailsInput
+    disconnect?: OrderWhereInput | boolean
+    delete?: OrderWhereInput | boolean
+    connect?: OrderWhereUniqueInput
+    update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutShippingDetailsInput, OrderUpdateWithoutShippingDetailsInput>, OrderUncheckedUpdateWithoutShippingDetailsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -6400,6 +12590,33 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type AddressCreateWithoutUserInput = {
     street: string
     city: string
@@ -6426,16 +12643,28 @@ export namespace Prisma {
   }
 
   export type OrderCreateWithoutUserInput = {
-    orderNumber: string
-    totalAmount: number
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
     createdAt?: Date | string
+    PaymentDetails?: PaymentDetailCreateNestedManyWithoutOrderInput
+    ShippingDetails?: ShippingDetailCreateNestedManyWithoutOrderInput
+    cartProducts?: CartProductCreateNestedManyWithoutOrdersInput
   }
 
   export type OrderUncheckedCreateWithoutUserInput = {
     id?: number
-    orderNumber: string
-    totalAmount: number
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
     createdAt?: Date | string
+    PaymentDetails?: PaymentDetailUncheckedCreateNestedManyWithoutOrderInput
+    ShippingDetails?: ShippingDetailUncheckedCreateNestedManyWithoutOrderInput
+    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrdersInput
   }
 
   export type OrderCreateOrConnectWithoutUserInput = {
@@ -6445,6 +12674,82 @@ export namespace Prisma {
 
   export type OrderCreateManyUserInputEnvelope = {
     data: OrderCreateManyUserInput | OrderCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CartProductCreateWithoutUserInput = {
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size: string
+    color: string
+    rating: number
+    img?: CartProductCreateimgInput | string[]
+    quantity: number
+    orders?: OrderCreateNestedManyWithoutCartProductsInput
+  }
+
+  export type CartProductUncheckedCreateWithoutUserInput = {
+    id?: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size: string
+    color: string
+    rating: number
+    img?: CartProductCreateimgInput | string[]
+    quantity: number
+    orders?: OrderUncheckedCreateNestedManyWithoutCartProductsInput
+  }
+
+  export type CartProductCreateOrConnectWithoutUserInput = {
+    where: CartProductWhereUniqueInput
+    create: XOR<CartProductCreateWithoutUserInput, CartProductUncheckedCreateWithoutUserInput>
+  }
+
+  export type CartProductCreateManyUserInputEnvelope = {
+    data: CartProductCreateManyUserInput | CartProductCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FavoriteCreateWithoutUserInput = {
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size?: FavoriteCreatesizeInput | string[]
+    color: string
+    rating: number
+    img?: FavoriteCreateimgInput | string[]
+    createdAt?: Date | string
+  }
+
+  export type FavoriteUncheckedCreateWithoutUserInput = {
+    id?: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size?: FavoriteCreatesizeInput | string[]
+    color: string
+    rating: number
+    img?: FavoriteCreateimgInput | string[]
+    createdAt?: Date | string
+  }
+
+  export type FavoriteCreateOrConnectWithoutUserInput = {
+    where: FavoriteWhereUniqueInput
+    create: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput>
+  }
+
+  export type FavoriteCreateManyUserInputEnvelope = {
+    data: FavoriteCreateManyUserInput | FavoriteCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -6497,10 +12802,81 @@ export namespace Prisma {
     OR?: OrderScalarWhereInput[]
     NOT?: OrderScalarWhereInput | OrderScalarWhereInput[]
     id?: IntFilter<"Order"> | number
-    orderNumber?: StringFilter<"Order"> | string
-    totalAmount?: FloatFilter<"Order"> | number
+    subTotal?: FloatFilter<"Order"> | number
+    quantity?: IntFilter<"Order"> | number
+    shipping?: FloatFilter<"Order"> | number
+    discount?: FloatFilter<"Order"> | number
+    total?: FloatFilter<"Order"> | number
     userId?: IntFilter<"Order"> | number
     createdAt?: DateTimeFilter<"Order"> | Date | string
+  }
+
+  export type CartProductUpsertWithWhereUniqueWithoutUserInput = {
+    where: CartProductWhereUniqueInput
+    update: XOR<CartProductUpdateWithoutUserInput, CartProductUncheckedUpdateWithoutUserInput>
+    create: XOR<CartProductCreateWithoutUserInput, CartProductUncheckedCreateWithoutUserInput>
+  }
+
+  export type CartProductUpdateWithWhereUniqueWithoutUserInput = {
+    where: CartProductWhereUniqueInput
+    data: XOR<CartProductUpdateWithoutUserInput, CartProductUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CartProductUpdateManyWithWhereWithoutUserInput = {
+    where: CartProductScalarWhereInput
+    data: XOR<CartProductUpdateManyMutationInput, CartProductUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CartProductScalarWhereInput = {
+    AND?: CartProductScalarWhereInput | CartProductScalarWhereInput[]
+    OR?: CartProductScalarWhereInput[]
+    NOT?: CartProductScalarWhereInput | CartProductScalarWhereInput[]
+    id?: IntFilter<"CartProduct"> | number
+    title?: StringFilter<"CartProduct"> | string
+    gender?: StringFilter<"CartProduct"> | string
+    description?: StringFilter<"CartProduct"> | string
+    category?: StringFilter<"CartProduct"> | string
+    price?: FloatFilter<"CartProduct"> | number
+    size?: StringFilter<"CartProduct"> | string
+    color?: StringFilter<"CartProduct"> | string
+    rating?: FloatFilter<"CartProduct"> | number
+    img?: StringNullableListFilter<"CartProduct">
+    quantity?: IntFilter<"CartProduct"> | number
+    userId?: IntFilter<"CartProduct"> | number
+  }
+
+  export type FavoriteUpsertWithWhereUniqueWithoutUserInput = {
+    where: FavoriteWhereUniqueInput
+    update: XOR<FavoriteUpdateWithoutUserInput, FavoriteUncheckedUpdateWithoutUserInput>
+    create: XOR<FavoriteCreateWithoutUserInput, FavoriteUncheckedCreateWithoutUserInput>
+  }
+
+  export type FavoriteUpdateWithWhereUniqueWithoutUserInput = {
+    where: FavoriteWhereUniqueInput
+    data: XOR<FavoriteUpdateWithoutUserInput, FavoriteUncheckedUpdateWithoutUserInput>
+  }
+
+  export type FavoriteUpdateManyWithWhereWithoutUserInput = {
+    where: FavoriteScalarWhereInput
+    data: XOR<FavoriteUpdateManyMutationInput, FavoriteUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type FavoriteScalarWhereInput = {
+    AND?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
+    OR?: FavoriteScalarWhereInput[]
+    NOT?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
+    id?: IntFilter<"Favorite"> | number
+    title?: StringFilter<"Favorite"> | string
+    gender?: StringFilter<"Favorite"> | string
+    description?: StringFilter<"Favorite"> | string
+    category?: StringFilter<"Favorite"> | string
+    price?: FloatFilter<"Favorite"> | number
+    size?: StringNullableListFilter<"Favorite">
+    color?: StringFilter<"Favorite"> | string
+    rating?: FloatFilter<"Favorite"> | number
+    img?: StringNullableListFilter<"Favorite">
+    userId?: IntFilter<"Favorite"> | number
+    createdAt?: DateTimeFilter<"Favorite"> | Date | string
   }
 
   export type UserCreateWithoutAddressesInput = {
@@ -6511,6 +12887,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     orders?: OrderCreateNestedManyWithoutUserInput
+    cartItems?: CartProductCreateNestedManyWithoutUserInput
+    favoriteItems?: FavoriteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAddressesInput = {
@@ -6522,6 +12900,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    cartItems?: CartProductUncheckedCreateNestedManyWithoutUserInput
+    favoriteItems?: FavoriteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAddressesInput = {
@@ -6548,6 +12928,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUpdateManyWithoutUserNestedInput
+    cartItems?: CartProductUpdateManyWithoutUserNestedInput
+    favoriteItems?: FavoriteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAddressesInput = {
@@ -6559,6 +12941,186 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    cartItems?: CartProductUncheckedUpdateManyWithoutUserNestedInput
+    favoriteItems?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutCartItemsInput = {
+    email: string
+    password: string
+    firstName?: string | null
+    lastName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressCreateNestedManyWithoutUserInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    favoriteItems?: FavoriteCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCartItemsInput = {
+    id?: number
+    email: string
+    password: string
+    firstName?: string | null
+    lastName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    favoriteItems?: FavoriteUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCartItemsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCartItemsInput, UserUncheckedCreateWithoutCartItemsInput>
+  }
+
+  export type OrderCreateWithoutCartProductsInput = {
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutOrdersInput
+    PaymentDetails?: PaymentDetailCreateNestedManyWithoutOrderInput
+    ShippingDetails?: ShippingDetailCreateNestedManyWithoutOrderInput
+  }
+
+  export type OrderUncheckedCreateWithoutCartProductsInput = {
+    id?: number
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    userId: number
+    createdAt?: Date | string
+    PaymentDetails?: PaymentDetailUncheckedCreateNestedManyWithoutOrderInput
+    ShippingDetails?: ShippingDetailUncheckedCreateNestedManyWithoutOrderInput
+  }
+
+  export type OrderCreateOrConnectWithoutCartProductsInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput>
+  }
+
+  export type UserUpsertWithoutCartItemsInput = {
+    update: XOR<UserUpdateWithoutCartItemsInput, UserUncheckedUpdateWithoutCartItemsInput>
+    create: XOR<UserCreateWithoutCartItemsInput, UserUncheckedCreateWithoutCartItemsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCartItemsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCartItemsInput, UserUncheckedUpdateWithoutCartItemsInput>
+  }
+
+  export type UserUpdateWithoutCartItemsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUpdateManyWithoutUserNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    favoriteItems?: FavoriteUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCartItemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    favoriteItems?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type OrderUpsertWithWhereUniqueWithoutCartProductsInput = {
+    where: OrderWhereUniqueInput
+    update: XOR<OrderUpdateWithoutCartProductsInput, OrderUncheckedUpdateWithoutCartProductsInput>
+    create: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput>
+  }
+
+  export type OrderUpdateWithWhereUniqueWithoutCartProductsInput = {
+    where: OrderWhereUniqueInput
+    data: XOR<OrderUpdateWithoutCartProductsInput, OrderUncheckedUpdateWithoutCartProductsInput>
+  }
+
+  export type OrderUpdateManyWithWhereWithoutCartProductsInput = {
+    where: OrderScalarWhereInput
+    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyWithoutCartProductsInput>
+  }
+
+  export type UserCreateWithoutFavoriteItemsInput = {
+    email: string
+    password: string
+    firstName?: string | null
+    lastName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressCreateNestedManyWithoutUserInput
+    orders?: OrderCreateNestedManyWithoutUserInput
+    cartItems?: CartProductCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutFavoriteItemsInput = {
+    id?: number
+    email: string
+    password: string
+    firstName?: string | null
+    lastName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
+    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
+    cartItems?: CartProductUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutFavoriteItemsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFavoriteItemsInput, UserUncheckedCreateWithoutFavoriteItemsInput>
+  }
+
+  export type UserUpsertWithoutFavoriteItemsInput = {
+    update: XOR<UserUpdateWithoutFavoriteItemsInput, UserUncheckedUpdateWithoutFavoriteItemsInput>
+    create: XOR<UserCreateWithoutFavoriteItemsInput, UserUncheckedCreateWithoutFavoriteItemsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFavoriteItemsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFavoriteItemsInput, UserUncheckedUpdateWithoutFavoriteItemsInput>
+  }
+
+  export type UserUpdateWithoutFavoriteItemsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUpdateManyWithoutUserNestedInput
+    orders?: OrderUpdateManyWithoutUserNestedInput
+    cartItems?: CartProductUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFavoriteItemsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    firstName?: NullableStringFieldUpdateOperationsInput | string | null
+    lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
+    cartItems?: CartProductUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -6569,6 +13131,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressCreateNestedManyWithoutUserInput
+    cartItems?: CartProductCreateNestedManyWithoutUserInput
+    favoriteItems?: FavoriteCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -6580,11 +13144,105 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
+    cartItems?: CartProductUncheckedCreateNestedManyWithoutUserInput
+    favoriteItems?: FavoriteUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
     where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutOrdersInput, UserUncheckedCreateWithoutOrdersInput>
+  }
+
+  export type PaymentDetailCreateWithoutOrderInput = {
+    razorpayOrderId: string
+    razorpayPaymentId: string
+  }
+
+  export type PaymentDetailUncheckedCreateWithoutOrderInput = {
+    id?: number
+    razorpayOrderId: string
+    razorpayPaymentId: string
+  }
+
+  export type PaymentDetailCreateOrConnectWithoutOrderInput = {
+    where: PaymentDetailWhereUniqueInput
+    create: XOR<PaymentDetailCreateWithoutOrderInput, PaymentDetailUncheckedCreateWithoutOrderInput>
+  }
+
+  export type PaymentDetailCreateManyOrderInputEnvelope = {
+    data: PaymentDetailCreateManyOrderInput | PaymentDetailCreateManyOrderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ShippingDetailCreateWithoutOrderInput = {
+    firstName: string
+    lastName: string
+    addressLine1: string
+    addressLine2?: string | null
+    locality: string
+    pinCode: number
+    state: string
+    country: string
+    email: string
+    mobile: number
+  }
+
+  export type ShippingDetailUncheckedCreateWithoutOrderInput = {
+    id?: number
+    firstName: string
+    lastName: string
+    addressLine1: string
+    addressLine2?: string | null
+    locality: string
+    pinCode: number
+    state: string
+    country: string
+    email: string
+    mobile: number
+  }
+
+  export type ShippingDetailCreateOrConnectWithoutOrderInput = {
+    where: ShippingDetailWhereUniqueInput
+    create: XOR<ShippingDetailCreateWithoutOrderInput, ShippingDetailUncheckedCreateWithoutOrderInput>
+  }
+
+  export type ShippingDetailCreateManyOrderInputEnvelope = {
+    data: ShippingDetailCreateManyOrderInput | ShippingDetailCreateManyOrderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CartProductCreateWithoutOrdersInput = {
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size: string
+    color: string
+    rating: number
+    img?: CartProductCreateimgInput | string[]
+    quantity: number
+    user: UserCreateNestedOneWithoutCartItemsInput
+  }
+
+  export type CartProductUncheckedCreateWithoutOrdersInput = {
+    id?: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size: string
+    color: string
+    rating: number
+    img?: CartProductCreateimgInput | string[]
+    quantity: number
+    userId: number
+  }
+
+  export type CartProductCreateOrConnectWithoutOrdersInput = {
+    where: CartProductWhereUniqueInput
+    create: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput>
   }
 
   export type UserUpsertWithoutOrdersInput = {
@@ -6606,6 +13264,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUpdateManyWithoutUserNestedInput
+    cartItems?: CartProductUpdateManyWithoutUserNestedInput
+    favoriteItems?: FavoriteUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -6617,6 +13277,216 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
+    cartItems?: CartProductUncheckedUpdateManyWithoutUserNestedInput
+    favoriteItems?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type PaymentDetailUpsertWithWhereUniqueWithoutOrderInput = {
+    where: PaymentDetailWhereUniqueInput
+    update: XOR<PaymentDetailUpdateWithoutOrderInput, PaymentDetailUncheckedUpdateWithoutOrderInput>
+    create: XOR<PaymentDetailCreateWithoutOrderInput, PaymentDetailUncheckedCreateWithoutOrderInput>
+  }
+
+  export type PaymentDetailUpdateWithWhereUniqueWithoutOrderInput = {
+    where: PaymentDetailWhereUniqueInput
+    data: XOR<PaymentDetailUpdateWithoutOrderInput, PaymentDetailUncheckedUpdateWithoutOrderInput>
+  }
+
+  export type PaymentDetailUpdateManyWithWhereWithoutOrderInput = {
+    where: PaymentDetailScalarWhereInput
+    data: XOR<PaymentDetailUpdateManyMutationInput, PaymentDetailUncheckedUpdateManyWithoutOrderInput>
+  }
+
+  export type PaymentDetailScalarWhereInput = {
+    AND?: PaymentDetailScalarWhereInput | PaymentDetailScalarWhereInput[]
+    OR?: PaymentDetailScalarWhereInput[]
+    NOT?: PaymentDetailScalarWhereInput | PaymentDetailScalarWhereInput[]
+    id?: IntFilter<"PaymentDetail"> | number
+    razorpayOrderId?: StringFilter<"PaymentDetail"> | string
+    razorpayPaymentId?: StringFilter<"PaymentDetail"> | string
+    orderId?: IntNullableFilter<"PaymentDetail"> | number | null
+  }
+
+  export type ShippingDetailUpsertWithWhereUniqueWithoutOrderInput = {
+    where: ShippingDetailWhereUniqueInput
+    update: XOR<ShippingDetailUpdateWithoutOrderInput, ShippingDetailUncheckedUpdateWithoutOrderInput>
+    create: XOR<ShippingDetailCreateWithoutOrderInput, ShippingDetailUncheckedCreateWithoutOrderInput>
+  }
+
+  export type ShippingDetailUpdateWithWhereUniqueWithoutOrderInput = {
+    where: ShippingDetailWhereUniqueInput
+    data: XOR<ShippingDetailUpdateWithoutOrderInput, ShippingDetailUncheckedUpdateWithoutOrderInput>
+  }
+
+  export type ShippingDetailUpdateManyWithWhereWithoutOrderInput = {
+    where: ShippingDetailScalarWhereInput
+    data: XOR<ShippingDetailUpdateManyMutationInput, ShippingDetailUncheckedUpdateManyWithoutOrderInput>
+  }
+
+  export type ShippingDetailScalarWhereInput = {
+    AND?: ShippingDetailScalarWhereInput | ShippingDetailScalarWhereInput[]
+    OR?: ShippingDetailScalarWhereInput[]
+    NOT?: ShippingDetailScalarWhereInput | ShippingDetailScalarWhereInput[]
+    id?: IntFilter<"ShippingDetail"> | number
+    firstName?: StringFilter<"ShippingDetail"> | string
+    lastName?: StringFilter<"ShippingDetail"> | string
+    addressLine1?: StringFilter<"ShippingDetail"> | string
+    addressLine2?: StringNullableFilter<"ShippingDetail"> | string | null
+    locality?: StringFilter<"ShippingDetail"> | string
+    pinCode?: IntFilter<"ShippingDetail"> | number
+    state?: StringFilter<"ShippingDetail"> | string
+    country?: StringFilter<"ShippingDetail"> | string
+    email?: StringFilter<"ShippingDetail"> | string
+    mobile?: IntFilter<"ShippingDetail"> | number
+    orderId?: IntNullableFilter<"ShippingDetail"> | number | null
+  }
+
+  export type CartProductUpsertWithWhereUniqueWithoutOrdersInput = {
+    where: CartProductWhereUniqueInput
+    update: XOR<CartProductUpdateWithoutOrdersInput, CartProductUncheckedUpdateWithoutOrdersInput>
+    create: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput>
+  }
+
+  export type CartProductUpdateWithWhereUniqueWithoutOrdersInput = {
+    where: CartProductWhereUniqueInput
+    data: XOR<CartProductUpdateWithoutOrdersInput, CartProductUncheckedUpdateWithoutOrdersInput>
+  }
+
+  export type CartProductUpdateManyWithWhereWithoutOrdersInput = {
+    where: CartProductScalarWhereInput
+    data: XOR<CartProductUpdateManyMutationInput, CartProductUncheckedUpdateManyWithoutOrdersInput>
+  }
+
+  export type OrderCreateWithoutPaymentDetailsInput = {
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutOrdersInput
+    ShippingDetails?: ShippingDetailCreateNestedManyWithoutOrderInput
+    cartProducts?: CartProductCreateNestedManyWithoutOrdersInput
+  }
+
+  export type OrderUncheckedCreateWithoutPaymentDetailsInput = {
+    id?: number
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    userId: number
+    createdAt?: Date | string
+    ShippingDetails?: ShippingDetailUncheckedCreateNestedManyWithoutOrderInput
+    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrdersInput
+  }
+
+  export type OrderCreateOrConnectWithoutPaymentDetailsInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutPaymentDetailsInput, OrderUncheckedCreateWithoutPaymentDetailsInput>
+  }
+
+  export type OrderUpsertWithoutPaymentDetailsInput = {
+    update: XOR<OrderUpdateWithoutPaymentDetailsInput, OrderUncheckedUpdateWithoutPaymentDetailsInput>
+    create: XOR<OrderCreateWithoutPaymentDetailsInput, OrderUncheckedCreateWithoutPaymentDetailsInput>
+    where?: OrderWhereInput
+  }
+
+  export type OrderUpdateToOneWithWhereWithoutPaymentDetailsInput = {
+    where?: OrderWhereInput
+    data: XOR<OrderUpdateWithoutPaymentDetailsInput, OrderUncheckedUpdateWithoutPaymentDetailsInput>
+  }
+
+  export type OrderUpdateWithoutPaymentDetailsInput = {
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    ShippingDetails?: ShippingDetailUpdateManyWithoutOrderNestedInput
+    cartProducts?: CartProductUpdateManyWithoutOrdersNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutPaymentDetailsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ShippingDetails?: ShippingDetailUncheckedUpdateManyWithoutOrderNestedInput
+    cartProducts?: CartProductUncheckedUpdateManyWithoutOrdersNestedInput
+  }
+
+  export type OrderCreateWithoutShippingDetailsInput = {
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutOrdersInput
+    PaymentDetails?: PaymentDetailCreateNestedManyWithoutOrderInput
+    cartProducts?: CartProductCreateNestedManyWithoutOrdersInput
+  }
+
+  export type OrderUncheckedCreateWithoutShippingDetailsInput = {
+    id?: number
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    userId: number
+    createdAt?: Date | string
+    PaymentDetails?: PaymentDetailUncheckedCreateNestedManyWithoutOrderInput
+    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrdersInput
+  }
+
+  export type OrderCreateOrConnectWithoutShippingDetailsInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutShippingDetailsInput, OrderUncheckedCreateWithoutShippingDetailsInput>
+  }
+
+  export type OrderUpsertWithoutShippingDetailsInput = {
+    update: XOR<OrderUpdateWithoutShippingDetailsInput, OrderUncheckedUpdateWithoutShippingDetailsInput>
+    create: XOR<OrderCreateWithoutShippingDetailsInput, OrderUncheckedCreateWithoutShippingDetailsInput>
+    where?: OrderWhereInput
+  }
+
+  export type OrderUpdateToOneWithWhereWithoutShippingDetailsInput = {
+    where?: OrderWhereInput
+    data: XOR<OrderUpdateWithoutShippingDetailsInput, OrderUncheckedUpdateWithoutShippingDetailsInput>
+  }
+
+  export type OrderUpdateWithoutShippingDetailsInput = {
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    PaymentDetails?: PaymentDetailUpdateManyWithoutOrderNestedInput
+    cartProducts?: CartProductUpdateManyWithoutOrdersNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutShippingDetailsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PaymentDetails?: PaymentDetailUncheckedUpdateManyWithoutOrderNestedInput
+    cartProducts?: CartProductUncheckedUpdateManyWithoutOrdersNestedInput
   }
 
   export type AddressCreateManyUserInput = {
@@ -6629,8 +13499,39 @@ export namespace Prisma {
 
   export type OrderCreateManyUserInput = {
     id?: number
-    orderNumber: string
-    totalAmount: number
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    createdAt?: Date | string
+  }
+
+  export type CartProductCreateManyUserInput = {
+    id?: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size: string
+    color: string
+    rating: number
+    img?: CartProductCreateimgInput | string[]
+    quantity: number
+  }
+
+  export type FavoriteCreateManyUserInput = {
+    id?: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size?: FavoriteCreatesizeInput | string[]
+    color: string
+    rating: number
+    img?: FavoriteCreateimgInput | string[]
     createdAt?: Date | string
   }
 
@@ -6658,23 +13559,280 @@ export namespace Prisma {
   }
 
   export type OrderUpdateWithoutUserInput = {
-    orderNumber?: StringFieldUpdateOperationsInput | string
-    totalAmount?: FloatFieldUpdateOperationsInput | number
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PaymentDetails?: PaymentDetailUpdateManyWithoutOrderNestedInput
+    ShippingDetails?: ShippingDetailUpdateManyWithoutOrderNestedInput
+    cartProducts?: CartProductUpdateManyWithoutOrdersNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    orderNumber?: StringFieldUpdateOperationsInput | string
-    totalAmount?: FloatFieldUpdateOperationsInput | number
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PaymentDetails?: PaymentDetailUncheckedUpdateManyWithoutOrderNestedInput
+    ShippingDetails?: ShippingDetailUncheckedUpdateManyWithoutOrderNestedInput
+    cartProducts?: CartProductUncheckedUpdateManyWithoutOrdersNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    orderNumber?: StringFieldUpdateOperationsInput | string
-    totalAmount?: FloatFieldUpdateOperationsInput | number
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CartProductUpdateWithoutUserInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: CartProductUpdateimgInput | string[]
+    quantity?: IntFieldUpdateOperationsInput | number
+    orders?: OrderUpdateManyWithoutCartProductsNestedInput
+  }
+
+  export type CartProductUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: CartProductUpdateimgInput | string[]
+    quantity?: IntFieldUpdateOperationsInput | number
+    orders?: OrderUncheckedUpdateManyWithoutCartProductsNestedInput
+  }
+
+  export type CartProductUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: CartProductUpdateimgInput | string[]
+    quantity?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type FavoriteUpdateWithoutUserInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: FavoriteUpdatesizeInput | string[]
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: FavoriteUpdateimgInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FavoriteUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: FavoriteUpdatesizeInput | string[]
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: FavoriteUpdateimgInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FavoriteUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: FavoriteUpdatesizeInput | string[]
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: FavoriteUpdateimgInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OrderUpdateWithoutCartProductsInput = {
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    PaymentDetails?: PaymentDetailUpdateManyWithoutOrderNestedInput
+    ShippingDetails?: ShippingDetailUpdateManyWithoutOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutCartProductsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PaymentDetails?: PaymentDetailUncheckedUpdateManyWithoutOrderNestedInput
+    ShippingDetails?: ShippingDetailUncheckedUpdateManyWithoutOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateManyWithoutCartProductsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PaymentDetailCreateManyOrderInput = {
+    id?: number
+    razorpayOrderId: string
+    razorpayPaymentId: string
+  }
+
+  export type ShippingDetailCreateManyOrderInput = {
+    id?: number
+    firstName: string
+    lastName: string
+    addressLine1: string
+    addressLine2?: string | null
+    locality: string
+    pinCode: number
+    state: string
+    country: string
+    email: string
+    mobile: number
+  }
+
+  export type PaymentDetailUpdateWithoutOrderInput = {
+    razorpayOrderId?: StringFieldUpdateOperationsInput | string
+    razorpayPaymentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PaymentDetailUncheckedUpdateWithoutOrderInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    razorpayOrderId?: StringFieldUpdateOperationsInput | string
+    razorpayPaymentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type PaymentDetailUncheckedUpdateManyWithoutOrderInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    razorpayOrderId?: StringFieldUpdateOperationsInput | string
+    razorpayPaymentId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ShippingDetailUpdateWithoutOrderInput = {
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    addressLine1?: StringFieldUpdateOperationsInput | string
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
+    locality?: StringFieldUpdateOperationsInput | string
+    pinCode?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    mobile?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ShippingDetailUncheckedUpdateWithoutOrderInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    addressLine1?: StringFieldUpdateOperationsInput | string
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
+    locality?: StringFieldUpdateOperationsInput | string
+    pinCode?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    mobile?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ShippingDetailUncheckedUpdateManyWithoutOrderInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    firstName?: StringFieldUpdateOperationsInput | string
+    lastName?: StringFieldUpdateOperationsInput | string
+    addressLine1?: StringFieldUpdateOperationsInput | string
+    addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
+    locality?: StringFieldUpdateOperationsInput | string
+    pinCode?: IntFieldUpdateOperationsInput | number
+    state?: StringFieldUpdateOperationsInput | string
+    country?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    mobile?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CartProductUpdateWithoutOrdersInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: CartProductUpdateimgInput | string[]
+    quantity?: IntFieldUpdateOperationsInput | number
+    user?: UserUpdateOneRequiredWithoutCartItemsNestedInput
+  }
+
+  export type CartProductUncheckedUpdateWithoutOrdersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: CartProductUpdateimgInput | string[]
+    quantity?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CartProductUncheckedUpdateManyWithoutOrdersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    gender?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    category?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    size?: StringFieldUpdateOperationsInput | string
+    color?: StringFieldUpdateOperationsInput | string
+    rating?: FloatFieldUpdateOperationsInput | number
+    img?: CartProductUpdateimgInput | string[]
+    quantity?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
   }
 
 
@@ -6691,13 +13849,29 @@ export namespace Prisma {
      */
     export type AddressArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = AddressDefaultArgs<ExtArgs>
     /**
+     * @deprecated Use ProductDefaultArgs instead
+     */
+    export type ProductArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = ProductDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use CartProductDefaultArgs instead
+     */
+    export type CartProductArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = CartProductDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use FavoriteDefaultArgs instead
+     */
+    export type FavoriteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = FavoriteDefaultArgs<ExtArgs>
+    /**
      * @deprecated Use OrderDefaultArgs instead
      */
     export type OrderArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = OrderDefaultArgs<ExtArgs>
     /**
-     * @deprecated Use ProductDefaultArgs instead
+     * @deprecated Use PaymentDetailDefaultArgs instead
      */
-    export type ProductArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = ProductDefaultArgs<ExtArgs>
+    export type PaymentDetailArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = PaymentDetailDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ShippingDetailDefaultArgs instead
+     */
+    export type ShippingDetailArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = ShippingDetailDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

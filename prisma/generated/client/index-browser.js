@@ -140,14 +140,6 @@ exports.Prisma.AddressScalarFieldEnum = {
   userId: 'userId'
 };
 
-exports.Prisma.OrderScalarFieldEnum = {
-  id: 'id',
-  orderNumber: 'orderNumber',
-  totalAmount: 'totalAmount',
-  userId: 'userId',
-  createdAt: 'createdAt'
-};
-
 exports.Prisma.ProductScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -159,6 +151,69 @@ exports.Prisma.ProductScalarFieldEnum = {
   color: 'color',
   rating: 'rating',
   img: 'img'
+};
+
+exports.Prisma.CartProductScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  gender: 'gender',
+  description: 'description',
+  category: 'category',
+  price: 'price',
+  size: 'size',
+  color: 'color',
+  rating: 'rating',
+  img: 'img',
+  quantity: 'quantity',
+  userId: 'userId'
+};
+
+exports.Prisma.FavoriteScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  gender: 'gender',
+  description: 'description',
+  category: 'category',
+  price: 'price',
+  size: 'size',
+  color: 'color',
+  rating: 'rating',
+  img: 'img',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.OrderScalarFieldEnum = {
+  id: 'id',
+  subTotal: 'subTotal',
+  quantity: 'quantity',
+  shipping: 'shipping',
+  discount: 'discount',
+  total: 'total',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PaymentDetailScalarFieldEnum = {
+  id: 'id',
+  razorpayOrderId: 'razorpayOrderId',
+  razorpayPaymentId: 'razorpayPaymentId',
+  orderId: 'orderId'
+};
+
+exports.Prisma.ShippingDetailScalarFieldEnum = {
+  id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  addressLine1: 'addressLine1',
+  addressLine2: 'addressLine2',
+  locality: 'locality',
+  pinCode: 'pinCode',
+  state: 'state',
+  country: 'country',
+  email: 'email',
+  mobile: 'mobile',
+  orderId: 'orderId'
 };
 
 exports.Prisma.SortOrder = {
@@ -180,8 +235,12 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   User: 'User',
   Address: 'Address',
+  Product: 'Product',
+  CartProduct: 'CartProduct',
+  Favorite: 'Favorite',
   Order: 'Order',
-  Product: 'Product'
+  PaymentDetail: 'PaymentDetail',
+  ShippingDetail: 'ShippingDetail'
 };
 
 /**
