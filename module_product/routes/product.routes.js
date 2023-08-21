@@ -18,10 +18,24 @@ router.get("/getfourproducts", productController.getProductsByVerity);
 router.get("/getsingleproduct/:id", productController.getSingleProduct);
 
 //ADD TO CART
-router.post('/add/:id', productController.addToCart);
+router.post("/add/:id", productController.addToFavorite);
+
+//ADD TO FAVOURITE
+router.post("/add/favourite", authorization, productController.addToFavorite);
+
+//GET TO FAVOURITE
+router.get("/get/favourite", authorization, productController.getAllFavorites);
+
+//DELETE TO FAVOURITE
+router.delete(
+  "/delete/favourite/:id",
+  authorization,
+  productController.deleteFavorite
+);
 
 module.exports = router;
-{/*
+{
+  /*
 [
     {
         "id": 2,
@@ -993,4 +1007,5 @@ module.exports = router;
         ]
     }
 ]
-*/}
+*/
+}
