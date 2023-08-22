@@ -1489,40 +1489,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type CartProductCountOutputType
-   */
-
-  export type CartProductCountOutputType = {
-    orders: number
-  }
-
-  export type CartProductCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    orders?: boolean | CartProductCountOutputTypeCountOrdersArgs
-  }
-
-  // Custom InputTypes
-
-  /**
-   * CartProductCountOutputType without action
-   */
-  export type CartProductCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CartProductCountOutputType
-     */
-    select?: CartProductCountOutputTypeSelect<ExtArgs> | null
-  }
-
-
-  /**
-   * CartProductCountOutputType without action
-   */
-  export type CartProductCountOutputTypeCountOrdersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: OrderWhereInput
-  }
-
-
-
-  /**
    * Count Type OrderCountOutputType
    */
 
@@ -4598,6 +4564,7 @@ export namespace Prisma {
     price: number | null
     rating: number | null
     quantity: number | null
+    orderId: number | null
     userId: number | null
   }
 
@@ -4606,6 +4573,7 @@ export namespace Prisma {
     price: number | null
     rating: number | null
     quantity: number | null
+    orderId: number | null
     userId: number | null
   }
 
@@ -4620,6 +4588,7 @@ export namespace Prisma {
     color: string | null
     rating: number | null
     quantity: number | null
+    orderId: number | null
     userId: number | null
   }
 
@@ -4634,6 +4603,7 @@ export namespace Prisma {
     color: string | null
     rating: number | null
     quantity: number | null
+    orderId: number | null
     userId: number | null
   }
 
@@ -4649,6 +4619,7 @@ export namespace Prisma {
     rating: number
     img: number
     quantity: number
+    orderId: number
     userId: number
     _all: number
   }
@@ -4659,6 +4630,7 @@ export namespace Prisma {
     price?: true
     rating?: true
     quantity?: true
+    orderId?: true
     userId?: true
   }
 
@@ -4667,6 +4639,7 @@ export namespace Prisma {
     price?: true
     rating?: true
     quantity?: true
+    orderId?: true
     userId?: true
   }
 
@@ -4681,6 +4654,7 @@ export namespace Prisma {
     color?: true
     rating?: true
     quantity?: true
+    orderId?: true
     userId?: true
   }
 
@@ -4695,6 +4669,7 @@ export namespace Prisma {
     color?: true
     rating?: true
     quantity?: true
+    orderId?: true
     userId?: true
   }
 
@@ -4710,6 +4685,7 @@ export namespace Prisma {
     rating?: true
     img?: true
     quantity?: true
+    orderId?: true
     userId?: true
     _all?: true
   }
@@ -4812,6 +4788,7 @@ export namespace Prisma {
     rating: number
     img: string[]
     quantity: number
+    orderId: number | null
     userId: number
     _count: CartProductCountAggregateOutputType | null
     _avg: CartProductAvgAggregateOutputType | null
@@ -4846,10 +4823,10 @@ export namespace Prisma {
     rating?: boolean
     img?: boolean
     quantity?: boolean
+    orderId?: boolean
     userId?: boolean
+    order?: boolean | CartProduct$orderArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    orders?: boolean | CartProduct$ordersArgs<ExtArgs>
-    _count?: boolean | CartProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cartProduct"]>
 
   export type CartProductSelectScalar = {
@@ -4864,21 +4841,21 @@ export namespace Prisma {
     rating?: boolean
     img?: boolean
     quantity?: boolean
+    orderId?: boolean
     userId?: boolean
   }
 
   export type CartProductInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+    order?: boolean | CartProduct$orderArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
-    orders?: boolean | CartProduct$ordersArgs<ExtArgs>
-    _count?: boolean | CartProductCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
   export type $CartProductPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     name: "CartProduct"
     objects: {
+      order: Prisma.$OrderPayload<ExtArgs> | null
       user: Prisma.$UserPayload<ExtArgs>
-      orders: Prisma.$OrderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetResult<{
       id: number
@@ -4892,6 +4869,7 @@ export namespace Prisma {
       rating: number
       img: string[]
       quantity: number
+      orderId: number | null
       userId: number
     }, ExtArgs["result"]["cartProduct"]>
     composites: {}
@@ -5258,9 +5236,9 @@ export namespace Prisma {
   export interface Prisma__CartProductClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+    order<T extends CartProduct$orderArgs<ExtArgs> = {}>(args?: Subset<T, CartProduct$orderArgs<ExtArgs>>): Prisma__OrderClient<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
-    orders<T extends CartProduct$ordersArgs<ExtArgs> = {}>(args?: Subset<T, CartProduct$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, 'findMany'> | Null>;
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5301,6 +5279,7 @@ export namespace Prisma {
     readonly rating: FieldRef<"CartProduct", 'Float'>
     readonly img: FieldRef<"CartProduct", 'String[]'>
     readonly quantity: FieldRef<"CartProduct", 'Int'>
+    readonly orderId: FieldRef<"CartProduct", 'Int'>
     readonly userId: FieldRef<"CartProduct", 'Int'>
   }
     
@@ -5614,9 +5593,9 @@ export namespace Prisma {
 
 
   /**
-   * CartProduct.orders
+   * CartProduct.order
    */
-  export type CartProduct$ordersArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
+  export type CartProduct$orderArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the Order
      */
@@ -5626,11 +5605,6 @@ export namespace Prisma {
      */
     include?: OrderInclude<ExtArgs> | null
     where?: OrderWhereInput
-    orderBy?: OrderOrderByWithRelationInput | OrderOrderByWithRelationInput[]
-    cursor?: OrderWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: OrderScalarFieldEnum | OrderScalarFieldEnum[]
   }
 
 
@@ -8747,15 +8721,11 @@ export namespace Prisma {
 
   export type ShippingDetailAvgAggregateOutputType = {
     id: number | null
-    pinCode: number | null
-    mobile: number | null
     orderId: number | null
   }
 
   export type ShippingDetailSumAggregateOutputType = {
     id: number | null
-    pinCode: number | null
-    mobile: number | null
     orderId: number | null
   }
 
@@ -8766,11 +8736,11 @@ export namespace Prisma {
     addressLine1: string | null
     addressLine2: string | null
     locality: string | null
-    pinCode: number | null
+    pinCode: string | null
     state: string | null
     country: string | null
     email: string | null
-    mobile: number | null
+    mobile: string | null
     orderId: number | null
   }
 
@@ -8781,11 +8751,11 @@ export namespace Prisma {
     addressLine1: string | null
     addressLine2: string | null
     locality: string | null
-    pinCode: number | null
+    pinCode: string | null
     state: string | null
     country: string | null
     email: string | null
-    mobile: number | null
+    mobile: string | null
     orderId: number | null
   }
 
@@ -8808,15 +8778,11 @@ export namespace Prisma {
 
   export type ShippingDetailAvgAggregateInputType = {
     id?: true
-    pinCode?: true
-    mobile?: true
     orderId?: true
   }
 
   export type ShippingDetailSumAggregateInputType = {
     id?: true
-    pinCode?: true
-    mobile?: true
     orderId?: true
   }
 
@@ -8959,11 +8925,11 @@ export namespace Prisma {
     addressLine1: string
     addressLine2: string | null
     locality: string
-    pinCode: number
+    pinCode: string
     state: string
     country: string
     email: string
-    mobile: number
+    mobile: string
     orderId: number | null
     _count: ShippingDetailCountAggregateOutputType | null
     _avg: ShippingDetailAvgAggregateOutputType | null
@@ -9034,11 +9000,11 @@ export namespace Prisma {
       addressLine1: string
       addressLine2: string | null
       locality: string
-      pinCode: number
+      pinCode: string
       state: string
       country: string
       email: string
-      mobile: number
+      mobile: string
       orderId: number | null
     }, ExtArgs["result"]["shippingDetail"]>
     composites: {}
@@ -9441,11 +9407,11 @@ export namespace Prisma {
     readonly addressLine1: FieldRef<"ShippingDetail", 'String'>
     readonly addressLine2: FieldRef<"ShippingDetail", 'String'>
     readonly locality: FieldRef<"ShippingDetail", 'String'>
-    readonly pinCode: FieldRef<"ShippingDetail", 'Int'>
+    readonly pinCode: FieldRef<"ShippingDetail", 'String'>
     readonly state: FieldRef<"ShippingDetail", 'String'>
     readonly country: FieldRef<"ShippingDetail", 'String'>
     readonly email: FieldRef<"ShippingDetail", 'String'>
-    readonly mobile: FieldRef<"ShippingDetail", 'Int'>
+    readonly mobile: FieldRef<"ShippingDetail", 'String'>
     readonly orderId: FieldRef<"ShippingDetail", 'Int'>
   }
     
@@ -9857,6 +9823,7 @@ export namespace Prisma {
     rating: 'rating',
     img: 'img',
     quantity: 'quantity',
+    orderId: 'orderId',
     userId: 'userId'
   };
 
@@ -10243,9 +10210,10 @@ export namespace Prisma {
     rating?: FloatFilter<"CartProduct"> | number
     img?: StringNullableListFilter<"CartProduct">
     quantity?: IntFilter<"CartProduct"> | number
+    orderId?: IntNullableFilter<"CartProduct"> | number | null
     userId?: IntFilter<"CartProduct"> | number
+    order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
     user?: XOR<UserRelationFilter, UserWhereInput>
-    orders?: OrderListRelationFilter
   }
 
   export type CartProductOrderByWithRelationInput = {
@@ -10260,14 +10228,14 @@ export namespace Prisma {
     rating?: SortOrder
     img?: SortOrder
     quantity?: SortOrder
+    orderId?: SortOrderInput | SortOrder
     userId?: SortOrder
+    order?: OrderOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
-    orders?: OrderOrderByRelationAggregateInput
   }
 
   export type CartProductWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    userId?: number
     AND?: CartProductWhereInput | CartProductWhereInput[]
     OR?: CartProductWhereInput[]
     NOT?: CartProductWhereInput | CartProductWhereInput[]
@@ -10281,9 +10249,11 @@ export namespace Prisma {
     rating?: FloatFilter<"CartProduct"> | number
     img?: StringNullableListFilter<"CartProduct">
     quantity?: IntFilter<"CartProduct"> | number
+    orderId?: IntNullableFilter<"CartProduct"> | number | null
+    userId?: IntFilter<"CartProduct"> | number
+    order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
     user?: XOR<UserRelationFilter, UserWhereInput>
-    orders?: OrderListRelationFilter
-  }, "id" | "userId">
+  }, "id">
 
   export type CartProductOrderByWithAggregationInput = {
     id?: SortOrder
@@ -10297,6 +10267,7 @@ export namespace Prisma {
     rating?: SortOrder
     img?: SortOrder
     quantity?: SortOrder
+    orderId?: SortOrderInput | SortOrder
     userId?: SortOrder
     _count?: CartProductCountOrderByAggregateInput
     _avg?: CartProductAvgOrderByAggregateInput
@@ -10320,6 +10291,7 @@ export namespace Prisma {
     rating?: FloatWithAggregatesFilter<"CartProduct"> | number
     img?: StringNullableListFilter<"CartProduct">
     quantity?: IntWithAggregatesFilter<"CartProduct"> | number
+    orderId?: IntNullableWithAggregatesFilter<"CartProduct"> | number | null
     userId?: IntWithAggregatesFilter<"CartProduct"> | number
   }
 
@@ -10558,11 +10530,11 @@ export namespace Prisma {
     addressLine1?: StringFilter<"ShippingDetail"> | string
     addressLine2?: StringNullableFilter<"ShippingDetail"> | string | null
     locality?: StringFilter<"ShippingDetail"> | string
-    pinCode?: IntFilter<"ShippingDetail"> | number
+    pinCode?: StringFilter<"ShippingDetail"> | string
     state?: StringFilter<"ShippingDetail"> | string
     country?: StringFilter<"ShippingDetail"> | string
     email?: StringFilter<"ShippingDetail"> | string
-    mobile?: IntFilter<"ShippingDetail"> | number
+    mobile?: StringFilter<"ShippingDetail"> | string
     orderId?: IntNullableFilter<"ShippingDetail"> | number | null
     order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
   }
@@ -10593,11 +10565,11 @@ export namespace Prisma {
     addressLine1?: StringFilter<"ShippingDetail"> | string
     addressLine2?: StringNullableFilter<"ShippingDetail"> | string | null
     locality?: StringFilter<"ShippingDetail"> | string
-    pinCode?: IntFilter<"ShippingDetail"> | number
+    pinCode?: StringFilter<"ShippingDetail"> | string
     state?: StringFilter<"ShippingDetail"> | string
     country?: StringFilter<"ShippingDetail"> | string
     email?: StringFilter<"ShippingDetail"> | string
-    mobile?: IntFilter<"ShippingDetail"> | number
+    mobile?: StringFilter<"ShippingDetail"> | string
     orderId?: IntNullableFilter<"ShippingDetail"> | number | null
     order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
   }, "id">
@@ -10632,11 +10604,11 @@ export namespace Prisma {
     addressLine1?: StringWithAggregatesFilter<"ShippingDetail"> | string
     addressLine2?: StringNullableWithAggregatesFilter<"ShippingDetail"> | string | null
     locality?: StringWithAggregatesFilter<"ShippingDetail"> | string
-    pinCode?: IntWithAggregatesFilter<"ShippingDetail"> | number
+    pinCode?: StringWithAggregatesFilter<"ShippingDetail"> | string
     state?: StringWithAggregatesFilter<"ShippingDetail"> | string
     country?: StringWithAggregatesFilter<"ShippingDetail"> | string
     email?: StringWithAggregatesFilter<"ShippingDetail"> | string
-    mobile?: IntWithAggregatesFilter<"ShippingDetail"> | number
+    mobile?: StringWithAggregatesFilter<"ShippingDetail"> | string
     orderId?: IntNullableWithAggregatesFilter<"ShippingDetail"> | number | null
   }
 
@@ -10881,8 +10853,8 @@ export namespace Prisma {
     rating: number
     img?: CartProductCreateimgInput | string[]
     quantity: number
+    order?: OrderCreateNestedOneWithoutCartProductsInput
     user: UserCreateNestedOneWithoutCartItemsInput
-    orders?: OrderCreateNestedManyWithoutCartProductsInput
   }
 
   export type CartProductUncheckedCreateInput = {
@@ -10897,8 +10869,8 @@ export namespace Prisma {
     rating: number
     img?: CartProductCreateimgInput | string[]
     quantity: number
+    orderId?: number | null
     userId: number
-    orders?: OrderUncheckedCreateNestedManyWithoutCartProductsInput
   }
 
   export type CartProductUpdateInput = {
@@ -10912,8 +10884,8 @@ export namespace Prisma {
     rating?: FloatFieldUpdateOperationsInput | number
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
+    order?: OrderUpdateOneWithoutCartProductsNestedInput
     user?: UserUpdateOneRequiredWithoutCartItemsNestedInput
-    orders?: OrderUpdateManyWithoutCartProductsNestedInput
   }
 
   export type CartProductUncheckedUpdateInput = {
@@ -10928,8 +10900,8 @@ export namespace Prisma {
     rating?: FloatFieldUpdateOperationsInput | number
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
+    orderId?: NullableIntFieldUpdateOperationsInput | number | null
     userId?: IntFieldUpdateOperationsInput | number
-    orders?: OrderUncheckedUpdateManyWithoutCartProductsNestedInput
   }
 
   export type CartProductCreateManyInput = {
@@ -10944,6 +10916,7 @@ export namespace Prisma {
     rating: number
     img?: CartProductCreateimgInput | string[]
     quantity: number
+    orderId?: number | null
     userId: number
   }
 
@@ -10972,6 +10945,7 @@ export namespace Prisma {
     rating?: FloatFieldUpdateOperationsInput | number
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
+    orderId?: NullableIntFieldUpdateOperationsInput | number | null
     userId?: IntFieldUpdateOperationsInput | number
   }
 
@@ -11089,7 +11063,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutOrdersInput
     PaymentDetails?: PaymentDetailCreateNestedManyWithoutOrderInput
     ShippingDetails?: ShippingDetailCreateNestedManyWithoutOrderInput
-    cartProducts?: CartProductCreateNestedManyWithoutOrdersInput
+    cartProducts?: CartProductCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateInput = {
@@ -11103,7 +11077,7 @@ export namespace Prisma {
     createdAt?: Date | string
     PaymentDetails?: PaymentDetailUncheckedCreateNestedManyWithoutOrderInput
     ShippingDetails?: ShippingDetailUncheckedCreateNestedManyWithoutOrderInput
-    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrdersInput
+    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUpdateInput = {
@@ -11116,7 +11090,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
     PaymentDetails?: PaymentDetailUpdateManyWithoutOrderNestedInput
     ShippingDetails?: ShippingDetailUpdateManyWithoutOrderNestedInput
-    cartProducts?: CartProductUpdateManyWithoutOrdersNestedInput
+    cartProducts?: CartProductUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateInput = {
@@ -11130,7 +11104,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     PaymentDetails?: PaymentDetailUncheckedUpdateManyWithoutOrderNestedInput
     ShippingDetails?: ShippingDetailUncheckedUpdateManyWithoutOrderNestedInput
-    cartProducts?: CartProductUncheckedUpdateManyWithoutOrdersNestedInput
+    cartProducts?: CartProductUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderCreateManyInput = {
@@ -11215,11 +11189,11 @@ export namespace Prisma {
     addressLine1: string
     addressLine2?: string | null
     locality: string
-    pinCode: number
+    pinCode: string
     state: string
     country: string
     email: string
-    mobile: number
+    mobile: string
     order?: OrderCreateNestedOneWithoutShippingDetailsInput
   }
 
@@ -11230,11 +11204,11 @@ export namespace Prisma {
     addressLine1: string
     addressLine2?: string | null
     locality: string
-    pinCode: number
+    pinCode: string
     state: string
     country: string
     email: string
-    mobile: number
+    mobile: string
     orderId?: number | null
   }
 
@@ -11244,11 +11218,11 @@ export namespace Prisma {
     addressLine1?: StringFieldUpdateOperationsInput | string
     addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     locality?: StringFieldUpdateOperationsInput | string
-    pinCode?: IntFieldUpdateOperationsInput | number
+    pinCode?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    mobile?: IntFieldUpdateOperationsInput | number
+    mobile?: StringFieldUpdateOperationsInput | string
     order?: OrderUpdateOneWithoutShippingDetailsNestedInput
   }
 
@@ -11259,11 +11233,11 @@ export namespace Prisma {
     addressLine1?: StringFieldUpdateOperationsInput | string
     addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     locality?: StringFieldUpdateOperationsInput | string
-    pinCode?: IntFieldUpdateOperationsInput | number
+    pinCode?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    mobile?: IntFieldUpdateOperationsInput | number
+    mobile?: StringFieldUpdateOperationsInput | string
     orderId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -11274,11 +11248,11 @@ export namespace Prisma {
     addressLine1: string
     addressLine2?: string | null
     locality: string
-    pinCode: number
+    pinCode: string
     state: string
     country: string
     email: string
-    mobile: number
+    mobile: string
     orderId?: number | null
   }
 
@@ -11288,11 +11262,11 @@ export namespace Prisma {
     addressLine1?: StringFieldUpdateOperationsInput | string
     addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     locality?: StringFieldUpdateOperationsInput | string
-    pinCode?: IntFieldUpdateOperationsInput | number
+    pinCode?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    mobile?: IntFieldUpdateOperationsInput | number
+    mobile?: StringFieldUpdateOperationsInput | string
   }
 
   export type ShippingDetailUncheckedUpdateManyInput = {
@@ -11302,11 +11276,11 @@ export namespace Prisma {
     addressLine1?: StringFieldUpdateOperationsInput | string
     addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     locality?: StringFieldUpdateOperationsInput | string
-    pinCode?: IntFieldUpdateOperationsInput | number
+    pinCode?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    mobile?: IntFieldUpdateOperationsInput | number
+    mobile?: StringFieldUpdateOperationsInput | string
     orderId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
@@ -11635,6 +11609,22 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type OrderNullableRelationFilter = {
+    is?: OrderWhereInput | null
+    isNot?: OrderWhereInput | null
+  }
+
   export type CartProductCountOrderByAggregateInput = {
     id?: SortOrder
     title?: SortOrder
@@ -11647,6 +11637,7 @@ export namespace Prisma {
     rating?: SortOrder
     img?: SortOrder
     quantity?: SortOrder
+    orderId?: SortOrder
     userId?: SortOrder
   }
 
@@ -11655,6 +11646,7 @@ export namespace Prisma {
     price?: SortOrder
     rating?: SortOrder
     quantity?: SortOrder
+    orderId?: SortOrder
     userId?: SortOrder
   }
 
@@ -11669,6 +11661,7 @@ export namespace Prisma {
     color?: SortOrder
     rating?: SortOrder
     quantity?: SortOrder
+    orderId?: SortOrder
     userId?: SortOrder
   }
 
@@ -11683,6 +11676,7 @@ export namespace Prisma {
     color?: SortOrder
     rating?: SortOrder
     quantity?: SortOrder
+    orderId?: SortOrder
     userId?: SortOrder
   }
 
@@ -11691,7 +11685,24 @@ export namespace Prisma {
     price?: SortOrder
     rating?: SortOrder
     quantity?: SortOrder
+    orderId?: SortOrder
     userId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type FavoriteCountOrderByAggregateInput = {
@@ -11822,22 +11833,6 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type OrderNullableRelationFilter = {
-    is?: OrderWhereInput | null
-    isNot?: OrderWhereInput | null
-  }
-
   export type PaymentDetailCountOrderByAggregateInput = {
     id?: SortOrder
     razorpayOrderId?: SortOrder
@@ -11869,22 +11864,6 @@ export namespace Prisma {
     orderId?: SortOrder
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type ShippingDetailCountOrderByAggregateInput = {
     id?: SortOrder
     firstName?: SortOrder
@@ -11902,8 +11881,6 @@ export namespace Prisma {
 
   export type ShippingDetailAvgOrderByAggregateInput = {
     id?: SortOrder
-    pinCode?: SortOrder
-    mobile?: SortOrder
     orderId?: SortOrder
   }
 
@@ -11939,8 +11916,6 @@ export namespace Prisma {
 
   export type ShippingDetailSumOrderByAggregateInput = {
     id?: SortOrder
-    pinCode?: SortOrder
-    mobile?: SortOrder
     orderId?: SortOrder
   }
 
@@ -12176,27 +12151,31 @@ export namespace Prisma {
     set: string[]
   }
 
+  export type OrderCreateNestedOneWithoutCartProductsInput = {
+    create?: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutCartProductsInput
+    connect?: OrderWhereUniqueInput
+  }
+
   export type UserCreateNestedOneWithoutCartItemsInput = {
     create?: XOR<UserCreateWithoutCartItemsInput, UserUncheckedCreateWithoutCartItemsInput>
     connectOrCreate?: UserCreateOrConnectWithoutCartItemsInput
     connect?: UserWhereUniqueInput
   }
 
-  export type OrderCreateNestedManyWithoutCartProductsInput = {
-    create?: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput> | OrderCreateWithoutCartProductsInput[] | OrderUncheckedCreateWithoutCartProductsInput[]
-    connectOrCreate?: OrderCreateOrConnectWithoutCartProductsInput | OrderCreateOrConnectWithoutCartProductsInput[]
-    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-  }
-
-  export type OrderUncheckedCreateNestedManyWithoutCartProductsInput = {
-    create?: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput> | OrderCreateWithoutCartProductsInput[] | OrderUncheckedCreateWithoutCartProductsInput[]
-    connectOrCreate?: OrderCreateOrConnectWithoutCartProductsInput | OrderCreateOrConnectWithoutCartProductsInput[]
-    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-  }
-
   export type CartProductUpdateimgInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type OrderUpdateOneWithoutCartProductsNestedInput = {
+    create?: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput>
+    connectOrCreate?: OrderCreateOrConnectWithoutCartProductsInput
+    upsert?: OrderUpsertWithoutCartProductsInput
+    disconnect?: OrderWhereInput | boolean
+    delete?: OrderWhereInput | boolean
+    connect?: OrderWhereUniqueInput
+    update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutCartProductsInput, OrderUpdateWithoutCartProductsInput>, OrderUncheckedUpdateWithoutCartProductsInput>
   }
 
   export type UserUpdateOneRequiredWithoutCartItemsNestedInput = {
@@ -12207,30 +12186,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCartItemsInput, UserUpdateWithoutCartItemsInput>, UserUncheckedUpdateWithoutCartItemsInput>
   }
 
-  export type OrderUpdateManyWithoutCartProductsNestedInput = {
-    create?: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput> | OrderCreateWithoutCartProductsInput[] | OrderUncheckedCreateWithoutCartProductsInput[]
-    connectOrCreate?: OrderCreateOrConnectWithoutCartProductsInput | OrderCreateOrConnectWithoutCartProductsInput[]
-    upsert?: OrderUpsertWithWhereUniqueWithoutCartProductsInput | OrderUpsertWithWhereUniqueWithoutCartProductsInput[]
-    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    update?: OrderUpdateWithWhereUniqueWithoutCartProductsInput | OrderUpdateWithWhereUniqueWithoutCartProductsInput[]
-    updateMany?: OrderUpdateManyWithWhereWithoutCartProductsInput | OrderUpdateManyWithWhereWithoutCartProductsInput[]
-    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
-  }
-
-  export type OrderUncheckedUpdateManyWithoutCartProductsNestedInput = {
-    create?: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput> | OrderCreateWithoutCartProductsInput[] | OrderUncheckedCreateWithoutCartProductsInput[]
-    connectOrCreate?: OrderCreateOrConnectWithoutCartProductsInput | OrderCreateOrConnectWithoutCartProductsInput[]
-    upsert?: OrderUpsertWithWhereUniqueWithoutCartProductsInput | OrderUpsertWithWhereUniqueWithoutCartProductsInput[]
-    set?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    disconnect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    delete?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    connect?: OrderWhereUniqueInput | OrderWhereUniqueInput[]
-    update?: OrderUpdateWithWhereUniqueWithoutCartProductsInput | OrderUpdateWithWhereUniqueWithoutCartProductsInput[]
-    updateMany?: OrderUpdateManyWithWhereWithoutCartProductsInput | OrderUpdateManyWithWhereWithoutCartProductsInput[]
-    deleteMany?: OrderScalarWhereInput | OrderScalarWhereInput[]
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type FavoriteCreatesizeInput = {
@@ -12285,9 +12246,10 @@ export namespace Prisma {
     connect?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
   }
 
-  export type CartProductCreateNestedManyWithoutOrdersInput = {
-    create?: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput> | CartProductCreateWithoutOrdersInput[] | CartProductUncheckedCreateWithoutOrdersInput[]
-    connectOrCreate?: CartProductCreateOrConnectWithoutOrdersInput | CartProductCreateOrConnectWithoutOrdersInput[]
+  export type CartProductCreateNestedManyWithoutOrderInput = {
+    create?: XOR<CartProductCreateWithoutOrderInput, CartProductUncheckedCreateWithoutOrderInput> | CartProductCreateWithoutOrderInput[] | CartProductUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutOrderInput | CartProductCreateOrConnectWithoutOrderInput[]
+    createMany?: CartProductCreateManyOrderInputEnvelope
     connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
   }
 
@@ -12305,9 +12267,10 @@ export namespace Prisma {
     connect?: ShippingDetailWhereUniqueInput | ShippingDetailWhereUniqueInput[]
   }
 
-  export type CartProductUncheckedCreateNestedManyWithoutOrdersInput = {
-    create?: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput> | CartProductCreateWithoutOrdersInput[] | CartProductUncheckedCreateWithoutOrdersInput[]
-    connectOrCreate?: CartProductCreateOrConnectWithoutOrdersInput | CartProductCreateOrConnectWithoutOrdersInput[]
+  export type CartProductUncheckedCreateNestedManyWithoutOrderInput = {
+    create?: XOR<CartProductCreateWithoutOrderInput, CartProductUncheckedCreateWithoutOrderInput> | CartProductCreateWithoutOrderInput[] | CartProductUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutOrderInput | CartProductCreateOrConnectWithoutOrderInput[]
+    createMany?: CartProductCreateManyOrderInputEnvelope
     connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
   }
 
@@ -12347,16 +12310,17 @@ export namespace Prisma {
     deleteMany?: ShippingDetailScalarWhereInput | ShippingDetailScalarWhereInput[]
   }
 
-  export type CartProductUpdateManyWithoutOrdersNestedInput = {
-    create?: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput> | CartProductCreateWithoutOrdersInput[] | CartProductUncheckedCreateWithoutOrdersInput[]
-    connectOrCreate?: CartProductCreateOrConnectWithoutOrdersInput | CartProductCreateOrConnectWithoutOrdersInput[]
-    upsert?: CartProductUpsertWithWhereUniqueWithoutOrdersInput | CartProductUpsertWithWhereUniqueWithoutOrdersInput[]
+  export type CartProductUpdateManyWithoutOrderNestedInput = {
+    create?: XOR<CartProductCreateWithoutOrderInput, CartProductUncheckedCreateWithoutOrderInput> | CartProductCreateWithoutOrderInput[] | CartProductUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutOrderInput | CartProductCreateOrConnectWithoutOrderInput[]
+    upsert?: CartProductUpsertWithWhereUniqueWithoutOrderInput | CartProductUpsertWithWhereUniqueWithoutOrderInput[]
+    createMany?: CartProductCreateManyOrderInputEnvelope
     set?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
     disconnect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
     delete?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
     connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
-    update?: CartProductUpdateWithWhereUniqueWithoutOrdersInput | CartProductUpdateWithWhereUniqueWithoutOrdersInput[]
-    updateMany?: CartProductUpdateManyWithWhereWithoutOrdersInput | CartProductUpdateManyWithWhereWithoutOrdersInput[]
+    update?: CartProductUpdateWithWhereUniqueWithoutOrderInput | CartProductUpdateWithWhereUniqueWithoutOrderInput[]
+    updateMany?: CartProductUpdateManyWithWhereWithoutOrderInput | CartProductUpdateManyWithWhereWithoutOrderInput[]
     deleteMany?: CartProductScalarWhereInput | CartProductScalarWhereInput[]
   }
 
@@ -12388,16 +12352,17 @@ export namespace Prisma {
     deleteMany?: ShippingDetailScalarWhereInput | ShippingDetailScalarWhereInput[]
   }
 
-  export type CartProductUncheckedUpdateManyWithoutOrdersNestedInput = {
-    create?: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput> | CartProductCreateWithoutOrdersInput[] | CartProductUncheckedCreateWithoutOrdersInput[]
-    connectOrCreate?: CartProductCreateOrConnectWithoutOrdersInput | CartProductCreateOrConnectWithoutOrdersInput[]
-    upsert?: CartProductUpsertWithWhereUniqueWithoutOrdersInput | CartProductUpsertWithWhereUniqueWithoutOrdersInput[]
+  export type CartProductUncheckedUpdateManyWithoutOrderNestedInput = {
+    create?: XOR<CartProductCreateWithoutOrderInput, CartProductUncheckedCreateWithoutOrderInput> | CartProductCreateWithoutOrderInput[] | CartProductUncheckedCreateWithoutOrderInput[]
+    connectOrCreate?: CartProductCreateOrConnectWithoutOrderInput | CartProductCreateOrConnectWithoutOrderInput[]
+    upsert?: CartProductUpsertWithWhereUniqueWithoutOrderInput | CartProductUpsertWithWhereUniqueWithoutOrderInput[]
+    createMany?: CartProductCreateManyOrderInputEnvelope
     set?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
     disconnect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
     delete?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
     connect?: CartProductWhereUniqueInput | CartProductWhereUniqueInput[]
-    update?: CartProductUpdateWithWhereUniqueWithoutOrdersInput | CartProductUpdateWithWhereUniqueWithoutOrdersInput[]
-    updateMany?: CartProductUpdateManyWithWhereWithoutOrdersInput | CartProductUpdateManyWithWhereWithoutOrdersInput[]
+    update?: CartProductUpdateWithWhereUniqueWithoutOrderInput | CartProductUpdateWithWhereUniqueWithoutOrderInput[]
+    updateMany?: CartProductUpdateManyWithWhereWithoutOrderInput | CartProductUpdateManyWithWhereWithoutOrderInput[]
     deleteMany?: CartProductScalarWhereInput | CartProductScalarWhereInput[]
   }
 
@@ -12415,14 +12380,6 @@ export namespace Prisma {
     delete?: OrderWhereInput | boolean
     connect?: OrderWhereUniqueInput
     update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutPaymentDetailsInput, OrderUpdateWithoutPaymentDetailsInput>, OrderUncheckedUpdateWithoutPaymentDetailsInput>
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type OrderCreateNestedOneWithoutShippingDetailsInput = {
@@ -12654,7 +12611,7 @@ export namespace Prisma {
     createdAt?: Date | string
     PaymentDetails?: PaymentDetailCreateNestedManyWithoutOrderInput
     ShippingDetails?: ShippingDetailCreateNestedManyWithoutOrderInput
-    cartProducts?: CartProductCreateNestedManyWithoutOrdersInput
+    cartProducts?: CartProductCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutUserInput = {
@@ -12667,7 +12624,7 @@ export namespace Prisma {
     createdAt?: Date | string
     PaymentDetails?: PaymentDetailUncheckedCreateNestedManyWithoutOrderInput
     ShippingDetails?: ShippingDetailUncheckedCreateNestedManyWithoutOrderInput
-    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrdersInput
+    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutUserInput = {
@@ -12691,7 +12648,7 @@ export namespace Prisma {
     rating: number
     img?: CartProductCreateimgInput | string[]
     quantity: number
-    orders?: OrderCreateNestedManyWithoutCartProductsInput
+    order?: OrderCreateNestedOneWithoutCartProductsInput
   }
 
   export type CartProductUncheckedCreateWithoutUserInput = {
@@ -12706,7 +12663,7 @@ export namespace Prisma {
     rating: number
     img?: CartProductCreateimgInput | string[]
     quantity: number
-    orders?: OrderUncheckedCreateNestedManyWithoutCartProductsInput
+    orderId?: number | null
   }
 
   export type CartProductCreateOrConnectWithoutUserInput = {
@@ -12846,6 +12803,7 @@ export namespace Prisma {
     rating?: FloatFilter<"CartProduct"> | number
     img?: StringNullableListFilter<"CartProduct">
     quantity?: IntFilter<"CartProduct"> | number
+    orderId?: IntNullableFilter<"CartProduct"> | number | null
     userId?: IntFilter<"CartProduct"> | number
   }
 
@@ -12949,6 +12907,36 @@ export namespace Prisma {
     favoriteItems?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type OrderCreateWithoutCartProductsInput = {
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutOrdersInput
+    PaymentDetails?: PaymentDetailCreateNestedManyWithoutOrderInput
+    ShippingDetails?: ShippingDetailCreateNestedManyWithoutOrderInput
+  }
+
+  export type OrderUncheckedCreateWithoutCartProductsInput = {
+    id?: number
+    subTotal: number
+    quantity: number
+    shipping: number
+    discount: number
+    total: number
+    userId: number
+    createdAt?: Date | string
+    PaymentDetails?: PaymentDetailUncheckedCreateNestedManyWithoutOrderInput
+    ShippingDetails?: ShippingDetailUncheckedCreateNestedManyWithoutOrderInput
+  }
+
+  export type OrderCreateOrConnectWithoutCartProductsInput = {
+    where: OrderWhereUniqueInput
+    create: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput>
+  }
+
   export type UserCreateWithoutCartItemsInput = {
     email: string
     password: string
@@ -12979,34 +12967,40 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutCartItemsInput, UserUncheckedCreateWithoutCartItemsInput>
   }
 
-  export type OrderCreateWithoutCartProductsInput = {
-    subTotal: number
-    quantity: number
-    shipping: number
-    discount: number
-    total: number
-    createdAt?: Date | string
-    user: UserCreateNestedOneWithoutOrdersInput
-    PaymentDetails?: PaymentDetailCreateNestedManyWithoutOrderInput
-    ShippingDetails?: ShippingDetailCreateNestedManyWithoutOrderInput
-  }
-
-  export type OrderUncheckedCreateWithoutCartProductsInput = {
-    id?: number
-    subTotal: number
-    quantity: number
-    shipping: number
-    discount: number
-    total: number
-    userId: number
-    createdAt?: Date | string
-    PaymentDetails?: PaymentDetailUncheckedCreateNestedManyWithoutOrderInput
-    ShippingDetails?: ShippingDetailUncheckedCreateNestedManyWithoutOrderInput
-  }
-
-  export type OrderCreateOrConnectWithoutCartProductsInput = {
-    where: OrderWhereUniqueInput
+  export type OrderUpsertWithoutCartProductsInput = {
+    update: XOR<OrderUpdateWithoutCartProductsInput, OrderUncheckedUpdateWithoutCartProductsInput>
     create: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput>
+    where?: OrderWhereInput
+  }
+
+  export type OrderUpdateToOneWithWhereWithoutCartProductsInput = {
+    where?: OrderWhereInput
+    data: XOR<OrderUpdateWithoutCartProductsInput, OrderUncheckedUpdateWithoutCartProductsInput>
+  }
+
+  export type OrderUpdateWithoutCartProductsInput = {
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutOrdersNestedInput
+    PaymentDetails?: PaymentDetailUpdateManyWithoutOrderNestedInput
+    ShippingDetails?: ShippingDetailUpdateManyWithoutOrderNestedInput
+  }
+
+  export type OrderUncheckedUpdateWithoutCartProductsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    subTotal?: FloatFieldUpdateOperationsInput | number
+    quantity?: IntFieldUpdateOperationsInput | number
+    shipping?: FloatFieldUpdateOperationsInput | number
+    discount?: FloatFieldUpdateOperationsInput | number
+    total?: FloatFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    PaymentDetails?: PaymentDetailUncheckedUpdateManyWithoutOrderNestedInput
+    ShippingDetails?: ShippingDetailUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type UserUpsertWithoutCartItemsInput = {
@@ -13043,22 +13037,6 @@ export namespace Prisma {
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     favoriteItems?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type OrderUpsertWithWhereUniqueWithoutCartProductsInput = {
-    where: OrderWhereUniqueInput
-    update: XOR<OrderUpdateWithoutCartProductsInput, OrderUncheckedUpdateWithoutCartProductsInput>
-    create: XOR<OrderCreateWithoutCartProductsInput, OrderUncheckedCreateWithoutCartProductsInput>
-  }
-
-  export type OrderUpdateWithWhereUniqueWithoutCartProductsInput = {
-    where: OrderWhereUniqueInput
-    data: XOR<OrderUpdateWithoutCartProductsInput, OrderUncheckedUpdateWithoutCartProductsInput>
-  }
-
-  export type OrderUpdateManyWithWhereWithoutCartProductsInput = {
-    where: OrderScalarWhereInput
-    data: XOR<OrderUpdateManyMutationInput, OrderUncheckedUpdateManyWithoutCartProductsInput>
   }
 
   export type UserCreateWithoutFavoriteItemsInput = {
@@ -13184,11 +13162,11 @@ export namespace Prisma {
     addressLine1: string
     addressLine2?: string | null
     locality: string
-    pinCode: number
+    pinCode: string
     state: string
     country: string
     email: string
-    mobile: number
+    mobile: string
   }
 
   export type ShippingDetailUncheckedCreateWithoutOrderInput = {
@@ -13198,11 +13176,11 @@ export namespace Prisma {
     addressLine1: string
     addressLine2?: string | null
     locality: string
-    pinCode: number
+    pinCode: string
     state: string
     country: string
     email: string
-    mobile: number
+    mobile: string
   }
 
   export type ShippingDetailCreateOrConnectWithoutOrderInput = {
@@ -13215,7 +13193,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type CartProductCreateWithoutOrdersInput = {
+  export type CartProductCreateWithoutOrderInput = {
     title: string
     gender: string
     description: string
@@ -13229,7 +13207,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutCartItemsInput
   }
 
-  export type CartProductUncheckedCreateWithoutOrdersInput = {
+  export type CartProductUncheckedCreateWithoutOrderInput = {
     id?: number
     title: string
     gender: string
@@ -13244,9 +13222,14 @@ export namespace Prisma {
     userId: number
   }
 
-  export type CartProductCreateOrConnectWithoutOrdersInput = {
+  export type CartProductCreateOrConnectWithoutOrderInput = {
     where: CartProductWhereUniqueInput
-    create: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput>
+    create: XOR<CartProductCreateWithoutOrderInput, CartProductUncheckedCreateWithoutOrderInput>
+  }
+
+  export type CartProductCreateManyOrderInputEnvelope = {
+    data: CartProductCreateManyOrderInput | CartProductCreateManyOrderInput[]
+    skipDuplicates?: boolean
   }
 
   export type UserUpsertWithoutOrdersInput = {
@@ -13337,28 +13320,28 @@ export namespace Prisma {
     addressLine1?: StringFilter<"ShippingDetail"> | string
     addressLine2?: StringNullableFilter<"ShippingDetail"> | string | null
     locality?: StringFilter<"ShippingDetail"> | string
-    pinCode?: IntFilter<"ShippingDetail"> | number
+    pinCode?: StringFilter<"ShippingDetail"> | string
     state?: StringFilter<"ShippingDetail"> | string
     country?: StringFilter<"ShippingDetail"> | string
     email?: StringFilter<"ShippingDetail"> | string
-    mobile?: IntFilter<"ShippingDetail"> | number
+    mobile?: StringFilter<"ShippingDetail"> | string
     orderId?: IntNullableFilter<"ShippingDetail"> | number | null
   }
 
-  export type CartProductUpsertWithWhereUniqueWithoutOrdersInput = {
+  export type CartProductUpsertWithWhereUniqueWithoutOrderInput = {
     where: CartProductWhereUniqueInput
-    update: XOR<CartProductUpdateWithoutOrdersInput, CartProductUncheckedUpdateWithoutOrdersInput>
-    create: XOR<CartProductCreateWithoutOrdersInput, CartProductUncheckedCreateWithoutOrdersInput>
+    update: XOR<CartProductUpdateWithoutOrderInput, CartProductUncheckedUpdateWithoutOrderInput>
+    create: XOR<CartProductCreateWithoutOrderInput, CartProductUncheckedCreateWithoutOrderInput>
   }
 
-  export type CartProductUpdateWithWhereUniqueWithoutOrdersInput = {
+  export type CartProductUpdateWithWhereUniqueWithoutOrderInput = {
     where: CartProductWhereUniqueInput
-    data: XOR<CartProductUpdateWithoutOrdersInput, CartProductUncheckedUpdateWithoutOrdersInput>
+    data: XOR<CartProductUpdateWithoutOrderInput, CartProductUncheckedUpdateWithoutOrderInput>
   }
 
-  export type CartProductUpdateManyWithWhereWithoutOrdersInput = {
+  export type CartProductUpdateManyWithWhereWithoutOrderInput = {
     where: CartProductScalarWhereInput
-    data: XOR<CartProductUpdateManyMutationInput, CartProductUncheckedUpdateManyWithoutOrdersInput>
+    data: XOR<CartProductUpdateManyMutationInput, CartProductUncheckedUpdateManyWithoutOrderInput>
   }
 
   export type OrderCreateWithoutPaymentDetailsInput = {
@@ -13370,7 +13353,7 @@ export namespace Prisma {
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutOrdersInput
     ShippingDetails?: ShippingDetailCreateNestedManyWithoutOrderInput
-    cartProducts?: CartProductCreateNestedManyWithoutOrdersInput
+    cartProducts?: CartProductCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutPaymentDetailsInput = {
@@ -13383,7 +13366,7 @@ export namespace Prisma {
     userId: number
     createdAt?: Date | string
     ShippingDetails?: ShippingDetailUncheckedCreateNestedManyWithoutOrderInput
-    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrdersInput
+    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutPaymentDetailsInput = {
@@ -13411,7 +13394,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
     ShippingDetails?: ShippingDetailUpdateManyWithoutOrderNestedInput
-    cartProducts?: CartProductUpdateManyWithoutOrdersNestedInput
+    cartProducts?: CartProductUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutPaymentDetailsInput = {
@@ -13424,7 +13407,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ShippingDetails?: ShippingDetailUncheckedUpdateManyWithoutOrderNestedInput
-    cartProducts?: CartProductUncheckedUpdateManyWithoutOrdersNestedInput
+    cartProducts?: CartProductUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderCreateWithoutShippingDetailsInput = {
@@ -13436,7 +13419,7 @@ export namespace Prisma {
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutOrdersInput
     PaymentDetails?: PaymentDetailCreateNestedManyWithoutOrderInput
-    cartProducts?: CartProductCreateNestedManyWithoutOrdersInput
+    cartProducts?: CartProductCreateNestedManyWithoutOrderInput
   }
 
   export type OrderUncheckedCreateWithoutShippingDetailsInput = {
@@ -13449,7 +13432,7 @@ export namespace Prisma {
     userId: number
     createdAt?: Date | string
     PaymentDetails?: PaymentDetailUncheckedCreateNestedManyWithoutOrderInput
-    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrdersInput
+    cartProducts?: CartProductUncheckedCreateNestedManyWithoutOrderInput
   }
 
   export type OrderCreateOrConnectWithoutShippingDetailsInput = {
@@ -13477,7 +13460,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutOrdersNestedInput
     PaymentDetails?: PaymentDetailUpdateManyWithoutOrderNestedInput
-    cartProducts?: CartProductUpdateManyWithoutOrdersNestedInput
+    cartProducts?: CartProductUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutShippingDetailsInput = {
@@ -13490,7 +13473,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     PaymentDetails?: PaymentDetailUncheckedUpdateManyWithoutOrderNestedInput
-    cartProducts?: CartProductUncheckedUpdateManyWithoutOrdersNestedInput
+    cartProducts?: CartProductUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type AddressCreateManyUserInput = {
@@ -13523,6 +13506,7 @@ export namespace Prisma {
     rating: number
     img?: CartProductCreateimgInput | string[]
     quantity: number
+    orderId?: number | null
   }
 
   export type FavoriteCreateManyUserInput = {
@@ -13571,7 +13555,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     PaymentDetails?: PaymentDetailUpdateManyWithoutOrderNestedInput
     ShippingDetails?: ShippingDetailUpdateManyWithoutOrderNestedInput
-    cartProducts?: CartProductUpdateManyWithoutOrdersNestedInput
+    cartProducts?: CartProductUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateWithoutUserInput = {
@@ -13584,7 +13568,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     PaymentDetails?: PaymentDetailUncheckedUpdateManyWithoutOrderNestedInput
     ShippingDetails?: ShippingDetailUncheckedUpdateManyWithoutOrderNestedInput
-    cartProducts?: CartProductUncheckedUpdateManyWithoutOrdersNestedInput
+    cartProducts?: CartProductUncheckedUpdateManyWithoutOrderNestedInput
   }
 
   export type OrderUncheckedUpdateManyWithoutUserInput = {
@@ -13608,7 +13592,7 @@ export namespace Prisma {
     rating?: FloatFieldUpdateOperationsInput | number
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
-    orders?: OrderUpdateManyWithoutCartProductsNestedInput
+    order?: OrderUpdateOneWithoutCartProductsNestedInput
   }
 
   export type CartProductUncheckedUpdateWithoutUserInput = {
@@ -13623,7 +13607,7 @@ export namespace Prisma {
     rating?: FloatFieldUpdateOperationsInput | number
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
-    orders?: OrderUncheckedUpdateManyWithoutCartProductsNestedInput
+    orderId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type CartProductUncheckedUpdateManyWithoutUserInput = {
@@ -13638,6 +13622,7 @@ export namespace Prisma {
     rating?: FloatFieldUpdateOperationsInput | number
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
+    orderId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type FavoriteUpdateWithoutUserInput = {
@@ -13682,42 +13667,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type OrderUpdateWithoutCartProductsInput = {
-    subTotal?: FloatFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    shipping?: FloatFieldUpdateOperationsInput | number
-    discount?: FloatFieldUpdateOperationsInput | number
-    total?: FloatFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutOrdersNestedInput
-    PaymentDetails?: PaymentDetailUpdateManyWithoutOrderNestedInput
-    ShippingDetails?: ShippingDetailUpdateManyWithoutOrderNestedInput
-  }
-
-  export type OrderUncheckedUpdateWithoutCartProductsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    subTotal?: FloatFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    shipping?: FloatFieldUpdateOperationsInput | number
-    discount?: FloatFieldUpdateOperationsInput | number
-    total?: FloatFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    PaymentDetails?: PaymentDetailUncheckedUpdateManyWithoutOrderNestedInput
-    ShippingDetails?: ShippingDetailUncheckedUpdateManyWithoutOrderNestedInput
-  }
-
-  export type OrderUncheckedUpdateManyWithoutCartProductsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    subTotal?: FloatFieldUpdateOperationsInput | number
-    quantity?: IntFieldUpdateOperationsInput | number
-    shipping?: FloatFieldUpdateOperationsInput | number
-    discount?: FloatFieldUpdateOperationsInput | number
-    total?: FloatFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type PaymentDetailCreateManyOrderInput = {
     id?: number
     razorpayOrderId: string
@@ -13731,11 +13680,26 @@ export namespace Prisma {
     addressLine1: string
     addressLine2?: string | null
     locality: string
-    pinCode: number
+    pinCode: string
     state: string
     country: string
     email: string
-    mobile: number
+    mobile: string
+  }
+
+  export type CartProductCreateManyOrderInput = {
+    id?: number
+    title: string
+    gender: string
+    description: string
+    category: string
+    price: number
+    size: string
+    color: string
+    rating: number
+    img?: CartProductCreateimgInput | string[]
+    quantity: number
+    userId: number
   }
 
   export type PaymentDetailUpdateWithoutOrderInput = {
@@ -13761,11 +13725,11 @@ export namespace Prisma {
     addressLine1?: StringFieldUpdateOperationsInput | string
     addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     locality?: StringFieldUpdateOperationsInput | string
-    pinCode?: IntFieldUpdateOperationsInput | number
+    pinCode?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    mobile?: IntFieldUpdateOperationsInput | number
+    mobile?: StringFieldUpdateOperationsInput | string
   }
 
   export type ShippingDetailUncheckedUpdateWithoutOrderInput = {
@@ -13775,11 +13739,11 @@ export namespace Prisma {
     addressLine1?: StringFieldUpdateOperationsInput | string
     addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     locality?: StringFieldUpdateOperationsInput | string
-    pinCode?: IntFieldUpdateOperationsInput | number
+    pinCode?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    mobile?: IntFieldUpdateOperationsInput | number
+    mobile?: StringFieldUpdateOperationsInput | string
   }
 
   export type ShippingDetailUncheckedUpdateManyWithoutOrderInput = {
@@ -13789,14 +13753,14 @@ export namespace Prisma {
     addressLine1?: StringFieldUpdateOperationsInput | string
     addressLine2?: NullableStringFieldUpdateOperationsInput | string | null
     locality?: StringFieldUpdateOperationsInput | string
-    pinCode?: IntFieldUpdateOperationsInput | number
+    pinCode?: StringFieldUpdateOperationsInput | string
     state?: StringFieldUpdateOperationsInput | string
     country?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    mobile?: IntFieldUpdateOperationsInput | number
+    mobile?: StringFieldUpdateOperationsInput | string
   }
 
-  export type CartProductUpdateWithoutOrdersInput = {
+  export type CartProductUpdateWithoutOrderInput = {
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -13810,7 +13774,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutCartItemsNestedInput
   }
 
-  export type CartProductUncheckedUpdateWithoutOrdersInput = {
+  export type CartProductUncheckedUpdateWithoutOrderInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
@@ -13825,7 +13789,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
   }
 
-  export type CartProductUncheckedUpdateManyWithoutOrdersInput = {
+  export type CartProductUncheckedUpdateManyWithoutOrderInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string

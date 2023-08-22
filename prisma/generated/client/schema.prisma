@@ -60,9 +60,10 @@ model CartProduct {
   rating      Float
   img         String[]
   quantity    Int
-  user        User @relation(fields: [userId], references: [id])
-  userId      Int  @unique
-  orders      Order[]
+  order       Order?    @relation(fields: [orderId], references: [id])
+  orderId     Int?
+  user            User      @relation(fields: [userId], references: [id])
+  userId          Int
 }
 
 model Favorite {
@@ -111,11 +112,11 @@ model ShippingDetail {
   addressLine1 String
   addressLine2 String?
   locality     String
-  pinCode      Int
+  pinCode      String
   state        String
   country      String
   email        String
-  mobile       Int
+  mobile       String
   order        Order?    @relation(fields: [orderId], references: [id])
   orderId      Int?
 }
