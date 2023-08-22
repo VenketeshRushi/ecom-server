@@ -10359,11 +10359,11 @@ export namespace Prisma {
   }
 
   export type FavoriteWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
     userId?: number
     AND?: FavoriteWhereInput | FavoriteWhereInput[]
     OR?: FavoriteWhereInput[]
     NOT?: FavoriteWhereInput | FavoriteWhereInput[]
+    id?: IntFilter<"Favorite"> | number
     title?: StringFilter<"Favorite"> | string
     gender?: StringFilter<"Favorite"> | string
     description?: StringFilter<"Favorite"> | string
@@ -10375,7 +10375,7 @@ export namespace Prisma {
     img?: StringNullableListFilter<"Favorite">
     createdAt?: DateTimeFilter<"Favorite"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
-  }, "id" | "userId">
+  }, "userId">
 
   export type FavoriteOrderByWithAggregationInput = {
     id?: SortOrder
@@ -10976,6 +10976,7 @@ export namespace Prisma {
   }
 
   export type FavoriteCreateInput = {
+    id: number
     title: string
     gender: string
     description: string
@@ -10990,7 +10991,7 @@ export namespace Prisma {
   }
 
   export type FavoriteUncheckedCreateInput = {
-    id?: number
+    id: number
     title: string
     gender: string
     description: string
@@ -11005,6 +11006,7 @@ export namespace Prisma {
   }
 
   export type FavoriteUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -11034,7 +11036,7 @@ export namespace Prisma {
   }
 
   export type FavoriteCreateManyInput = {
-    id?: number
+    id: number
     title: string
     gender: string
     description: string
@@ -11049,6 +11051,7 @@ export namespace Prisma {
   }
 
   export type FavoriteUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -12717,6 +12720,7 @@ export namespace Prisma {
   }
 
   export type FavoriteCreateWithoutUserInput = {
+    id: number
     title: string
     gender: string
     description: string
@@ -12730,7 +12734,7 @@ export namespace Prisma {
   }
 
   export type FavoriteUncheckedCreateWithoutUserInput = {
-    id?: number
+    id: number
     title: string
     gender: string
     description: string
@@ -13522,7 +13526,7 @@ export namespace Prisma {
   }
 
   export type FavoriteCreateManyUserInput = {
-    id?: number
+    id: number
     title: string
     gender: string
     description: string
@@ -13637,6 +13641,7 @@ export namespace Prisma {
   }
 
   export type FavoriteUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string

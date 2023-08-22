@@ -44,7 +44,6 @@ exports.getSingleProduct = async (req, res, next) => {
 
 exports.addToCart = async (req, res, next) => {
   const productdata = req.body.data;
-  console.log(productdata);
 
   try {
     const cartItem = await prisma.order.create({
@@ -71,8 +70,6 @@ exports.addOrder = async (req, res, next) => {
 };
 
 exports.addToFavorite = async (req, res, next) => {
-  console.log("body", req.body);
-  console.log("user", req.user);
   try {
     const favorite = await prisma.favorite.create({
       data: {

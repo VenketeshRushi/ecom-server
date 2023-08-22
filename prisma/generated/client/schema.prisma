@@ -35,7 +35,6 @@ model Address {
   userId    Int
 }
 
-
 model Product {
   id          Int      @id @default(autoincrement())
   title       String
@@ -67,7 +66,7 @@ model CartProduct {
 }
 
 model Favorite {
-  id          Int      @id @default(autoincrement())
+  id          Int
   title       String
   gender      String
   description String

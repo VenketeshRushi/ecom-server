@@ -5,13 +5,8 @@ const verifyToken = (token) => {
 };
 
 const authorization = (req, res, next) => {
-  console.log("hi");
   try {
-    console.log("req", req);
-
     const bearerToken = req?.headers?.authorization;
-
-    console.log("Authorization", bearerToken);
 
     if (!bearerToken || !bearerToken.startsWith("Bearer ")) {
       return res
