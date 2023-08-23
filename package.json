@@ -8,7 +8,7 @@
     "start": "nodemon index.js"
   },
   "engines": {
-    "node": "18 LTS"
+    "node": "18.17.0"
   },
   "keywords": [],
   "author": "",
