@@ -120,3 +120,17 @@ model ShippingDetail {
   order        Order?    @relation(fields: [orderId], references: [id])
   orderId      Int?
 }
+
+model userCart {
+  id          Int      @id @default(autoincrement())
+  title       String
+  gender      String
+  description String
+  category    String
+  price       Int
+  size        String
+  color       String
+  rating      Float
+  img         String[]
+  quantity    Int
+}
