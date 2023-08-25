@@ -228,7 +228,8 @@ exports.Prisma.UserCartScalarFieldEnum = {
   color: 'color',
   rating: 'rating',
   img: 'img',
-  quantity: 'quantity'
+  quantity: 'quantity',
+  userId: 'userId'
 };
 
 exports.Prisma.SortOrder = {

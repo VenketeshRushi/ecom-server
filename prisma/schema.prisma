@@ -23,6 +23,7 @@ model User {
   orders    Order[]
   cartItems CartProduct[]
   favoriteItems Favorite[]
+  userCarts     userCart[]
 }
 
 model Address {
@@ -133,4 +134,6 @@ model userCart {
   rating      Float
   img         String[]
   quantity    Int
+  user            User      @relation(fields: [userId], references: [id])
+  userId          Int
 }

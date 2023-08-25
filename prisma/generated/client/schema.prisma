@@ -23,6 +23,7 @@ model User {
   orders    Order[]
   cartItems CartProduct[]
   favoriteItems Favorite[]
+  userCarts     userCart[]
 }
 
 model Address {
@@ -119,4 +120,20 @@ model ShippingDetail {
   mobile       String
   order        Order?    @relation(fields: [orderId], references: [id])
   orderId      Int?
+}
+
+model userCart {
+  id          Int      @id @default(autoincrement())
+  title       String
+  gender      String
+  description String
+  category    String
+  price       Int
+  size        String
+  color       String
+  rating      Float
+  img         String[]
+  quantity    Int
+  user            User      @relation(fields: [userId], references: [id])
+  userId          Int
 }

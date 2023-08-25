@@ -5,6 +5,7 @@ const prisma = require("./db.server");
 
 const AuthApiRoutes = require("./module_auth/routes/auth.routes");
 const ProductApiRoutes = require("./module_product/routes/product.routes");
+const CartApiRoutes = require("./module_cart/routes/cart.routes");
 const FavouriteApiRoutes = require("./module_favourite/routes/favourite.routes");
 const OrderApiRoutes = require("./module_order/routes/order.routes");
 const paymentController = require("./payment.controller");
@@ -16,6 +17,7 @@ app.use(cors());
 
 app.use("/auth", AuthApiRoutes);
 app.use("/product", ProductApiRoutes);
+app.use("/cart", CartApiRoutes);
 app.use("/favourite", FavouriteApiRoutes);
 app.use("/order", OrderApiRoutes);
 
