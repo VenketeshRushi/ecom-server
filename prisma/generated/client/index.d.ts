@@ -53,11 +53,6 @@ export type PaymentDetail = $Result.DefaultSelection<Prisma.$PaymentDetailPayloa
  * 
  */
 export type ShippingDetail = $Result.DefaultSelection<Prisma.$ShippingDetailPayload>
-/**
- * Model userCart
- * 
- */
-export type userCart = $Result.DefaultSelection<Prisma.$userCartPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -260,16 +255,6 @@ export class PrismaClient<
     * ```
     */
   get shippingDetail(): Prisma.ShippingDetailDelegate<ExtArgs>;
-
-  /**
-   * `prisma.userCart`: Exposes CRUD operations for the **userCart** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more UserCarts
-    * const userCarts = await prisma.userCart.findMany()
-    * ```
-    */
-  get userCart(): Prisma.userCartDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -747,8 +732,7 @@ export namespace Prisma {
     Favorite: 'Favorite',
     Order: 'Order',
     PaymentDetail: 'PaymentDetail',
-    ShippingDetail: 'ShippingDetail',
-    userCart: 'userCart'
+    ShippingDetail: 'ShippingDetail'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -765,7 +749,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'user' | 'address' | 'product' | 'cartProduct' | 'favorite' | 'order' | 'paymentDetail' | 'shippingDetail' | 'userCart'
+      modelProps: 'user' | 'address' | 'product' | 'cartProduct' | 'favorite' | 'order' | 'paymentDetail' | 'shippingDetail'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1297,72 +1281,6 @@ export namespace Prisma {
           }
         }
       }
-      userCart: {
-        payload: Prisma.$userCartPayload<ExtArgs>
-        fields: Prisma.userCartFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.userCartFindUniqueArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$userCartPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.userCartFindUniqueOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$userCartPayload>
-          }
-          findFirst: {
-            args: Prisma.userCartFindFirstArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$userCartPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.userCartFindFirstOrThrowArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$userCartPayload>
-          }
-          findMany: {
-            args: Prisma.userCartFindManyArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$userCartPayload>[]
-          }
-          create: {
-            args: Prisma.userCartCreateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$userCartPayload>
-          }
-          createMany: {
-            args: Prisma.userCartCreateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          delete: {
-            args: Prisma.userCartDeleteArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$userCartPayload>
-          }
-          update: {
-            args: Prisma.userCartUpdateArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$userCartPayload>
-          }
-          deleteMany: {
-            args: Prisma.userCartDeleteManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          updateMany: {
-            args: Prisma.userCartUpdateManyArgs<ExtArgs>,
-            result: Prisma.BatchPayload
-          }
-          upsert: {
-            args: Prisma.userCartUpsertArgs<ExtArgs>,
-            result: $Utils.PayloadToResult<Prisma.$userCartPayload>
-          }
-          aggregate: {
-            args: Prisma.UserCartAggregateArgs<ExtArgs>,
-            result: $Utils.Optional<AggregateUserCart>
-          }
-          groupBy: {
-            args: Prisma.userCartGroupByArgs<ExtArgs>,
-            result: $Utils.Optional<UserCartGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.userCartCountArgs<ExtArgs>,
-            result: $Utils.Optional<UserCartCountAggregateOutputType> | number
-          }
-        }
-      }
     }
   } & {
     other: {
@@ -1515,7 +1433,6 @@ export namespace Prisma {
     orders: number
     cartItems: number
     favoriteItems: number
-    userCarts: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
@@ -1523,7 +1440,6 @@ export namespace Prisma {
     orders?: boolean | UserCountOutputTypeCountOrdersArgs
     cartItems?: boolean | UserCountOutputTypeCountCartItemsArgs
     favoriteItems?: boolean | UserCountOutputTypeCountFavoriteItemsArgs
-    userCarts?: boolean | UserCountOutputTypeCountUserCartsArgs
   }
 
   // Custom InputTypes
@@ -1568,14 +1484,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountFavoriteItemsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
     where?: FavoriteWhereInput
-  }
-
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountUserCartsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: userCartWhereInput
   }
 
 
@@ -1856,7 +1764,6 @@ export namespace Prisma {
     orders?: boolean | User$ordersArgs<ExtArgs>
     cartItems?: boolean | User$cartItemsArgs<ExtArgs>
     favoriteItems?: boolean | User$favoriteItemsArgs<ExtArgs>
-    userCarts?: boolean | User$userCartsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1875,7 +1782,6 @@ export namespace Prisma {
     orders?: boolean | User$ordersArgs<ExtArgs>
     cartItems?: boolean | User$cartItemsArgs<ExtArgs>
     favoriteItems?: boolean | User$favoriteItemsArgs<ExtArgs>
-    userCarts?: boolean | User$userCartsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -1887,7 +1793,6 @@ export namespace Prisma {
       orders: Prisma.$OrderPayload<ExtArgs>[]
       cartItems: Prisma.$CartProductPayload<ExtArgs>[]
       favoriteItems: Prisma.$FavoritePayload<ExtArgs>[]
-      userCarts: Prisma.$userCartPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetResult<{
       id: number
@@ -2269,8 +2174,6 @@ export namespace Prisma {
     cartItems<T extends User$cartItemsArgs<ExtArgs> = {}>(args?: Subset<T, User$cartItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CartProductPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     favoriteItems<T extends User$favoriteItemsArgs<ExtArgs> = {}>(args?: Subset<T, User$favoriteItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FavoritePayload<ExtArgs>, T, 'findMany'> | Null>;
-
-    userCarts<T extends User$userCartsArgs<ExtArgs> = {}>(args?: Subset<T, User$userCartsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$userCartPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2699,27 +2602,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: FavoriteScalarFieldEnum | FavoriteScalarFieldEnum[]
-  }
-
-
-  /**
-   * User.userCarts
-   */
-  export type User$userCartsArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the userCart
-     */
-    select?: userCartSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: userCartInclude<ExtArgs> | null
-    where?: userCartWhereInput
-    orderBy?: userCartOrderByWithRelationInput | userCartOrderByWithRelationInput[]
-    cursor?: userCartWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserCartScalarFieldEnum | UserCartScalarFieldEnum[]
   }
 
 
@@ -4678,6 +4560,7 @@ export namespace Prisma {
   }
 
   export type CartProductAvgAggregateOutputType = {
+    cartProductId: number | null
     id: number | null
     price: number | null
     rating: number | null
@@ -4687,6 +4570,7 @@ export namespace Prisma {
   }
 
   export type CartProductSumAggregateOutputType = {
+    cartProductId: number | null
     id: number | null
     price: number | null
     rating: number | null
@@ -4696,6 +4580,7 @@ export namespace Prisma {
   }
 
   export type CartProductMinAggregateOutputType = {
+    cartProductId: number | null
     id: number | null
     title: string | null
     gender: string | null
@@ -4711,6 +4596,7 @@ export namespace Prisma {
   }
 
   export type CartProductMaxAggregateOutputType = {
+    cartProductId: number | null
     id: number | null
     title: string | null
     gender: string | null
@@ -4726,6 +4612,7 @@ export namespace Prisma {
   }
 
   export type CartProductCountAggregateOutputType = {
+    cartProductId: number
     id: number
     title: number
     gender: number
@@ -4744,6 +4631,7 @@ export namespace Prisma {
 
 
   export type CartProductAvgAggregateInputType = {
+    cartProductId?: true
     id?: true
     price?: true
     rating?: true
@@ -4753,6 +4641,7 @@ export namespace Prisma {
   }
 
   export type CartProductSumAggregateInputType = {
+    cartProductId?: true
     id?: true
     price?: true
     rating?: true
@@ -4762,6 +4651,7 @@ export namespace Prisma {
   }
 
   export type CartProductMinAggregateInputType = {
+    cartProductId?: true
     id?: true
     title?: true
     gender?: true
@@ -4777,6 +4667,7 @@ export namespace Prisma {
   }
 
   export type CartProductMaxAggregateInputType = {
+    cartProductId?: true
     id?: true
     title?: true
     gender?: true
@@ -4792,6 +4683,7 @@ export namespace Prisma {
   }
 
   export type CartProductCountAggregateInputType = {
+    cartProductId?: true
     id?: true
     title?: true
     gender?: true
@@ -4895,6 +4787,7 @@ export namespace Prisma {
   }
 
   export type CartProductGroupByOutputType = {
+    cartProductId: number
     id: number
     title: string
     gender: string
@@ -4930,6 +4823,7 @@ export namespace Prisma {
 
 
   export type CartProductSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    cartProductId?: boolean
     id?: boolean
     title?: boolean
     gender?: boolean
@@ -4948,6 +4842,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["cartProduct"]>
 
   export type CartProductSelectScalar = {
+    cartProductId?: boolean
     id?: boolean
     title?: boolean
     gender?: boolean
@@ -4976,6 +4871,7 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetResult<{
+      cartProductId: number
       id: number
       title: string
       gender: string
@@ -5081,8 +4977,8 @@ export namespace Prisma {
      * // Get first 10 CartProducts
      * const cartProducts = await prisma.cartProduct.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const cartProductWithIdOnly = await prisma.cartProduct.findMany({ select: { id: true } })
+     * // Only select the `cartProductId`
+     * const cartProductWithCartProductIdOnly = await prisma.cartProduct.findMany({ select: { cartProductId: true } })
      * 
     **/
     findMany<T extends CartProductFindManyArgs<ExtArgs>>(
@@ -5386,6 +5282,7 @@ export namespace Prisma {
    * Fields of the CartProduct model
    */ 
   interface CartProductFieldRefs {
+    readonly cartProductId: FieldRef<"CartProduct", 'Int'>
     readonly id: FieldRef<"CartProduct", 'Int'>
     readonly title: FieldRef<"CartProduct", 'String'>
     readonly gender: FieldRef<"CartProduct", 'String'>
@@ -9875,1047 +9772,6 @@ export namespace Prisma {
 
 
   /**
-   * Model userCart
-   */
-
-  export type AggregateUserCart = {
-    _count: UserCartCountAggregateOutputType | null
-    _avg: UserCartAvgAggregateOutputType | null
-    _sum: UserCartSumAggregateOutputType | null
-    _min: UserCartMinAggregateOutputType | null
-    _max: UserCartMaxAggregateOutputType | null
-  }
-
-  export type UserCartAvgAggregateOutputType = {
-    id: number | null
-    price: number | null
-    rating: number | null
-    quantity: number | null
-    userId: number | null
-  }
-
-  export type UserCartSumAggregateOutputType = {
-    id: number | null
-    price: number | null
-    rating: number | null
-    quantity: number | null
-    userId: number | null
-  }
-
-  export type UserCartMinAggregateOutputType = {
-    id: number | null
-    title: string | null
-    gender: string | null
-    description: string | null
-    category: string | null
-    price: number | null
-    size: string | null
-    color: string | null
-    rating: number | null
-    quantity: number | null
-    userId: number | null
-  }
-
-  export type UserCartMaxAggregateOutputType = {
-    id: number | null
-    title: string | null
-    gender: string | null
-    description: string | null
-    category: string | null
-    price: number | null
-    size: string | null
-    color: string | null
-    rating: number | null
-    quantity: number | null
-    userId: number | null
-  }
-
-  export type UserCartCountAggregateOutputType = {
-    id: number
-    title: number
-    gender: number
-    description: number
-    category: number
-    price: number
-    size: number
-    color: number
-    rating: number
-    img: number
-    quantity: number
-    userId: number
-    _all: number
-  }
-
-
-  export type UserCartAvgAggregateInputType = {
-    id?: true
-    price?: true
-    rating?: true
-    quantity?: true
-    userId?: true
-  }
-
-  export type UserCartSumAggregateInputType = {
-    id?: true
-    price?: true
-    rating?: true
-    quantity?: true
-    userId?: true
-  }
-
-  export type UserCartMinAggregateInputType = {
-    id?: true
-    title?: true
-    gender?: true
-    description?: true
-    category?: true
-    price?: true
-    size?: true
-    color?: true
-    rating?: true
-    quantity?: true
-    userId?: true
-  }
-
-  export type UserCartMaxAggregateInputType = {
-    id?: true
-    title?: true
-    gender?: true
-    description?: true
-    category?: true
-    price?: true
-    size?: true
-    color?: true
-    rating?: true
-    quantity?: true
-    userId?: true
-  }
-
-  export type UserCartCountAggregateInputType = {
-    id?: true
-    title?: true
-    gender?: true
-    description?: true
-    category?: true
-    price?: true
-    size?: true
-    color?: true
-    rating?: true
-    img?: true
-    quantity?: true
-    userId?: true
-    _all?: true
-  }
-
-  export type UserCartAggregateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which userCart to aggregate.
-     */
-    where?: userCartWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of userCarts to fetch.
-     */
-    orderBy?: userCartOrderByWithRelationInput | userCartOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: userCartWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` userCarts from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` userCarts.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned userCarts
-    **/
-    _count?: true | UserCartCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: UserCartAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserCartSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: UserCartMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: UserCartMaxAggregateInputType
-  }
-
-  export type GetUserCartAggregateType<T extends UserCartAggregateArgs> = {
-        [P in keyof T & keyof AggregateUserCart]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateUserCart[P]>
-      : GetScalarType<T[P], AggregateUserCart[P]>
-  }
-
-
-
-
-  export type userCartGroupByArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    where?: userCartWhereInput
-    orderBy?: userCartOrderByWithAggregationInput | userCartOrderByWithAggregationInput[]
-    by: UserCartScalarFieldEnum[] | UserCartScalarFieldEnum
-    having?: userCartScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: UserCartCountAggregateInputType | true
-    _avg?: UserCartAvgAggregateInputType
-    _sum?: UserCartSumAggregateInputType
-    _min?: UserCartMinAggregateInputType
-    _max?: UserCartMaxAggregateInputType
-  }
-
-  export type UserCartGroupByOutputType = {
-    id: number
-    title: string
-    gender: string
-    description: string
-    category: string
-    price: number
-    size: string
-    color: string
-    rating: number
-    img: string[]
-    quantity: number
-    userId: number
-    _count: UserCartCountAggregateOutputType | null
-    _avg: UserCartAvgAggregateOutputType | null
-    _sum: UserCartSumAggregateOutputType | null
-    _min: UserCartMinAggregateOutputType | null
-    _max: UserCartMaxAggregateOutputType | null
-  }
-
-  type GetUserCartGroupByPayload<T extends userCartGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<UserCartGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof UserCartGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], UserCartGroupByOutputType[P]>
-            : GetScalarType<T[P], UserCartGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type userCartSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    title?: boolean
-    gender?: boolean
-    description?: boolean
-    category?: boolean
-    price?: boolean
-    size?: boolean
-    color?: boolean
-    rating?: boolean
-    img?: boolean
-    quantity?: boolean
-    userId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userCart"]>
-
-  export type userCartSelectScalar = {
-    id?: boolean
-    title?: boolean
-    gender?: boolean
-    description?: boolean
-    category?: boolean
-    price?: boolean
-    size?: boolean
-    color?: boolean
-    rating?: boolean
-    img?: boolean
-    quantity?: boolean
-    userId?: boolean
-  }
-
-  export type userCartInclude<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-
-  export type $userCartPayload<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    name: "userCart"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetResult<{
-      id: number
-      title: string
-      gender: string
-      description: string
-      category: string
-      price: number
-      size: string
-      color: string
-      rating: number
-      img: string[]
-      quantity: number
-      userId: number
-    }, ExtArgs["result"]["userCart"]>
-    composites: {}
-  }
-
-
-  type userCartGetPayload<S extends boolean | null | undefined | userCartDefaultArgs> = $Result.GetResult<Prisma.$userCartPayload, S>
-
-  type userCartCountArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = 
-    Omit<userCartFindManyArgs, 'select' | 'include'> & {
-      select?: UserCartCountAggregateInputType | true
-    }
-
-  export interface userCartDelegate<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['userCart'], meta: { name: 'userCart' } }
-    /**
-     * Find zero or one UserCart that matches the filter.
-     * @param {userCartFindUniqueArgs} args - Arguments to find a UserCart
-     * @example
-     * // Get one UserCart
-     * const userCart = await prisma.userCart.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUnique<T extends userCartFindUniqueArgs<ExtArgs>>(
-      args: SelectSubset<T, userCartFindUniqueArgs<ExtArgs>>
-    ): Prisma__userCartClient<$Result.GetResult<Prisma.$userCartPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
-
-    /**
-     * Find one UserCart that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
-     * @param {userCartFindUniqueOrThrowArgs} args - Arguments to find a UserCart
-     * @example
-     * // Get one UserCart
-     * const userCart = await prisma.userCart.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findUniqueOrThrow<T extends userCartFindUniqueOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, userCartFindUniqueOrThrowArgs<ExtArgs>>
-    ): Prisma__userCartClient<$Result.GetResult<Prisma.$userCartPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find the first UserCart that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {userCartFindFirstArgs} args - Arguments to find a UserCart
-     * @example
-     * // Get one UserCart
-     * const userCart = await prisma.userCart.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirst<T extends userCartFindFirstArgs<ExtArgs>>(
-      args?: SelectSubset<T, userCartFindFirstArgs<ExtArgs>>
-    ): Prisma__userCartClient<$Result.GetResult<Prisma.$userCartPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
-
-    /**
-     * Find the first UserCart that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {userCartFindFirstOrThrowArgs} args - Arguments to find a UserCart
-     * @example
-     * // Get one UserCart
-     * const userCart = await prisma.userCart.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-    **/
-    findFirstOrThrow<T extends userCartFindFirstOrThrowArgs<ExtArgs>>(
-      args?: SelectSubset<T, userCartFindFirstOrThrowArgs<ExtArgs>>
-    ): Prisma__userCartClient<$Result.GetResult<Prisma.$userCartPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
-
-    /**
-     * Find zero or more UserCarts that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {userCartFindManyArgs=} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all UserCarts
-     * const userCarts = await prisma.userCart.findMany()
-     * 
-     * // Get first 10 UserCarts
-     * const userCarts = await prisma.userCart.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const userCartWithIdOnly = await prisma.userCart.findMany({ select: { id: true } })
-     * 
-    **/
-    findMany<T extends userCartFindManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, userCartFindManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$userCartPayload<ExtArgs>, T, 'findMany'>>
-
-    /**
-     * Create a UserCart.
-     * @param {userCartCreateArgs} args - Arguments to create a UserCart.
-     * @example
-     * // Create one UserCart
-     * const UserCart = await prisma.userCart.create({
-     *   data: {
-     *     // ... data to create a UserCart
-     *   }
-     * })
-     * 
-    **/
-    create<T extends userCartCreateArgs<ExtArgs>>(
-      args: SelectSubset<T, userCartCreateArgs<ExtArgs>>
-    ): Prisma__userCartClient<$Result.GetResult<Prisma.$userCartPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
-
-    /**
-     * Create many UserCarts.
-     *     @param {userCartCreateManyArgs} args - Arguments to create many UserCarts.
-     *     @example
-     *     // Create many UserCarts
-     *     const userCart = await prisma.userCart.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
-     *     
-    **/
-    createMany<T extends userCartCreateManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, userCartCreateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a UserCart.
-     * @param {userCartDeleteArgs} args - Arguments to delete one UserCart.
-     * @example
-     * // Delete one UserCart
-     * const UserCart = await prisma.userCart.delete({
-     *   where: {
-     *     // ... filter to delete one UserCart
-     *   }
-     * })
-     * 
-    **/
-    delete<T extends userCartDeleteArgs<ExtArgs>>(
-      args: SelectSubset<T, userCartDeleteArgs<ExtArgs>>
-    ): Prisma__userCartClient<$Result.GetResult<Prisma.$userCartPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
-
-    /**
-     * Update one UserCart.
-     * @param {userCartUpdateArgs} args - Arguments to update one UserCart.
-     * @example
-     * // Update one UserCart
-     * const userCart = await prisma.userCart.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    update<T extends userCartUpdateArgs<ExtArgs>>(
-      args: SelectSubset<T, userCartUpdateArgs<ExtArgs>>
-    ): Prisma__userCartClient<$Result.GetResult<Prisma.$userCartPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
-
-    /**
-     * Delete zero or more UserCarts.
-     * @param {userCartDeleteManyArgs} args - Arguments to filter UserCarts to delete.
-     * @example
-     * // Delete a few UserCarts
-     * const { count } = await prisma.userCart.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-    **/
-    deleteMany<T extends userCartDeleteManyArgs<ExtArgs>>(
-      args?: SelectSubset<T, userCartDeleteManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more UserCarts.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {userCartUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many UserCarts
-     * const userCart = await prisma.userCart.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-    **/
-    updateMany<T extends userCartUpdateManyArgs<ExtArgs>>(
-      args: SelectSubset<T, userCartUpdateManyArgs<ExtArgs>>
-    ): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one UserCart.
-     * @param {userCartUpsertArgs} args - Arguments to update or create a UserCart.
-     * @example
-     * // Update or create a UserCart
-     * const userCart = await prisma.userCart.upsert({
-     *   create: {
-     *     // ... data to create a UserCart
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the UserCart we want to update
-     *   }
-     * })
-    **/
-    upsert<T extends userCartUpsertArgs<ExtArgs>>(
-      args: SelectSubset<T, userCartUpsertArgs<ExtArgs>>
-    ): Prisma__userCartClient<$Result.GetResult<Prisma.$userCartPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
-
-    /**
-     * Count the number of UserCarts.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {userCartCountArgs} args - Arguments to filter UserCarts to count.
-     * @example
-     * // Count the number of UserCarts
-     * const count = await prisma.userCart.count({
-     *   where: {
-     *     // ... the filter for the UserCarts we want to count
-     *   }
-     * })
-    **/
-    count<T extends userCartCountArgs>(
-      args?: Subset<T, userCartCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], UserCartCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a UserCart.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserCartAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends UserCartAggregateArgs>(args: Subset<T, UserCartAggregateArgs>): Prisma.PrismaPromise<GetUserCartAggregateType<T>>
-
-    /**
-     * Group by UserCart.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {userCartGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends userCartGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: userCartGroupByArgs['orderBy'] }
-        : { orderBy?: userCartGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, userCartGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserCartGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the userCart model
-   */
-  readonly fields: userCartFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for userCart.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__userCartClient<T, Null = never, ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: 'PrismaPromise';
-
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
-
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
-  }
-
-
-
-  /**
-   * Fields of the userCart model
-   */ 
-  interface userCartFieldRefs {
-    readonly id: FieldRef<"userCart", 'Int'>
-    readonly title: FieldRef<"userCart", 'String'>
-    readonly gender: FieldRef<"userCart", 'String'>
-    readonly description: FieldRef<"userCart", 'String'>
-    readonly category: FieldRef<"userCart", 'String'>
-    readonly price: FieldRef<"userCart", 'Int'>
-    readonly size: FieldRef<"userCart", 'String'>
-    readonly color: FieldRef<"userCart", 'String'>
-    readonly rating: FieldRef<"userCart", 'Float'>
-    readonly img: FieldRef<"userCart", 'String[]'>
-    readonly quantity: FieldRef<"userCart", 'Int'>
-    readonly userId: FieldRef<"userCart", 'Int'>
-  }
-    
-
-  // Custom InputTypes
-
-  /**
-   * userCart findUnique
-   */
-  export type userCartFindUniqueArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the userCart
-     */
-    select?: userCartSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: userCartInclude<ExtArgs> | null
-    /**
-     * Filter, which userCart to fetch.
-     */
-    where: userCartWhereUniqueInput
-  }
-
-
-  /**
-   * userCart findUniqueOrThrow
-   */
-  export type userCartFindUniqueOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the userCart
-     */
-    select?: userCartSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: userCartInclude<ExtArgs> | null
-    /**
-     * Filter, which userCart to fetch.
-     */
-    where: userCartWhereUniqueInput
-  }
-
-
-  /**
-   * userCart findFirst
-   */
-  export type userCartFindFirstArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the userCart
-     */
-    select?: userCartSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: userCartInclude<ExtArgs> | null
-    /**
-     * Filter, which userCart to fetch.
-     */
-    where?: userCartWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of userCarts to fetch.
-     */
-    orderBy?: userCartOrderByWithRelationInput | userCartOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for userCarts.
-     */
-    cursor?: userCartWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` userCarts from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` userCarts.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of userCarts.
-     */
-    distinct?: UserCartScalarFieldEnum | UserCartScalarFieldEnum[]
-  }
-
-
-  /**
-   * userCart findFirstOrThrow
-   */
-  export type userCartFindFirstOrThrowArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the userCart
-     */
-    select?: userCartSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: userCartInclude<ExtArgs> | null
-    /**
-     * Filter, which userCart to fetch.
-     */
-    where?: userCartWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of userCarts to fetch.
-     */
-    orderBy?: userCartOrderByWithRelationInput | userCartOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for userCarts.
-     */
-    cursor?: userCartWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` userCarts from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` userCarts.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of userCarts.
-     */
-    distinct?: UserCartScalarFieldEnum | UserCartScalarFieldEnum[]
-  }
-
-
-  /**
-   * userCart findMany
-   */
-  export type userCartFindManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the userCart
-     */
-    select?: userCartSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: userCartInclude<ExtArgs> | null
-    /**
-     * Filter, which userCarts to fetch.
-     */
-    where?: userCartWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of userCarts to fetch.
-     */
-    orderBy?: userCartOrderByWithRelationInput | userCartOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing userCarts.
-     */
-    cursor?: userCartWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` userCarts from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` userCarts.
-     */
-    skip?: number
-    distinct?: UserCartScalarFieldEnum | UserCartScalarFieldEnum[]
-  }
-
-
-  /**
-   * userCart create
-   */
-  export type userCartCreateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the userCart
-     */
-    select?: userCartSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: userCartInclude<ExtArgs> | null
-    /**
-     * The data needed to create a userCart.
-     */
-    data: XOR<userCartCreateInput, userCartUncheckedCreateInput>
-  }
-
-
-  /**
-   * userCart createMany
-   */
-  export type userCartCreateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many userCarts.
-     */
-    data: userCartCreateManyInput | userCartCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-
-  /**
-   * userCart update
-   */
-  export type userCartUpdateArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the userCart
-     */
-    select?: userCartSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: userCartInclude<ExtArgs> | null
-    /**
-     * The data needed to update a userCart.
-     */
-    data: XOR<userCartUpdateInput, userCartUncheckedUpdateInput>
-    /**
-     * Choose, which userCart to update.
-     */
-    where: userCartWhereUniqueInput
-  }
-
-
-  /**
-   * userCart updateMany
-   */
-  export type userCartUpdateManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update userCarts.
-     */
-    data: XOR<userCartUpdateManyMutationInput, userCartUncheckedUpdateManyInput>
-    /**
-     * Filter which userCarts to update
-     */
-    where?: userCartWhereInput
-  }
-
-
-  /**
-   * userCart upsert
-   */
-  export type userCartUpsertArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the userCart
-     */
-    select?: userCartSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: userCartInclude<ExtArgs> | null
-    /**
-     * The filter to search for the userCart to update in case it exists.
-     */
-    where: userCartWhereUniqueInput
-    /**
-     * In case the userCart found by the `where` argument doesn't exist, create a new userCart with this data.
-     */
-    create: XOR<userCartCreateInput, userCartUncheckedCreateInput>
-    /**
-     * In case the userCart was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<userCartUpdateInput, userCartUncheckedUpdateInput>
-  }
-
-
-  /**
-   * userCart delete
-   */
-  export type userCartDeleteArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the userCart
-     */
-    select?: userCartSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: userCartInclude<ExtArgs> | null
-    /**
-     * Filter which userCart to delete.
-     */
-    where: userCartWhereUniqueInput
-  }
-
-
-  /**
-   * userCart deleteMany
-   */
-  export type userCartDeleteManyArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which userCarts to delete
-     */
-    where?: userCartWhereInput
-  }
-
-
-  /**
-   * userCart without action
-   */
-  export type userCartDefaultArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the userCart
-     */
-    select?: userCartSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well.
-     */
-    include?: userCartInclude<ExtArgs> | null
-  }
-
-
-
-  /**
    * Enums
    */
 
@@ -10971,6 +9827,7 @@ export namespace Prisma {
 
 
   export const CartProductScalarFieldEnum: {
+    cartProductId: 'cartProductId',
     id: 'id',
     title: 'title',
     gender: 'gender',
@@ -11047,24 +9904,6 @@ export namespace Prisma {
   };
 
   export type ShippingDetailScalarFieldEnum = (typeof ShippingDetailScalarFieldEnum)[keyof typeof ShippingDetailScalarFieldEnum]
-
-
-  export const UserCartScalarFieldEnum: {
-    id: 'id',
-    title: 'title',
-    gender: 'gender',
-    description: 'description',
-    category: 'category',
-    price: 'price',
-    size: 'size',
-    color: 'color',
-    rating: 'rating',
-    img: 'img',
-    quantity: 'quantity',
-    userId: 'userId'
-  };
-
-  export type UserCartScalarFieldEnum = (typeof UserCartScalarFieldEnum)[keyof typeof UserCartScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -11170,7 +10009,6 @@ export namespace Prisma {
     orders?: OrderListRelationFilter
     cartItems?: CartProductListRelationFilter
     favoriteItems?: FavoriteListRelationFilter
-    userCarts?: UserCartListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -11185,7 +10023,6 @@ export namespace Prisma {
     orders?: OrderOrderByRelationAggregateInput
     cartItems?: CartProductOrderByRelationAggregateInput
     favoriteItems?: FavoriteOrderByRelationAggregateInput
-    userCarts?: userCartOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -11203,7 +10040,6 @@ export namespace Prisma {
     orders?: OrderListRelationFilter
     cartItems?: CartProductListRelationFilter
     favoriteItems?: FavoriteListRelationFilter
-    userCarts?: UserCartListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -11379,6 +10215,7 @@ export namespace Prisma {
     AND?: CartProductWhereInput | CartProductWhereInput[]
     OR?: CartProductWhereInput[]
     NOT?: CartProductWhereInput | CartProductWhereInput[]
+    cartProductId?: IntFilter<"CartProduct"> | number
     id?: IntFilter<"CartProduct"> | number
     title?: StringFilter<"CartProduct"> | string
     gender?: StringFilter<"CartProduct"> | string
@@ -11397,6 +10234,7 @@ export namespace Prisma {
   }
 
   export type CartProductOrderByWithRelationInput = {
+    cartProductId?: SortOrder
     id?: SortOrder
     title?: SortOrder
     gender?: SortOrder
@@ -11415,10 +10253,11 @@ export namespace Prisma {
   }
 
   export type CartProductWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
+    cartProductId?: number
     AND?: CartProductWhereInput | CartProductWhereInput[]
     OR?: CartProductWhereInput[]
     NOT?: CartProductWhereInput | CartProductWhereInput[]
+    id?: IntFilter<"CartProduct"> | number
     title?: StringFilter<"CartProduct"> | string
     gender?: StringFilter<"CartProduct"> | string
     description?: StringFilter<"CartProduct"> | string
@@ -11433,9 +10272,10 @@ export namespace Prisma {
     userId?: IntFilter<"CartProduct"> | number
     order?: XOR<OrderNullableRelationFilter, OrderWhereInput> | null
     user?: XOR<UserRelationFilter, UserWhereInput>
-  }, "id">
+  }, "cartProductId">
 
   export type CartProductOrderByWithAggregationInput = {
+    cartProductId?: SortOrder
     id?: SortOrder
     title?: SortOrder
     gender?: SortOrder
@@ -11460,6 +10300,7 @@ export namespace Prisma {
     AND?: CartProductScalarWhereWithAggregatesInput | CartProductScalarWhereWithAggregatesInput[]
     OR?: CartProductScalarWhereWithAggregatesInput[]
     NOT?: CartProductScalarWhereWithAggregatesInput | CartProductScalarWhereWithAggregatesInput[]
+    cartProductId?: IntWithAggregatesFilter<"CartProduct"> | number
     id?: IntWithAggregatesFilter<"CartProduct"> | number
     title?: StringWithAggregatesFilter<"CartProduct"> | string
     gender?: StringWithAggregatesFilter<"CartProduct"> | string
@@ -11792,98 +10633,6 @@ export namespace Prisma {
     orderId?: IntNullableWithAggregatesFilter<"ShippingDetail"> | number | null
   }
 
-  export type userCartWhereInput = {
-    AND?: userCartWhereInput | userCartWhereInput[]
-    OR?: userCartWhereInput[]
-    NOT?: userCartWhereInput | userCartWhereInput[]
-    id?: IntFilter<"userCart"> | number
-    title?: StringFilter<"userCart"> | string
-    gender?: StringFilter<"userCart"> | string
-    description?: StringFilter<"userCart"> | string
-    category?: StringFilter<"userCart"> | string
-    price?: IntFilter<"userCart"> | number
-    size?: StringFilter<"userCart"> | string
-    color?: StringFilter<"userCart"> | string
-    rating?: FloatFilter<"userCart"> | number
-    img?: StringNullableListFilter<"userCart">
-    quantity?: IntFilter<"userCart"> | number
-    userId?: IntFilter<"userCart"> | number
-    user?: XOR<UserRelationFilter, UserWhereInput>
-  }
-
-  export type userCartOrderByWithRelationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    gender?: SortOrder
-    description?: SortOrder
-    category?: SortOrder
-    price?: SortOrder
-    size?: SortOrder
-    color?: SortOrder
-    rating?: SortOrder
-    img?: SortOrder
-    quantity?: SortOrder
-    userId?: SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type userCartWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: userCartWhereInput | userCartWhereInput[]
-    OR?: userCartWhereInput[]
-    NOT?: userCartWhereInput | userCartWhereInput[]
-    title?: StringFilter<"userCart"> | string
-    gender?: StringFilter<"userCart"> | string
-    description?: StringFilter<"userCart"> | string
-    category?: StringFilter<"userCart"> | string
-    price?: IntFilter<"userCart"> | number
-    size?: StringFilter<"userCart"> | string
-    color?: StringFilter<"userCart"> | string
-    rating?: FloatFilter<"userCart"> | number
-    img?: StringNullableListFilter<"userCart">
-    quantity?: IntFilter<"userCart"> | number
-    userId?: IntFilter<"userCart"> | number
-    user?: XOR<UserRelationFilter, UserWhereInput>
-  }, "id">
-
-  export type userCartOrderByWithAggregationInput = {
-    id?: SortOrder
-    title?: SortOrder
-    gender?: SortOrder
-    description?: SortOrder
-    category?: SortOrder
-    price?: SortOrder
-    size?: SortOrder
-    color?: SortOrder
-    rating?: SortOrder
-    img?: SortOrder
-    quantity?: SortOrder
-    userId?: SortOrder
-    _count?: userCartCountOrderByAggregateInput
-    _avg?: userCartAvgOrderByAggregateInput
-    _max?: userCartMaxOrderByAggregateInput
-    _min?: userCartMinOrderByAggregateInput
-    _sum?: userCartSumOrderByAggregateInput
-  }
-
-  export type userCartScalarWhereWithAggregatesInput = {
-    AND?: userCartScalarWhereWithAggregatesInput | userCartScalarWhereWithAggregatesInput[]
-    OR?: userCartScalarWhereWithAggregatesInput[]
-    NOT?: userCartScalarWhereWithAggregatesInput | userCartScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"userCart"> | number
-    title?: StringWithAggregatesFilter<"userCart"> | string
-    gender?: StringWithAggregatesFilter<"userCart"> | string
-    description?: StringWithAggregatesFilter<"userCart"> | string
-    category?: StringWithAggregatesFilter<"userCart"> | string
-    price?: IntWithAggregatesFilter<"userCart"> | number
-    size?: StringWithAggregatesFilter<"userCart"> | string
-    color?: StringWithAggregatesFilter<"userCart"> | string
-    rating?: FloatWithAggregatesFilter<"userCart"> | number
-    img?: StringNullableListFilter<"userCart">
-    quantity?: IntWithAggregatesFilter<"userCart"> | number
-    userId?: IntWithAggregatesFilter<"userCart"> | number
-  }
-
   export type UserCreateInput = {
     email: string
     password: string
@@ -11895,7 +10644,6 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutUserInput
     cartItems?: CartProductCreateNestedManyWithoutUserInput
     favoriteItems?: FavoriteCreateNestedManyWithoutUserInput
-    userCarts?: userCartCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -11910,7 +10658,6 @@ export namespace Prisma {
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     cartItems?: CartProductUncheckedCreateNestedManyWithoutUserInput
     favoriteItems?: FavoriteUncheckedCreateNestedManyWithoutUserInput
-    userCarts?: userCartUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -11924,7 +10671,6 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutUserNestedInput
     cartItems?: CartProductUpdateManyWithoutUserNestedInput
     favoriteItems?: FavoriteUpdateManyWithoutUserNestedInput
-    userCarts?: userCartUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -11939,7 +10685,6 @@ export namespace Prisma {
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     cartItems?: CartProductUncheckedUpdateManyWithoutUserNestedInput
     favoriteItems?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
-    userCarts?: userCartUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -12119,6 +10864,7 @@ export namespace Prisma {
   }
 
   export type CartProductCreateInput = {
+    id: number
     title: string
     gender: string
     description: string
@@ -12134,7 +10880,8 @@ export namespace Prisma {
   }
 
   export type CartProductUncheckedCreateInput = {
-    id?: number
+    cartProductId?: number
+    id: number
     title: string
     gender: string
     description: string
@@ -12150,6 +10897,7 @@ export namespace Prisma {
   }
 
   export type CartProductUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -12165,6 +10913,7 @@ export namespace Prisma {
   }
 
   export type CartProductUncheckedUpdateInput = {
+    cartProductId?: IntFieldUpdateOperationsInput | number
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
@@ -12181,7 +10930,8 @@ export namespace Prisma {
   }
 
   export type CartProductCreateManyInput = {
-    id?: number
+    cartProductId?: number
+    id: number
     title: string
     gender: string
     description: string
@@ -12197,6 +10947,7 @@ export namespace Prisma {
   }
 
   export type CartProductUpdateManyMutationInput = {
+    id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -12210,6 +10961,7 @@ export namespace Prisma {
   }
 
   export type CartProductUncheckedUpdateManyInput = {
+    cartProductId?: IntFieldUpdateOperationsInput | number
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
@@ -12560,107 +11312,6 @@ export namespace Prisma {
     orderId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
-  export type userCartCreateInput = {
-    title: string
-    gender: string
-    description: string
-    category: string
-    price: number
-    size: string
-    color: string
-    rating: number
-    img?: userCartCreateimgInput | string[]
-    quantity: number
-    user: UserCreateNestedOneWithoutUserCartsInput
-  }
-
-  export type userCartUncheckedCreateInput = {
-    id?: number
-    title: string
-    gender: string
-    description: string
-    category: string
-    price: number
-    size: string
-    color: string
-    rating: number
-    img?: userCartCreateimgInput | string[]
-    quantity: number
-    userId: number
-  }
-
-  export type userCartUpdateInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    size?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
-    img?: userCartUpdateimgInput | string[]
-    quantity?: IntFieldUpdateOperationsInput | number
-    user?: UserUpdateOneRequiredWithoutUserCartsNestedInput
-  }
-
-  export type userCartUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    size?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
-    img?: userCartUpdateimgInput | string[]
-    quantity?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type userCartCreateManyInput = {
-    id?: number
-    title: string
-    gender: string
-    description: string
-    category: string
-    price: number
-    size: string
-    color: string
-    rating: number
-    img?: userCartCreateimgInput | string[]
-    quantity: number
-    userId: number
-  }
-
-  export type userCartUpdateManyMutationInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    size?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
-    img?: userCartUpdateimgInput | string[]
-    quantity?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type userCartUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    size?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
-    img?: userCartUpdateimgInput | string[]
-    quantity?: IntFieldUpdateOperationsInput | number
-    userId?: IntFieldUpdateOperationsInput | number
-  }
-
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -12737,12 +11388,6 @@ export namespace Prisma {
     none?: FavoriteWhereInput
   }
 
-  export type UserCartListRelationFilter = {
-    every?: userCartWhereInput
-    some?: userCartWhereInput
-    none?: userCartWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -12761,10 +11406,6 @@ export namespace Prisma {
   }
 
   export type FavoriteOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type userCartOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13013,6 +11654,7 @@ export namespace Prisma {
   }
 
   export type CartProductCountOrderByAggregateInput = {
+    cartProductId?: SortOrder
     id?: SortOrder
     title?: SortOrder
     gender?: SortOrder
@@ -13029,6 +11671,7 @@ export namespace Prisma {
   }
 
   export type CartProductAvgOrderByAggregateInput = {
+    cartProductId?: SortOrder
     id?: SortOrder
     price?: SortOrder
     rating?: SortOrder
@@ -13038,6 +11681,7 @@ export namespace Prisma {
   }
 
   export type CartProductMaxOrderByAggregateInput = {
+    cartProductId?: SortOrder
     id?: SortOrder
     title?: SortOrder
     gender?: SortOrder
@@ -13053,6 +11697,7 @@ export namespace Prisma {
   }
 
   export type CartProductMinOrderByAggregateInput = {
+    cartProductId?: SortOrder
     id?: SortOrder
     title?: SortOrder
     gender?: SortOrder
@@ -13068,6 +11713,7 @@ export namespace Prisma {
   }
 
   export type CartProductSumOrderByAggregateInput = {
+    cartProductId?: SortOrder
     id?: SortOrder
     price?: SortOrder
     rating?: SortOrder
@@ -13306,65 +11952,6 @@ export namespace Prisma {
     orderId?: SortOrder
   }
 
-  export type userCartCountOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    gender?: SortOrder
-    description?: SortOrder
-    category?: SortOrder
-    price?: SortOrder
-    size?: SortOrder
-    color?: SortOrder
-    rating?: SortOrder
-    img?: SortOrder
-    quantity?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type userCartAvgOrderByAggregateInput = {
-    id?: SortOrder
-    price?: SortOrder
-    rating?: SortOrder
-    quantity?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type userCartMaxOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    gender?: SortOrder
-    description?: SortOrder
-    category?: SortOrder
-    price?: SortOrder
-    size?: SortOrder
-    color?: SortOrder
-    rating?: SortOrder
-    quantity?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type userCartMinOrderByAggregateInput = {
-    id?: SortOrder
-    title?: SortOrder
-    gender?: SortOrder
-    description?: SortOrder
-    category?: SortOrder
-    price?: SortOrder
-    size?: SortOrder
-    color?: SortOrder
-    rating?: SortOrder
-    quantity?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type userCartSumOrderByAggregateInput = {
-    id?: SortOrder
-    price?: SortOrder
-    rating?: SortOrder
-    quantity?: SortOrder
-    userId?: SortOrder
-  }
-
   export type AddressCreateNestedManyWithoutUserInput = {
     create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput> | AddressCreateWithoutUserInput[] | AddressUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AddressCreateOrConnectWithoutUserInput | AddressCreateOrConnectWithoutUserInput[]
@@ -13393,13 +11980,6 @@ export namespace Prisma {
     connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
   }
 
-  export type userCartCreateNestedManyWithoutUserInput = {
-    create?: XOR<userCartCreateWithoutUserInput, userCartUncheckedCreateWithoutUserInput> | userCartCreateWithoutUserInput[] | userCartUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: userCartCreateOrConnectWithoutUserInput | userCartCreateOrConnectWithoutUserInput[]
-    createMany?: userCartCreateManyUserInputEnvelope
-    connect?: userCartWhereUniqueInput | userCartWhereUniqueInput[]
-  }
-
   export type AddressUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<AddressCreateWithoutUserInput, AddressUncheckedCreateWithoutUserInput> | AddressCreateWithoutUserInput[] | AddressUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AddressCreateOrConnectWithoutUserInput | AddressCreateOrConnectWithoutUserInput[]
@@ -13426,13 +12006,6 @@ export namespace Prisma {
     connectOrCreate?: FavoriteCreateOrConnectWithoutUserInput | FavoriteCreateOrConnectWithoutUserInput[]
     createMany?: FavoriteCreateManyUserInputEnvelope
     connect?: FavoriteWhereUniqueInput | FavoriteWhereUniqueInput[]
-  }
-
-  export type userCartUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<userCartCreateWithoutUserInput, userCartUncheckedCreateWithoutUserInput> | userCartCreateWithoutUserInput[] | userCartUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: userCartCreateOrConnectWithoutUserInput | userCartCreateOrConnectWithoutUserInput[]
-    createMany?: userCartCreateManyUserInputEnvelope
-    connect?: userCartWhereUniqueInput | userCartWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -13503,20 +12076,6 @@ export namespace Prisma {
     deleteMany?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
   }
 
-  export type userCartUpdateManyWithoutUserNestedInput = {
-    create?: XOR<userCartCreateWithoutUserInput, userCartUncheckedCreateWithoutUserInput> | userCartCreateWithoutUserInput[] | userCartUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: userCartCreateOrConnectWithoutUserInput | userCartCreateOrConnectWithoutUserInput[]
-    upsert?: userCartUpsertWithWhereUniqueWithoutUserInput | userCartUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: userCartCreateManyUserInputEnvelope
-    set?: userCartWhereUniqueInput | userCartWhereUniqueInput[]
-    disconnect?: userCartWhereUniqueInput | userCartWhereUniqueInput[]
-    delete?: userCartWhereUniqueInput | userCartWhereUniqueInput[]
-    connect?: userCartWhereUniqueInput | userCartWhereUniqueInput[]
-    update?: userCartUpdateWithWhereUniqueWithoutUserInput | userCartUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: userCartUpdateManyWithWhereWithoutUserInput | userCartUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: userCartScalarWhereInput | userCartScalarWhereInput[]
-  }
-
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -13579,20 +12138,6 @@ export namespace Prisma {
     update?: FavoriteUpdateWithWhereUniqueWithoutUserInput | FavoriteUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: FavoriteUpdateManyWithWhereWithoutUserInput | FavoriteUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
-  }
-
-  export type userCartUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<userCartCreateWithoutUserInput, userCartUncheckedCreateWithoutUserInput> | userCartCreateWithoutUserInput[] | userCartUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: userCartCreateOrConnectWithoutUserInput | userCartCreateOrConnectWithoutUserInput[]
-    upsert?: userCartUpsertWithWhereUniqueWithoutUserInput | userCartUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: userCartCreateManyUserInputEnvelope
-    set?: userCartWhereUniqueInput | userCartWhereUniqueInput[]
-    disconnect?: userCartWhereUniqueInput | userCartWhereUniqueInput[]
-    delete?: userCartWhereUniqueInput | userCartWhereUniqueInput[]
-    connect?: userCartWhereUniqueInput | userCartWhereUniqueInput[]
-    update?: userCartUpdateWithWhereUniqueWithoutUserInput | userCartUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: userCartUpdateManyWithWhereWithoutUserInput | userCartUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: userCartScalarWhereInput | userCartScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAddressesInput = {
@@ -13886,29 +12431,6 @@ export namespace Prisma {
     update?: XOR<XOR<OrderUpdateToOneWithWhereWithoutShippingDetailsInput, OrderUpdateWithoutShippingDetailsInput>, OrderUncheckedUpdateWithoutShippingDetailsInput>
   }
 
-  export type userCartCreateimgInput = {
-    set: string[]
-  }
-
-  export type UserCreateNestedOneWithoutUserCartsInput = {
-    create?: XOR<UserCreateWithoutUserCartsInput, UserUncheckedCreateWithoutUserCartsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutUserCartsInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type userCartUpdateimgInput = {
-    set?: string[]
-    push?: string | string[]
-  }
-
-  export type UserUpdateOneRequiredWithoutUserCartsNestedInput = {
-    create?: XOR<UserCreateWithoutUserCartsInput, UserUncheckedCreateWithoutUserCartsInput>
-    connectOrCreate?: UserCreateOrConnectWithoutUserCartsInput
-    upsert?: UserUpsertWithoutUserCartsInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserCartsInput, UserUpdateWithoutUserCartsInput>, UserUncheckedUpdateWithoutUserCartsInput>
-  }
-
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -14149,6 +12671,7 @@ export namespace Prisma {
   }
 
   export type CartProductCreateWithoutUserInput = {
+    id: number
     title: string
     gender: string
     description: string
@@ -14163,7 +12686,8 @@ export namespace Prisma {
   }
 
   export type CartProductUncheckedCreateWithoutUserInput = {
-    id?: number
+    cartProductId?: number
+    id: number
     title: string
     gender: string
     description: string
@@ -14222,43 +12746,6 @@ export namespace Prisma {
 
   export type FavoriteCreateManyUserInputEnvelope = {
     data: FavoriteCreateManyUserInput | FavoriteCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type userCartCreateWithoutUserInput = {
-    title: string
-    gender: string
-    description: string
-    category: string
-    price: number
-    size: string
-    color: string
-    rating: number
-    img?: userCartCreateimgInput | string[]
-    quantity: number
-  }
-
-  export type userCartUncheckedCreateWithoutUserInput = {
-    id?: number
-    title: string
-    gender: string
-    description: string
-    category: string
-    price: number
-    size: string
-    color: string
-    rating: number
-    img?: userCartCreateimgInput | string[]
-    quantity: number
-  }
-
-  export type userCartCreateOrConnectWithoutUserInput = {
-    where: userCartWhereUniqueInput
-    create: XOR<userCartCreateWithoutUserInput, userCartUncheckedCreateWithoutUserInput>
-  }
-
-  export type userCartCreateManyUserInputEnvelope = {
-    data: userCartCreateManyUserInput | userCartCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -14340,6 +12827,7 @@ export namespace Prisma {
     AND?: CartProductScalarWhereInput | CartProductScalarWhereInput[]
     OR?: CartProductScalarWhereInput[]
     NOT?: CartProductScalarWhereInput | CartProductScalarWhereInput[]
+    cartProductId?: IntFilter<"CartProduct"> | number
     id?: IntFilter<"CartProduct"> | number
     title?: StringFilter<"CartProduct"> | string
     gender?: StringFilter<"CartProduct"> | string
@@ -14389,40 +12877,6 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Favorite"> | Date | string
   }
 
-  export type userCartUpsertWithWhereUniqueWithoutUserInput = {
-    where: userCartWhereUniqueInput
-    update: XOR<userCartUpdateWithoutUserInput, userCartUncheckedUpdateWithoutUserInput>
-    create: XOR<userCartCreateWithoutUserInput, userCartUncheckedCreateWithoutUserInput>
-  }
-
-  export type userCartUpdateWithWhereUniqueWithoutUserInput = {
-    where: userCartWhereUniqueInput
-    data: XOR<userCartUpdateWithoutUserInput, userCartUncheckedUpdateWithoutUserInput>
-  }
-
-  export type userCartUpdateManyWithWhereWithoutUserInput = {
-    where: userCartScalarWhereInput
-    data: XOR<userCartUpdateManyMutationInput, userCartUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type userCartScalarWhereInput = {
-    AND?: userCartScalarWhereInput | userCartScalarWhereInput[]
-    OR?: userCartScalarWhereInput[]
-    NOT?: userCartScalarWhereInput | userCartScalarWhereInput[]
-    id?: IntFilter<"userCart"> | number
-    title?: StringFilter<"userCart"> | string
-    gender?: StringFilter<"userCart"> | string
-    description?: StringFilter<"userCart"> | string
-    category?: StringFilter<"userCart"> | string
-    price?: IntFilter<"userCart"> | number
-    size?: StringFilter<"userCart"> | string
-    color?: StringFilter<"userCart"> | string
-    rating?: FloatFilter<"userCart"> | number
-    img?: StringNullableListFilter<"userCart">
-    quantity?: IntFilter<"userCart"> | number
-    userId?: IntFilter<"userCart"> | number
-  }
-
   export type UserCreateWithoutAddressesInput = {
     email: string
     password: string
@@ -14433,7 +12887,6 @@ export namespace Prisma {
     orders?: OrderCreateNestedManyWithoutUserInput
     cartItems?: CartProductCreateNestedManyWithoutUserInput
     favoriteItems?: FavoriteCreateNestedManyWithoutUserInput
-    userCarts?: userCartCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAddressesInput = {
@@ -14447,7 +12900,6 @@ export namespace Prisma {
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     cartItems?: CartProductUncheckedCreateNestedManyWithoutUserInput
     favoriteItems?: FavoriteUncheckedCreateNestedManyWithoutUserInput
-    userCarts?: userCartUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAddressesInput = {
@@ -14476,7 +12928,6 @@ export namespace Prisma {
     orders?: OrderUpdateManyWithoutUserNestedInput
     cartItems?: CartProductUpdateManyWithoutUserNestedInput
     favoriteItems?: FavoriteUpdateManyWithoutUserNestedInput
-    userCarts?: userCartUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAddressesInput = {
@@ -14490,7 +12941,6 @@ export namespace Prisma {
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     cartItems?: CartProductUncheckedUpdateManyWithoutUserNestedInput
     favoriteItems?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
-    userCarts?: userCartUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type OrderCreateWithoutCartProductsInput = {
@@ -14533,7 +12983,6 @@ export namespace Prisma {
     addresses?: AddressCreateNestedManyWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
     favoriteItems?: FavoriteCreateNestedManyWithoutUserInput
-    userCarts?: userCartCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCartItemsInput = {
@@ -14547,7 +12996,6 @@ export namespace Prisma {
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     favoriteItems?: FavoriteUncheckedCreateNestedManyWithoutUserInput
-    userCarts?: userCartUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCartItemsInput = {
@@ -14612,7 +13060,6 @@ export namespace Prisma {
     addresses?: AddressUpdateManyWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
     favoriteItems?: FavoriteUpdateManyWithoutUserNestedInput
-    userCarts?: userCartUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCartItemsInput = {
@@ -14626,7 +13073,6 @@ export namespace Prisma {
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     favoriteItems?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
-    userCarts?: userCartUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutFavoriteItemsInput = {
@@ -14639,7 +13085,6 @@ export namespace Prisma {
     addresses?: AddressCreateNestedManyWithoutUserInput
     orders?: OrderCreateNestedManyWithoutUserInput
     cartItems?: CartProductCreateNestedManyWithoutUserInput
-    userCarts?: userCartCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutFavoriteItemsInput = {
@@ -14653,7 +13098,6 @@ export namespace Prisma {
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
     orders?: OrderUncheckedCreateNestedManyWithoutUserInput
     cartItems?: CartProductUncheckedCreateNestedManyWithoutUserInput
-    userCarts?: userCartUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutFavoriteItemsInput = {
@@ -14682,7 +13126,6 @@ export namespace Prisma {
     addresses?: AddressUpdateManyWithoutUserNestedInput
     orders?: OrderUpdateManyWithoutUserNestedInput
     cartItems?: CartProductUpdateManyWithoutUserNestedInput
-    userCarts?: userCartUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutFavoriteItemsInput = {
@@ -14696,7 +13139,6 @@ export namespace Prisma {
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
     orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
     cartItems?: CartProductUncheckedUpdateManyWithoutUserNestedInput
-    userCarts?: userCartUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutOrdersInput = {
@@ -14709,7 +13151,6 @@ export namespace Prisma {
     addresses?: AddressCreateNestedManyWithoutUserInput
     cartItems?: CartProductCreateNestedManyWithoutUserInput
     favoriteItems?: FavoriteCreateNestedManyWithoutUserInput
-    userCarts?: userCartCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutOrdersInput = {
@@ -14723,7 +13164,6 @@ export namespace Prisma {
     addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
     cartItems?: CartProductUncheckedCreateNestedManyWithoutUserInput
     favoriteItems?: FavoriteUncheckedCreateNestedManyWithoutUserInput
-    userCarts?: userCartUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutOrdersInput = {
@@ -14790,6 +13230,7 @@ export namespace Prisma {
   }
 
   export type CartProductCreateWithoutOrderInput = {
+    id: number
     title: string
     gender: string
     description: string
@@ -14804,7 +13245,8 @@ export namespace Prisma {
   }
 
   export type CartProductUncheckedCreateWithoutOrderInput = {
-    id?: number
+    cartProductId?: number
+    id: number
     title: string
     gender: string
     description: string
@@ -14849,7 +13291,6 @@ export namespace Prisma {
     addresses?: AddressUpdateManyWithoutUserNestedInput
     cartItems?: CartProductUpdateManyWithoutUserNestedInput
     favoriteItems?: FavoriteUpdateManyWithoutUserNestedInput
-    userCarts?: userCartUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -14863,7 +13304,6 @@ export namespace Prisma {
     addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
     cartItems?: CartProductUncheckedUpdateManyWithoutUserNestedInput
     favoriteItems?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
-    userCarts?: userCartUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PaymentDetailUpsertWithWhereUniqueWithoutOrderInput = {
@@ -15074,76 +13514,6 @@ export namespace Prisma {
     cartProducts?: CartProductUncheckedUpdateManyWithoutOrderNestedInput
   }
 
-  export type UserCreateWithoutUserCartsInput = {
-    email: string
-    password: string
-    firstName?: string | null
-    lastName?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    addresses?: AddressCreateNestedManyWithoutUserInput
-    orders?: OrderCreateNestedManyWithoutUserInput
-    cartItems?: CartProductCreateNestedManyWithoutUserInput
-    favoriteItems?: FavoriteCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutUserCartsInput = {
-    id?: number
-    email: string
-    password: string
-    firstName?: string | null
-    lastName?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    addresses?: AddressUncheckedCreateNestedManyWithoutUserInput
-    orders?: OrderUncheckedCreateNestedManyWithoutUserInput
-    cartItems?: CartProductUncheckedCreateNestedManyWithoutUserInput
-    favoriteItems?: FavoriteUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutUserCartsInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutUserCartsInput, UserUncheckedCreateWithoutUserCartsInput>
-  }
-
-  export type UserUpsertWithoutUserCartsInput = {
-    update: XOR<UserUpdateWithoutUserCartsInput, UserUncheckedUpdateWithoutUserCartsInput>
-    create: XOR<UserCreateWithoutUserCartsInput, UserUncheckedCreateWithoutUserCartsInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutUserCartsInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutUserCartsInput, UserUncheckedUpdateWithoutUserCartsInput>
-  }
-
-  export type UserUpdateWithoutUserCartsInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    firstName?: NullableStringFieldUpdateOperationsInput | string | null
-    lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    addresses?: AddressUpdateManyWithoutUserNestedInput
-    orders?: OrderUpdateManyWithoutUserNestedInput
-    cartItems?: CartProductUpdateManyWithoutUserNestedInput
-    favoriteItems?: FavoriteUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutUserCartsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    firstName?: NullableStringFieldUpdateOperationsInput | string | null
-    lastName?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    addresses?: AddressUncheckedUpdateManyWithoutUserNestedInput
-    orders?: OrderUncheckedUpdateManyWithoutUserNestedInput
-    cartItems?: CartProductUncheckedUpdateManyWithoutUserNestedInput
-    favoriteItems?: FavoriteUncheckedUpdateManyWithoutUserNestedInput
-  }
-
   export type AddressCreateManyUserInput = {
     id?: number
     street: string
@@ -15163,7 +13533,8 @@ export namespace Prisma {
   }
 
   export type CartProductCreateManyUserInput = {
-    id?: number
+    cartProductId?: number
+    id: number
     title: string
     gender: string
     description: string
@@ -15189,20 +13560,6 @@ export namespace Prisma {
     rating: number
     img?: FavoriteCreateimgInput | string[]
     createdAt?: Date | string
-  }
-
-  export type userCartCreateManyUserInput = {
-    id?: number
-    title: string
-    gender: string
-    description: string
-    category: string
-    price: number
-    size: string
-    color: string
-    rating: number
-    img?: userCartCreateimgInput | string[]
-    quantity: number
   }
 
   export type AddressUpdateWithoutUserInput = {
@@ -15264,6 +13621,7 @@ export namespace Prisma {
   }
 
   export type CartProductUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -15278,6 +13636,7 @@ export namespace Prisma {
   }
 
   export type CartProductUncheckedUpdateWithoutUserInput = {
+    cartProductId?: IntFieldUpdateOperationsInput | number
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
@@ -15293,6 +13652,7 @@ export namespace Prisma {
   }
 
   export type CartProductUncheckedUpdateManyWithoutUserInput = {
+    cartProductId?: IntFieldUpdateOperationsInput | number
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
@@ -15349,47 +13709,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type userCartUpdateWithoutUserInput = {
-    title?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    size?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
-    img?: userCartUpdateimgInput | string[]
-    quantity?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type userCartUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    size?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
-    img?: userCartUpdateimgInput | string[]
-    quantity?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type userCartUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    title?: StringFieldUpdateOperationsInput | string
-    gender?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    category?: StringFieldUpdateOperationsInput | string
-    price?: IntFieldUpdateOperationsInput | number
-    size?: StringFieldUpdateOperationsInput | string
-    color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
-    img?: userCartUpdateimgInput | string[]
-    quantity?: IntFieldUpdateOperationsInput | number
-  }
-
   export type PaymentDetailCreateManyOrderInput = {
     id?: number
     razorpayOrderId: string
@@ -15411,7 +13730,8 @@ export namespace Prisma {
   }
 
   export type CartProductCreateManyOrderInput = {
-    id?: number
+    cartProductId?: number
+    id: number
     title: string
     gender: string
     description: string
@@ -15484,6 +13804,7 @@ export namespace Prisma {
   }
 
   export type CartProductUpdateWithoutOrderInput = {
+    id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
@@ -15498,6 +13819,7 @@ export namespace Prisma {
   }
 
   export type CartProductUncheckedUpdateWithoutOrderInput = {
+    cartProductId?: IntFieldUpdateOperationsInput | number
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
@@ -15513,6 +13835,7 @@ export namespace Prisma {
   }
 
   export type CartProductUncheckedUpdateManyWithoutOrderInput = {
+    cartProductId?: IntFieldUpdateOperationsInput | number
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
@@ -15564,10 +13887,6 @@ export namespace Prisma {
      * @deprecated Use ShippingDetailDefaultArgs instead
      */
     export type ShippingDetailArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = ShippingDetailDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use userCartDefaultArgs instead
-     */
-    export type userCartArgs<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = userCartDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

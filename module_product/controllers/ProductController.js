@@ -127,3 +127,24 @@ exports.deleteFavorite = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.addProduct = async (req, res, next) => {
+  try {
+    if (!Array.isArray(req.body.data)) {
+      return res.status(400).json({ message: "Invalid data format" });
+    }
+
+    for (let i = 0; i < req.body.data.length; i++) {
+      await prisma.product.create({
+        data: {
+          ...req.body.data[i],
+        },
+      });
+    }
+
+    return res.status(201).json({ message: "Products created successfully" });
+  } catch (error) {
+    console.log("Error creating products", error);
+    next(error);
+  }
+};

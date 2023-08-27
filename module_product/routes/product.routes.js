@@ -20,5 +20,9 @@ router.get("/getsingleproduct/:id", productController.getSingleProduct);
 //ADD TO CART
 router.post("/add/:id", productController.addToFavorite);
 
+//CREATE PRODUCT
+router.post("/add", productController.addProduct);
+
+
 module.exports = router;
 

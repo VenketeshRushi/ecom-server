@@ -154,6 +154,7 @@ exports.Prisma.ProductScalarFieldEnum = {
 };
 
 exports.Prisma.CartProductScalarFieldEnum = {
+  cartProductId: 'cartProductId',
   id: 'id',
   title: 'title',
   gender: 'gender',
@@ -217,21 +218,6 @@ exports.Prisma.ShippingDetailScalarFieldEnum = {
   orderId: 'orderId'
 };
 
-exports.Prisma.UserCartScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  gender: 'gender',
-  description: 'description',
-  category: 'category',
-  price: 'price',
-  size: 'size',
-  color: 'color',
-  rating: 'rating',
-  img: 'img',
-  quantity: 'quantity',
-  userId: 'userId'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -256,8 +242,7 @@ exports.Prisma.ModelName = {
   Favorite: 'Favorite',
   Order: 'Order',
   PaymentDetail: 'PaymentDetail',
-  ShippingDetail: 'ShippingDetail',
-  userCart: 'userCart'
+  ShippingDetail: 'ShippingDetail'
 };
 
 /**
