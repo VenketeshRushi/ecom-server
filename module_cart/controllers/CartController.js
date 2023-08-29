@@ -10,7 +10,6 @@ exports.addToCart = async (req, res, next) => {
         id: data.id,
       },
     });
-    console.log("existingCartItem", existingCartItem);
 
     if (operation === "add") {
       if (existingCartItem) {
@@ -25,11 +24,16 @@ exports.addToCart = async (req, res, next) => {
           },
         });
 
-        console.log("updatedCartItem", updatedCartItem);
+        const products = await prisma.cartProduct.findMany({
+          where: {
+            user: { id: req.user.id },
+          },
+        });
 
-        return res
-          .status(200)
-          .json({ message: "Product quantity updated in cart" });
+        return res.status(200).json({
+          message: "Product quantity updated in cart",
+          products: products,
+        });
       } else {
         // Cart item doesn't exist, create new
         const cartItem = await prisma.cartProduct.create({
@@ -41,11 +45,17 @@ exports.addToCart = async (req, res, next) => {
           },
         });
 
-        console.log("created cart item", cartItem);
+        const products = await prisma.cartProduct.findMany({
+          where: {
+            user: { id: req.user.id },
+          },
+        });
 
-        return res.status(200).json({ message: "Product added to cart" });
+        return res
+          .status(200)
+          .json({ message: "Product added to cart", products: products });
       }
-    } else if (operation === "remove") {
+    } else if (operation === "reduce") {
       if (existingCartItem && existingCartItem.quantity > 1) {
         // Cart item exists and quantity > 1, update quantity
         const updatedCartItem = await prisma.cartProduct.update({
@@ -58,11 +68,16 @@ exports.addToCart = async (req, res, next) => {
           },
         });
 
-        console.log("updatedCartItem", updatedCartItem);
+        const products = await prisma.cartProduct.findMany({
+          where: {
+            user: { id: req.user.id },
+          },
+        });
 
-        return res
-          .status(200)
-          .json({ message: "Product quantity updated in cart" });
+        return res.status(200).json({
+          message: "Product quantity updated in cart",
+          products: products,
+        });
       } else if (existingCartItem && existingCartItem.quantity === 1) {
         // Cart item exists and quantity is 1, delete it
         await prisma.cartProduct.delete({
@@ -72,7 +87,15 @@ exports.addToCart = async (req, res, next) => {
           },
         });
 
-        return res.status(200).json({ message: "Product removed from cart" });
+        const products = await prisma.cartProduct.findMany({
+          where: {
+            user: { id: req.user.id },
+          },
+        });
+
+        return res
+          .status(200)
+          .json({ message: "Product removed from cart", products: products });
       } else {
         // Cart item doesn't exist, nothing to remove
         return res.status(200).json({ message: "Product not found in cart" });
@@ -86,7 +109,6 @@ exports.addToCart = async (req, res, next) => {
 };
 
 exports.getAllCartProducts = async (req, res, next) => {
-  console.log("in")
   try {
     const products = await prisma.cartProduct.findMany({
       where: {
@@ -95,6 +117,32 @@ exports.getAllCartProducts = async (req, res, next) => {
     });
 
     return res.status(200).json(products);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.deleteCartProduct = async (req, res, next) => {
+  try {
+    const cartProductIdToDelete = +req.params.id;
+
+    const deletedProduct = await prisma.cartProduct.delete({
+      where: {
+        id: cartProductIdToDelete,
+        userId: req.user.id,
+      },
+    });
+
+    const products = await prisma.cartProduct.findMany({
+      where: {
+        userId: req.user.id,
+      },
+    });
+
+    return res.status(200).json({
+      message: "Product deleted successfully",
+      products: products,
+    });
   } catch (error) {
     next(error);
   }

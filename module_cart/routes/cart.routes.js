@@ -14,6 +14,7 @@ router.post("/addtocart", cartController.addToCart);
 // GET PRODUCTS FROM CART
 router.get("/getcart", cartController.getAllCartProducts);
 
+// GET PRODUCTS FROM CART
+router.delete("/delete/:id", cartController.deleteCartProduct);
 
 module.exports = router;
-

@@ -144,7 +144,6 @@ exports.addProduct = async (req, res, next) => {
 
     return res.status(201).json({ message: "Products created successfully" });
   } catch (error) {
-    console.log("Error creating products", error);
     next(error);
   }
 };
