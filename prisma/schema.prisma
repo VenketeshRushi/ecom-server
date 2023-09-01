@@ -21,7 +21,7 @@ model User {
   updatedAt DateTime @updatedAt
   addresses Address[]
   orders    Order[]
-  cartItems CartProduct[]
+  CartProducts CartProduct[]
   favoriteItems Favorite[]
 }
 

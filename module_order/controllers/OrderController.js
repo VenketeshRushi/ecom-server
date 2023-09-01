@@ -37,6 +37,7 @@ exports.createOrder = async (req, res, next) => {
         },
         cartProducts: {
           create: cartProducts.map((product) => ({
+            id: product.id,
             title: product.title,
             gender: product.gender,
             description: product.description,
