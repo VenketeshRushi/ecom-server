@@ -147,3 +147,44 @@ exports.addProduct = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.filterProducts = async (req, res, next) => {
+  try {
+    const filterData = req.body.data;
+    // console.log("req.body.data", req.body.data);
+
+    const where = {};
+
+    for (const category in filterData) {
+      const subCategoryConditions = [];
+
+      for (const subCategory in filterData[category]) {
+        if (filterData[category][subCategory] === true) {
+          subCategoryConditions.push(subCategory);
+        }
+      }
+
+      if (subCategoryConditions.length > 0) {
+        where[category.toLowerCase()] = {
+          in: subCategoryConditions,
+        };
+      }
+    }
+
+    // console.log("where", where);
+
+    const filteredProducts = await prisma.product.findMany({
+      where: where,
+    });
+
+    return res.status(200).json({
+      message: "Products filtered successfully",
+      products: filteredProducts,
+    });
+  } catch (error) {
+    console.error("Error:", error);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
+};

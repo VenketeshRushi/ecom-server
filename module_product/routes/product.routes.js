@@ -23,6 +23,7 @@ router.post("/add/:id", productController.addToFavorite);
 //CREATE PRODUCT
 router.post("/add", productController.addProduct);
 
+//FILTER PRODUCTS
+router.post("/getfilterdproducts", productController.filterProducts);
 
 module.exports = router;
-
