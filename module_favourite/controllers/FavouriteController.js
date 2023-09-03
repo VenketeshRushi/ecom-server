@@ -1,21 +1,5 @@
 const prisma = require("../../db.server");
 
-// exports.addToFavorite = async (req, res, next) => {
-//   try {
-//     const favorite = await prisma.favorite.create({
-//       data: {
-//         ...req.body,
-//         user: { connect: { id: req.user.id } },
-//       },
-//     });
-
-//     return res.status(201).json(favorite);
-//   } catch (error) {
-//     console.log("error", error);
-//     next(error);
-//   }
-// };
-
 exports.addToFavorite = async (req, res, next) => {
   try {
     const existingFavorite = await prisma.favorite.findFirst({
@@ -29,9 +13,15 @@ exports.addToFavorite = async (req, res, next) => {
         .status(200)
         .json({ message: "Product Already Present Favorite" });
     } else {
+      delete req.body.cartProductId;
+      delete req.body.quantity;
+      delete req.body.orderId;
+      delete req.body.userId;
+
       const newFavorite = await prisma.favorite.create({
         data: {
           ...req.body,
+          size: [req.body.size],
           user: { connect: { id: req.user.id } },
         },
       });

@@ -4,29 +4,33 @@ exports.addToCart = async (req, res, next) => {
   const { operation, data } = req.body;
 
   try {
-    const existingCartItem = await prisma.cartProduct.findUnique({
+    const existingCartItem = await prisma.cartProduct.findMany({
       where: {
         userId: req.user.id,
         id: data.id,
+        order: null,
       },
     });
 
     if (operation === "add") {
-      if (existingCartItem) {
+      if (existingCartItem.length > 0) {
         // Cart item already exists, update quantity
         const updatedCartItem = await prisma.cartProduct.update({
           where: {
             userId: req.user.id,
+            cartProductId: data.cartProductId,
             id: data.id,
+            orderId: null,
           },
           data: {
-            quantity: existingCartItem.quantity + 1,
+            quantity: existingCartItem[0].quantity + 1,
           },
         });
 
         const products = await prisma.cartProduct.findMany({
           where: {
             user: { id: req.user.id },
+            orderId: null,
           },
         });
 
@@ -47,7 +51,8 @@ exports.addToCart = async (req, res, next) => {
 
         const products = await prisma.cartProduct.findMany({
           where: {
-            user: { id: req.user.id },
+            userId: req.user.id,
+            orderId: null,
           },
         });
 
@@ -56,21 +61,25 @@ exports.addToCart = async (req, res, next) => {
           .json({ message: "Product added to cart", products: products });
       }
     } else if (operation === "reduce") {
-      if (existingCartItem && existingCartItem.quantity > 1) {
+      if (existingCartItem.length > 0 && existingCartItem[0].quantity > 1) {
         // Cart item exists and quantity > 1, update quantity
         const updatedCartItem = await prisma.cartProduct.update({
           where: {
             userId: req.user.id,
+            cartProductId: data.cartProductId,
             id: data.id,
+            orderId: null,
           },
           data: {
-            quantity: existingCartItem.quantity - 1,
+            quantity: existingCartItem[0].quantity - 1,
           },
         });
 
+
         const products = await prisma.cartProduct.findMany({
           where: {
-            user: { id: req.user.id },
+            userId: req.user.id,
+            orderId: null,
           },
         });
 
@@ -78,18 +87,24 @@ exports.addToCart = async (req, res, next) => {
           message: "Product quantity updated in cart",
           products: products,
         });
-      } else if (existingCartItem && existingCartItem.quantity === 1) {
+      } else if (
+        existingCartItem.length > 0 &&
+        existingCartItem[0].quantity === 1
+      ) {
         // Cart item exists and quantity is 1, delete it
-        await prisma.cartProduct.delete({
+        let deleteCartProduct = await prisma.cartProduct.delete({
           where: {
             userId: req.user.id,
+            cartProductId: data.cartProductId,
             id: data.id,
+            orderId: null,
           },
         });
 
         const products = await prisma.cartProduct.findMany({
           where: {
-            user: { id: req.user.id },
+            userId: req.user.id,
+            orderId: null,
           },
         });
 
@@ -112,7 +127,8 @@ exports.getAllCartProducts = async (req, res, next) => {
   try {
     const products = await prisma.cartProduct.findMany({
       where: {
-        user: { id: req.user.id },
+        userId: req.user.id,
+        orderId: null,
       },
     });
 
@@ -124,14 +140,19 @@ exports.getAllCartProducts = async (req, res, next) => {
 
 exports.deleteCartProduct = async (req, res, next) => {
   try {
-    const cartProductIdToDelete = +req.params.id;
+    const cartProductIdToDelete = +req.params.cartProductId;
+    const id = +req.params.id;
+
 
     const deletedProduct = await prisma.cartProduct.delete({
       where: {
-        id: cartProductIdToDelete,
+        id: id,
+        cartProductId: cartProductIdToDelete,
         userId: req.user.id,
+        orderId: null,
       },
     });
+
 
     const products = await prisma.cartProduct.findMany({
       where: {

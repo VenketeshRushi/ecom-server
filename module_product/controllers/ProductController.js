@@ -165,13 +165,19 @@ exports.filterProducts = async (req, res, next) => {
       }
 
       if (subCategoryConditions.length > 0) {
-        where[category.toLowerCase()] = {
-          in: subCategoryConditions,
-        };
+        if (category.toLowerCase() === "size") {
+          where[category.toLowerCase()] = {
+            equals: subCategoryConditions,
+          };
+        } else {
+          where[category.toLowerCase()] = {
+            in: subCategoryConditions,
+          };
+        }
       }
     }
 
-    // console.log("where", where);
+    console.log("where", where);
 
     const filteredProducts = await prisma.product.findMany({
       where: where,
@@ -184,7 +190,8 @@ exports.filterProducts = async (req, res, next) => {
   } catch (error) {
     console.error("Error:", error);
     return res.status(500).json({
-      message: "Internal server error",
+      message:
+        "Products not found! Change the filter or click on the reset button to see products.",
     });
   }
 };
