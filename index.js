@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 
-const prisma = require("./db.server");
-
 const AuthApiRoutes = require("./module_auth/routes/auth.routes");
 const ProductApiRoutes = require("./module_product/routes/product.routes");
 const CartApiRoutes = require("./module_cart/routes/cart.routes");

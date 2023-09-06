@@ -1,10 +1,20 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
+require("../controllers/passport");
+const session = require("express-session");
 
 const handleErrors = require("../middleware/handleErrors");
-const authorization = require("../middleware/authorization");
 const UserController = require("../controllers/UserController");
+
+router.use(
+  session({
+    secret: "mysecret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
 
 router.use(passport.initialize());
 router.use(passport.session());
@@ -27,32 +37,21 @@ router.post("/resetpassword", UserController.resetPassword);
 // UPDATE USER PROFILE
 // router.put("/profile", authorization, UserController.updateProfile);
 
-// router.get(
-//   "/auth/google",
-//   passport.authenticate("google", { scope: ["profile", "email"] })
-// );
-
-// router.get(
-//   "/auth/google/callback",
-//   passport.authenticate("google", { failureRedirect: "/fail" }),
-//   function (req, res) {
-//     res.redirect(`http://localhost:5173/ecom-client`);
-//   }
-// );
-
-// router.get("/fail", (req, res) => {
-//   res.redirect(`http://localhost:5173/ecom-client/login`);
-// });
-
-router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+router.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "email"] })
+);
 
 router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/login" }),
+  passport.authenticate("google", { failureRedirect: "/fail" }),
   function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect("/");
+    res.redirect(`http://localhost:5173/ecom-client`);
   }
 );
+
+router.get("/fail", (req, res) => {
+  res.redirect(`http://localhost:5173/ecom-client/login`);
+});
 
 module.exports = router;
