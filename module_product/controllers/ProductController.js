@@ -2,7 +2,28 @@ const prisma = require("../../db.server");
 
 exports.getAllProducts = async (req, res, next) => {
   try {
-    const products = await prisma.product.findMany();
+    const products = await prisma.product.findMany({});
+    return res.status(200).json(products);
+  } catch (error) {
+    next(error);
+  }
+};
+exports.getAllProducts = async (req, res, next) => {
+  try {
+    const { pagename } = req.query;
+    let products;
+
+    if (pagename) {
+      products = await prisma.product.findMany({
+        where: {
+          gender:
+            pagename.charAt(0).toUpperCase() + pagename.slice(1).toLowerCase(),
+        },
+      });
+    } else {
+      products = await prisma.product.findMany({});
+    }
+
     return res.status(200).json(products);
   } catch (error) {
     next(error);
