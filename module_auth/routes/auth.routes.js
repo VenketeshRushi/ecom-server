@@ -46,7 +46,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/fail" }),
   function (req, res) {
-    res.redirect(`https://venketeshrushi.github.io/ecom-client/auth/google/callback`);
+    res.redirect(`https://venketeshrushi.github.io/ecom-client/`);
   }
 );
 
