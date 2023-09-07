@@ -46,12 +46,12 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/fail" }),
   function (req, res) {
-    res.redirect(`http://localhost:5173/ecom-client`);
+    res.redirect(`https://venketeshrushi.github.io/ecom-client/auth/google/callback`);
   }
 );
 
 router.get("/fail", (req, res) => {
-  res.redirect(`http://localhost:5173/ecom-client/login`);
+  res.redirect(`https://venketeshrushi.github.io/ecom-client/login`);
 });
 
 module.exports = router;
