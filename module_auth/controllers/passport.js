@@ -8,9 +8,9 @@ passport.use(
   new GoogleStrategy(
     {
       clientID:
-        "137697778338-lvq6h243b9kjq8b5c6dbm05vggspbukv.apps.googleusercontent.com",
-      clientSecret: "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",
-      callbackURL: "http://localhost:8000/auth/google/callback",
+        "533218171501-o36j7gb96ra5dlqljnudfbcm4abflcb3.apps.googleusercontent.com",
+      clientSecret: "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",
+      callbackURL: "https://nike-clone-tcmw.onrender.com/auth/google/callback",
       scope: ["profile", "email"],
     },
     async function (accessToken, refreshToken, profile, done) {
