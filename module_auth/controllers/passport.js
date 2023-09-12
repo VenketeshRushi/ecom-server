@@ -42,7 +42,7 @@ passport.use(
 
         // Create a JWT token for the new user
         const token = jwt.sign({ user: newUser }, "1234");
-
+        req.user = { user: newUser, token };
         return done(null, { user: newUser, token });
       } catch (error) {
         return done(error);
