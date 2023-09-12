@@ -28,7 +28,7 @@ passport.use(
         if (existingUser) {
           // User already exists
           const token = jwt.sign({ user: existingUser }, "1234");
-          req.user = { user: existingUser, token: token };
+          // req.user = { user: existingUser, token: token };
           return done(null, { user: existingUser, token: token });
         }
 
@@ -46,7 +46,7 @@ passport.use(
         // Create a JWT token for the new user
         const token = jwt.sign({ user: newUser }, "1234");
 
-        req.user = { user: newUser, token: token };
+        // req.user = { user: newUser, token: token };
 
         return done(null, { user: newUser, token: token });
       } catch (error) {
