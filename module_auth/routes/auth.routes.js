@@ -9,7 +9,7 @@ const UserController = require("../controllers/UserController");
 
 router.use(
   session({
-    secret: "mysecret",
+    secret: "token",
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false },
@@ -46,6 +46,9 @@ router.get(
   "/google/callback",
   passport.authenticate("google", { failureRedirect: "/fail" }),
   function (req, res) {
+    const { user, token } = req.user;
+    console.log("info",user,token);
+    
     res.redirect(`http://localhost:5173/ecom-client`);
   }
 );
