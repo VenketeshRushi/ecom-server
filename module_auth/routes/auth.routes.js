@@ -44,7 +44,7 @@ router.get(
 
 router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: "/fail" }),
+  passport.authenticate("google", { failureRedirect: "auth/fail" }),
   function (req, res) {
     const { user, token } = req.user;
     console.log("info", user, token, req.user);
@@ -55,6 +55,21 @@ router.get(
 
 router.get("/fail", (req, res) => {
   res.redirect(`http://localhost:5173/ecom-client/login`);
+});
+
+router.get("/login/success", (req, res) => {
+  const { user, token } = req.user;
+  console.log("info", user, token, req.user);
+  if (req.user) {
+    res.status(200).json({
+      error: false,
+      message: "Successfully Loged In",
+      user: user,
+      token: token,
+    });
+  } else {
+    res.status(403).json({ error: true, message: "Not Authorized" });
+  }
 });
 
 module.exports = router;
