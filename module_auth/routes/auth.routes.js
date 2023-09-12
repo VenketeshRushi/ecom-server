@@ -47,8 +47,8 @@ router.get(
   passport.authenticate("google", { failureRedirect: "/fail" }),
   function (req, res) {
     const { user, token } = req.user;
-    console.log("info",user,token);
-    
+    console.log("info", user, token, req.user);
+
     res.redirect(`http://localhost:5173/ecom-client`);
   }
 );
