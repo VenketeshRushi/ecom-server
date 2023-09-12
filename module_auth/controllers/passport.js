@@ -27,23 +27,28 @@ passport.use(
 
         if (existingUser) {
           // User already exists
-          return done(null, existingUser);
+          const token = jwt.sign({ user: newUser }, "1234");
+          req.user = { user: newUser, token: token };
+          return done(null, { user: existingUser, token: token });
         }
 
         // User doesn't exist, create a new one
         // const hashedPassword = await bcrypt.hash("some_password", 10);
         const newUser = await prisma.user.create({
           data: {
-            firstName: displayName,
+            firstName: displayName.split(" ")[0],
             email,
+            lastName: displayName.split(" ")[1],
             // password: hashedPassword,
           },
         });
 
         // Create a JWT token for the new user
         const token = jwt.sign({ user: newUser }, "1234");
-        req.user = { user: newUser, token };
-        return done(null, { user: newUser, token });
+
+        req.user = { user: newUser, token: token };
+
+        return done(null, { user: newUser, token: token });
       } catch (error) {
         return done(error);
       }
