@@ -101,7 +101,7 @@ router.get(
     successRedirect: "http://localhost:5173/ecom-client",
     failureRedirect: "/login/failed",
   }),
-  () => {
+  (req, res) => {
     console.log("req.user", req.user);
   }
 );
