@@ -75,6 +75,7 @@ router.post("/resetpassword", UserController.resetPassword);
 router.get("/login/success", (req, res) => {
   if (req.user) {
     console.log("req.user", req.user);
+    res.cookie("locale", JSON.stringify());
     res.status(200).json({
       error: false,
       message: "Successfully Loged In",
@@ -99,7 +100,10 @@ router.get(
   passport.authenticate("google", {
     successRedirect: "http://localhost:5173/ecom-client",
     failureRedirect: "/login/failed",
-  })
+  }),
+  () => {
+    console.log("req.user", req.user);
+  }
 );
 
 router.get("/logout", (req, res) => {
