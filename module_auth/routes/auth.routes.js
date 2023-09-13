@@ -37,39 +37,74 @@ router.post("/resetpassword", UserController.resetPassword);
 // UPDATE USER PROFILE
 // router.put("/profile", authorization, UserController.updateProfile);
 
-router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
+// router.get(
+//   "/google",
+//   passport.authenticate("google", { scope: ["profile", "email"] })
+// );
 
-router.get(
-  "/google/callback",
-  passport.authenticate("google", { failureRedirect: "auth/fail" }),
-  function (req, res) {
-    const { user, token } = req.user;
-    console.log("info", user, token, req.user);
+// router.get(
+//   "/google/callback",
+//   passport.authenticate("google", { failureRedirect: "auth/fail" }),
+//   function (req, res) {
+//     const { user, token } = req.user;
+//     console.log("info", user, token, req.user);
 
-    res.redirect(`http://localhost:5173/ecom-client`);
-  }
-);
+//     res.redirect(`http://localhost:5173/ecom-client`);
+//   }
+// );
 
-router.get("/fail", (req, res) => {
-  res.redirect(`http://localhost:5173/ecom-client/login`);
-});
+// router.get("/fail", (req, res) => {
+//   res.redirect(`http://localhost:5173/ecom-client/login`);
+// });
+
+// router.get("/login/success", (req, res) => {
+//   const { user, token } = req.user;
+//   console.log("info", user, token, req.user);
+//   if (req.user) {
+//     res.status(200).json({
+//       error: false,
+//       message: "Successfully Loged In",
+//       user: user,
+//       token: token,
+//     });
+//   } else {
+//     res.status(403).json({ error: true, message: "Not Authorized" });
+//   }
+// });
 
 router.get("/login/success", (req, res) => {
-  const { user, token } = req.user;
-  console.log("info", user, token, req.user);
   if (req.user) {
+    console.log("req.user", req.user);
     res.status(200).json({
       error: false,
       message: "Successfully Loged In",
-      user: user,
-      token: token,
+      user: req.user,
     });
   } else {
     res.status(403).json({ error: true, message: "Not Authorized" });
   }
+});
+
+router.get("/login/failed", (req, res) => {
+  res.status(401).json({
+    error: true,
+    message: "Log in failure",
+  });
+});
+
+router.get("/google", passport.authenticate("google", ["profile", "email"]));
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: "http://localhost:5173/ecom-client",
+    failureRedirect: "/login/failed",
+  })
+);
+
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect(process.env.CLIENT_URL);
 });
 
 module.exports = router;
