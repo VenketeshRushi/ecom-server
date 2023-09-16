@@ -13,7 +13,7 @@ exports.getAllProducts = async (req, res, next) => {
     const { pagename } = req.query;
     let products;
 
-    if (pagename) {
+    if (pagename && pagename!=="sale") {
       products = await prisma.product.findMany({
         where: {
           gender:
@@ -198,7 +198,7 @@ exports.filterProducts = async (req, res, next) => {
       }
     }
 
-    console.log("where", where);
+    // console.log("where", where);
 
     const filteredProducts = await prisma.product.findMany({
       where: where,
