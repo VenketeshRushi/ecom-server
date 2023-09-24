@@ -93,14 +93,14 @@ passport.use(
       scope: ["profile", "email"],
     },
     function (accessToken, refreshToken, profile, callback) {
-      console.log(
-        "accessToken",
-        accessToken,
-        "refreshToken",
-        refreshToken,
-        "Profile",
-        profile
-      );
+      // console.log(
+      //   "accessToken",
+      //   accessToken,
+      //   "refreshToken",
+      //   refreshToken,
+      //   "Profile",
+      //   profile
+      // );
       callback(null, profile);
     }
   )

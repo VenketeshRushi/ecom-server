@@ -23,6 +23,7 @@ model User {
   orders    Order[]
   CartProducts CartProduct[]
   favoriteItems Favorite[]
+  isAdmin   Boolean @default(false)
 }
 
 model Address {

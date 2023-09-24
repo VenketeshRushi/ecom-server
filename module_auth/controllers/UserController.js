@@ -18,8 +18,16 @@ const transport = nodemailer.createTransport({
 exports.login = async (req, res, next) => {
   const { email, password } = req.body;
 
+  const isAdmin = email.includes(".admin") || email.includes("admin");
+
   try {
-    const user = await prisma.user.findUnique({ where: { email } });
+    const user = await prisma.user.findUnique({
+      where: {
+        email: email,
+        isAdmin: isAdmin,
+      },
+    });
+    
 
     if (!user) {
       return res.status(401).json({ message: "Email Address Not Found" });
@@ -41,6 +49,7 @@ exports.login = async (req, res, next) => {
 
 exports.signup = async (req, res, next) => {
   const { name, email, password } = req.body;
+  const isAdmin = email.includes(".admin") || email.includes("admin");
 
   let firstName = name.trim().split(" ")[0];
   let lastName = name.trim().split(" ")[1];
@@ -54,7 +63,7 @@ exports.signup = async (req, res, next) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await prisma.user.create({
-      data: { firstName, lastName, email, password: hashedPassword },
+      data: { firstName, lastName, email, password: hashedPassword, isAdmin },
     });
 
     const token = jwt.sign({ user }, "your-secret-key");
