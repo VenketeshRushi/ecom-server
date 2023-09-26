@@ -6,6 +6,7 @@ const ProductApiRoutes = require("./module_product/routes/product.routes");
 const CartApiRoutes = require("./module_cart/routes/cart.routes");
 const FavouriteApiRoutes = require("./module_favourite/routes/favourite.routes");
 const OrderApiRoutes = require("./module_order/routes/order.routes");
+const AdminOrderApiRoutes = require("./module_admin/routes/admin.routes");
 const paymentController = require("./payment.controller");
 
 const app = express();
@@ -18,6 +19,9 @@ app.use("/product", ProductApiRoutes);
 app.use("/cart", CartApiRoutes);
 app.use("/favourite", FavouriteApiRoutes);
 app.use("/order", OrderApiRoutes);
+
+// Admin routes
+app.use("/admin", AdminOrderApiRoutes);
 
 //Razorpay payment
 app.use("/api/payment", paymentController);
