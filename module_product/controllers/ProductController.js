@@ -13,7 +13,7 @@ exports.getAllProducts = async (req, res, next) => {
     const { pagename } = req.query;
     let products;
 
-    if (pagename && pagename!=="sale") {
+    if (pagename && pagename !== "sale") {
       products = await prisma.product.findMany({
         where: {
           gender:
@@ -214,5 +214,23 @@ exports.filterProducts = async (req, res, next) => {
       message:
         "Products not found! Change the filter or click on the reset button to see products.",
     });
+  }
+};
+
+exports.getSearchedProducts = async (req, res, next) => {
+  const { query } = req.query;
+  try {
+    const products = await prisma.product.findMany({
+      where: {
+        title: {
+          contains: query.toLowerCase(),
+          mode: "insensitive",
+        },
+      },
+    });
+
+    return res.status(200).json(products);
+  } catch (error) {
+    next(error);
   }
 };

@@ -26,4 +26,7 @@ router.post("/add", productController.addProduct);
 //FILTER PRODUCTS
 router.post("/getfilterdproducts", productController.filterProducts);
 
+//SEARCHED PRODUCTS
+router.get("/getsearchedproduct", productController.getSearchedProducts);
+
 module.exports = router;
