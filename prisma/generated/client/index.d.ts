@@ -3614,13 +3614,11 @@ export namespace Prisma {
   export type ProductAvgAggregateOutputType = {
     id: number | null
     price: number | null
-    rating: number | null
   }
 
   export type ProductSumAggregateOutputType = {
     id: number | null
     price: number | null
-    rating: number | null
   }
 
   export type ProductMinAggregateOutputType = {
@@ -3631,7 +3629,6 @@ export namespace Prisma {
     category: string | null
     price: number | null
     color: string | null
-    rating: number | null
   }
 
   export type ProductMaxAggregateOutputType = {
@@ -3642,7 +3639,6 @@ export namespace Prisma {
     category: string | null
     price: number | null
     color: string | null
-    rating: number | null
   }
 
   export type ProductCountAggregateOutputType = {
@@ -3654,7 +3650,7 @@ export namespace Prisma {
     price: number
     size: number
     color: number
-    rating: number
+    ratings: number
     img: number
     _all: number
   }
@@ -3663,13 +3659,11 @@ export namespace Prisma {
   export type ProductAvgAggregateInputType = {
     id?: true
     price?: true
-    rating?: true
   }
 
   export type ProductSumAggregateInputType = {
     id?: true
     price?: true
-    rating?: true
   }
 
   export type ProductMinAggregateInputType = {
@@ -3680,7 +3674,6 @@ export namespace Prisma {
     category?: true
     price?: true
     color?: true
-    rating?: true
   }
 
   export type ProductMaxAggregateInputType = {
@@ -3691,7 +3684,6 @@ export namespace Prisma {
     category?: true
     price?: true
     color?: true
-    rating?: true
   }
 
   export type ProductCountAggregateInputType = {
@@ -3703,7 +3695,7 @@ export namespace Prisma {
     price?: true
     size?: true
     color?: true
-    rating?: true
+    ratings?: true
     img?: true
     _all?: true
   }
@@ -3803,7 +3795,7 @@ export namespace Prisma {
     price: number
     size: string[]
     color: string
-    rating: number
+    ratings: JsonValue
     img: string[]
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
@@ -3835,7 +3827,7 @@ export namespace Prisma {
     price?: boolean
     size?: boolean
     color?: boolean
-    rating?: boolean
+    ratings?: boolean
     img?: boolean
   }, ExtArgs["result"]["product"]>
 
@@ -3848,7 +3840,7 @@ export namespace Prisma {
     price?: boolean
     size?: boolean
     color?: boolean
-    rating?: boolean
+    ratings?: boolean
     img?: boolean
   }
 
@@ -3865,7 +3857,7 @@ export namespace Prisma {
       price: number
       size: string[]
       color: string
-      rating: number
+      ratings: Prisma.JsonValue
       img: string[]
     }, ExtArgs["result"]["product"]>
     composites: {}
@@ -4269,7 +4261,7 @@ export namespace Prisma {
     readonly price: FieldRef<"Product", 'Int'>
     readonly size: FieldRef<"Product", 'String[]'>
     readonly color: FieldRef<"Product", 'String'>
-    readonly rating: FieldRef<"Product", 'Float'>
+    readonly ratings: FieldRef<"Product", 'Json'>
     readonly img: FieldRef<"Product", 'String[]'>
   }
     
@@ -9831,7 +9823,7 @@ export namespace Prisma {
     price: 'price',
     size: 'size',
     color: 'color',
-    rating: 'rating',
+    ratings: 'ratings',
     img: 'img'
   };
 
@@ -9926,6 +9918,13 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -9940,6 +9939,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -9993,6 +10001,13 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
@@ -10168,7 +10183,7 @@ export namespace Prisma {
     price?: IntFilter<"Product"> | number
     size?: StringNullableListFilter<"Product">
     color?: StringFilter<"Product"> | string
-    rating?: FloatFilter<"Product"> | number
+    ratings?: JsonFilter<"Product">
     img?: StringNullableListFilter<"Product">
   }
 
@@ -10181,7 +10196,7 @@ export namespace Prisma {
     price?: SortOrder
     size?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
+    ratings?: SortOrder
     img?: SortOrder
   }
 
@@ -10197,7 +10212,7 @@ export namespace Prisma {
     price?: IntFilter<"Product"> | number
     size?: StringNullableListFilter<"Product">
     color?: StringFilter<"Product"> | string
-    rating?: FloatFilter<"Product"> | number
+    ratings?: JsonFilter<"Product">
     img?: StringNullableListFilter<"Product">
   }, "id">
 
@@ -10210,7 +10225,7 @@ export namespace Prisma {
     price?: SortOrder
     size?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
+    ratings?: SortOrder
     img?: SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
@@ -10231,7 +10246,7 @@ export namespace Prisma {
     price?: IntWithAggregatesFilter<"Product"> | number
     size?: StringNullableListFilter<"Product">
     color?: StringWithAggregatesFilter<"Product"> | string
-    rating?: FloatWithAggregatesFilter<"Product"> | number
+    ratings?: JsonWithAggregatesFilter<"Product">
     img?: StringNullableListFilter<"Product">
   }
 
@@ -10814,7 +10829,7 @@ export namespace Prisma {
     price: number
     size?: ProductCreatesizeInput | string[]
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: ProductCreateimgInput | string[]
   }
 
@@ -10827,7 +10842,7 @@ export namespace Prisma {
     price: number
     size?: ProductCreatesizeInput | string[]
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: ProductCreateimgInput | string[]
   }
 
@@ -10839,7 +10854,7 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     size?: ProductUpdatesizeInput | string[]
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: ProductUpdateimgInput | string[]
   }
 
@@ -10852,7 +10867,7 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     size?: ProductUpdatesizeInput | string[]
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: ProductUpdateimgInput | string[]
   }
 
@@ -10865,7 +10880,7 @@ export namespace Prisma {
     price: number
     size?: ProductCreatesizeInput | string[]
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: ProductCreateimgInput | string[]
   }
 
@@ -10877,7 +10892,7 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     size?: ProductUpdatesizeInput | string[]
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: ProductUpdateimgInput | string[]
   }
 
@@ -10890,7 +10905,7 @@ export namespace Prisma {
     price?: IntFieldUpdateOperationsInput | number
     size?: ProductUpdatesizeInput | string[]
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: ProductUpdateimgInput | string[]
   }
 
@@ -11609,16 +11624,27 @@ export namespace Prisma {
     hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
     isEmpty?: boolean
   }
+  export type JsonFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type FloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type ProductCountOrderByAggregateInput = {
@@ -11630,14 +11656,13 @@ export namespace Prisma {
     price?: SortOrder
     size?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
+    ratings?: SortOrder
     img?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
     id?: SortOrder
     price?: SortOrder
-    rating?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
@@ -11648,7 +11673,6 @@ export namespace Prisma {
     category?: SortOrder
     price?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
   }
 
   export type ProductMinOrderByAggregateInput = {
@@ -11659,16 +11683,39 @@ export namespace Prisma {
     category?: SortOrder
     price?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
     id?: SortOrder
     price?: SortOrder
-    rating?: SortOrder
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
   }
 
-  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+  export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
     notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -11676,12 +11723,7 @@ export namespace Prisma {
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedFloatFilter<$PrismaModel>
-    _min?: NestedFloatFilter<$PrismaModel>
-    _max?: NestedFloatFilter<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type IntNullableFilter<$PrismaModel = never> = {
@@ -11767,6 +11809,22 @@ export namespace Prisma {
     quantity?: SortOrder
     orderId?: SortOrder
     userId?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12218,14 +12276,6 @@ export namespace Prisma {
     push?: string | string[]
   }
 
-  export type FloatFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type ProductUpdateimgInput = {
     set?: string[]
     push?: string | string[]
@@ -12245,6 +12295,14 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutCartProductsInput, UserUncheckedCreateWithoutCartProductsInput>
     connectOrCreate?: UserCreateOrConnectWithoutCartProductsInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type CartProductUpdateimgInput = {
@@ -12629,6 +12687,28 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedBoolFilter<$PrismaModel>
     _max?: NestedBoolFilter<$PrismaModel>
+  }
+  export type NestedJsonFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {

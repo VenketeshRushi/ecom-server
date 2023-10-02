@@ -45,9 +45,10 @@ model Product {
   price       Int
   size        String[]
   color       String
-  rating      Float
+  ratings     Json
   img         String[]
 }
+
 
 model CartProduct {
   cartProductId Int      @id @default(autoincrement())
