@@ -2,8 +2,9 @@ const prisma = require("../../db.server");
 
 exports.addToFavorite = async (req, res, next) => {
   try {
-    const existingFavorite = await prisma.favorite.findFirst({
+    const existingFavorite = await prisma.favorite.findUnique({
       where: {
+        id: req.body.id,
         userId: req.user.id,
       },
     });
@@ -21,7 +22,7 @@ exports.addToFavorite = async (req, res, next) => {
       const newFavorite = await prisma.favorite.create({
         data: {
           ...req.body,
-          size: [req.body.size],
+          size: [...req.body.size],
           user: { connect: { id: req.user.id } },
         },
       });

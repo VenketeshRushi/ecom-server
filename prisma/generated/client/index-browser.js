@@ -164,7 +164,7 @@ exports.Prisma.CartProductScalarFieldEnum = {
   price: 'price',
   size: 'size',
   color: 'color',
-  rating: 'rating',
+  ratings: 'ratings',
   img: 'img',
   quantity: 'quantity',
   orderId: 'orderId',
@@ -180,7 +180,7 @@ exports.Prisma.FavoriteScalarFieldEnum = {
   price: 'price',
   size: 'size',
   color: 'color',
-  rating: 'rating',
+  ratings: 'ratings',
   img: 'img',
   userId: 'userId',
   createdAt: 'createdAt'

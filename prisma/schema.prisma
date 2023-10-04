@@ -60,7 +60,7 @@ model CartProduct {
   price       Float
   size        String
   color       String
-  rating      Float
+  ratings      Json
   img         String[]
   quantity    Int
   order       Order?    @relation(fields: [orderId], references: [id])
@@ -78,7 +78,7 @@ model Favorite {
   price       Float
   size        String[]
   color       String
-  rating      Float
+  ratings      Json
   img         String[]
   user        User @relation(fields: [userId], references: [id])
   userId      Int  @unique

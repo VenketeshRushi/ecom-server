@@ -4566,7 +4566,6 @@ export namespace Prisma {
     cartProductId: number | null
     id: number | null
     price: number | null
-    rating: number | null
     quantity: number | null
     orderId: number | null
     userId: number | null
@@ -4576,7 +4575,6 @@ export namespace Prisma {
     cartProductId: number | null
     id: number | null
     price: number | null
-    rating: number | null
     quantity: number | null
     orderId: number | null
     userId: number | null
@@ -4592,7 +4590,6 @@ export namespace Prisma {
     price: number | null
     size: string | null
     color: string | null
-    rating: number | null
     quantity: number | null
     orderId: number | null
     userId: number | null
@@ -4608,7 +4605,6 @@ export namespace Prisma {
     price: number | null
     size: string | null
     color: string | null
-    rating: number | null
     quantity: number | null
     orderId: number | null
     userId: number | null
@@ -4624,7 +4620,7 @@ export namespace Prisma {
     price: number
     size: number
     color: number
-    rating: number
+    ratings: number
     img: number
     quantity: number
     orderId: number
@@ -4637,7 +4633,6 @@ export namespace Prisma {
     cartProductId?: true
     id?: true
     price?: true
-    rating?: true
     quantity?: true
     orderId?: true
     userId?: true
@@ -4647,7 +4642,6 @@ export namespace Prisma {
     cartProductId?: true
     id?: true
     price?: true
-    rating?: true
     quantity?: true
     orderId?: true
     userId?: true
@@ -4663,7 +4657,6 @@ export namespace Prisma {
     price?: true
     size?: true
     color?: true
-    rating?: true
     quantity?: true
     orderId?: true
     userId?: true
@@ -4679,7 +4672,6 @@ export namespace Prisma {
     price?: true
     size?: true
     color?: true
-    rating?: true
     quantity?: true
     orderId?: true
     userId?: true
@@ -4695,7 +4687,7 @@ export namespace Prisma {
     price?: true
     size?: true
     color?: true
-    rating?: true
+    ratings?: true
     img?: true
     quantity?: true
     orderId?: true
@@ -4799,7 +4791,7 @@ export namespace Prisma {
     price: number
     size: string
     color: string
-    rating: number
+    ratings: JsonValue
     img: string[]
     quantity: number
     orderId: number | null
@@ -4835,7 +4827,7 @@ export namespace Prisma {
     price?: boolean
     size?: boolean
     color?: boolean
-    rating?: boolean
+    ratings?: boolean
     img?: boolean
     quantity?: boolean
     orderId?: boolean
@@ -4854,7 +4846,7 @@ export namespace Prisma {
     price?: boolean
     size?: boolean
     color?: boolean
-    rating?: boolean
+    ratings?: boolean
     img?: boolean
     quantity?: boolean
     orderId?: boolean
@@ -4883,7 +4875,7 @@ export namespace Prisma {
       price: number
       size: string
       color: string
-      rating: number
+      ratings: Prisma.JsonValue
       img: string[]
       quantity: number
       orderId: number | null
@@ -5294,7 +5286,7 @@ export namespace Prisma {
     readonly price: FieldRef<"CartProduct", 'Float'>
     readonly size: FieldRef<"CartProduct", 'String'>
     readonly color: FieldRef<"CartProduct", 'String'>
-    readonly rating: FieldRef<"CartProduct", 'Float'>
+    readonly ratings: FieldRef<"CartProduct", 'Json'>
     readonly img: FieldRef<"CartProduct", 'String[]'>
     readonly quantity: FieldRef<"CartProduct", 'Int'>
     readonly orderId: FieldRef<"CartProduct", 'Int'>
@@ -5657,14 +5649,12 @@ export namespace Prisma {
   export type FavoriteAvgAggregateOutputType = {
     id: number | null
     price: number | null
-    rating: number | null
     userId: number | null
   }
 
   export type FavoriteSumAggregateOutputType = {
     id: number | null
     price: number | null
-    rating: number | null
     userId: number | null
   }
 
@@ -5676,7 +5666,6 @@ export namespace Prisma {
     category: string | null
     price: number | null
     color: string | null
-    rating: number | null
     userId: number | null
     createdAt: Date | null
   }
@@ -5689,7 +5678,6 @@ export namespace Prisma {
     category: string | null
     price: number | null
     color: string | null
-    rating: number | null
     userId: number | null
     createdAt: Date | null
   }
@@ -5703,7 +5691,7 @@ export namespace Prisma {
     price: number
     size: number
     color: number
-    rating: number
+    ratings: number
     img: number
     userId: number
     createdAt: number
@@ -5714,14 +5702,12 @@ export namespace Prisma {
   export type FavoriteAvgAggregateInputType = {
     id?: true
     price?: true
-    rating?: true
     userId?: true
   }
 
   export type FavoriteSumAggregateInputType = {
     id?: true
     price?: true
-    rating?: true
     userId?: true
   }
 
@@ -5733,7 +5719,6 @@ export namespace Prisma {
     category?: true
     price?: true
     color?: true
-    rating?: true
     userId?: true
     createdAt?: true
   }
@@ -5746,7 +5731,6 @@ export namespace Prisma {
     category?: true
     price?: true
     color?: true
-    rating?: true
     userId?: true
     createdAt?: true
   }
@@ -5760,7 +5744,7 @@ export namespace Prisma {
     price?: true
     size?: true
     color?: true
-    rating?: true
+    ratings?: true
     img?: true
     userId?: true
     createdAt?: true
@@ -5862,7 +5846,7 @@ export namespace Prisma {
     price: number
     size: string[]
     color: string
-    rating: number
+    ratings: JsonValue
     img: string[]
     userId: number
     createdAt: Date
@@ -5896,7 +5880,7 @@ export namespace Prisma {
     price?: boolean
     size?: boolean
     color?: boolean
-    rating?: boolean
+    ratings?: boolean
     img?: boolean
     userId?: boolean
     createdAt?: boolean
@@ -5912,7 +5896,7 @@ export namespace Prisma {
     price?: boolean
     size?: boolean
     color?: boolean
-    rating?: boolean
+    ratings?: boolean
     img?: boolean
     userId?: boolean
     createdAt?: boolean
@@ -5937,7 +5921,7 @@ export namespace Prisma {
       price: number
       size: string[]
       color: string
-      rating: number
+      ratings: Prisma.JsonValue
       img: string[]
       userId: number
       createdAt: Date
@@ -6344,7 +6328,7 @@ export namespace Prisma {
     readonly price: FieldRef<"Favorite", 'Float'>
     readonly size: FieldRef<"Favorite", 'String[]'>
     readonly color: FieldRef<"Favorite", 'String'>
-    readonly rating: FieldRef<"Favorite", 'Float'>
+    readonly ratings: FieldRef<"Favorite", 'Json'>
     readonly img: FieldRef<"Favorite", 'String[]'>
     readonly userId: FieldRef<"Favorite", 'Int'>
     readonly createdAt: FieldRef<"Favorite", 'DateTime'>
@@ -9840,7 +9824,7 @@ export namespace Prisma {
     price: 'price',
     size: 'size',
     color: 'color',
-    rating: 'rating',
+    ratings: 'ratings',
     img: 'img',
     quantity: 'quantity',
     orderId: 'orderId',
@@ -9859,7 +9843,7 @@ export namespace Prisma {
     price: 'price',
     size: 'size',
     color: 'color',
-    rating: 'rating',
+    ratings: 'ratings',
     img: 'img',
     userId: 'userId',
     createdAt: 'createdAt'
@@ -10263,7 +10247,7 @@ export namespace Prisma {
     price?: FloatFilter<"CartProduct"> | number
     size?: StringFilter<"CartProduct"> | string
     color?: StringFilter<"CartProduct"> | string
-    rating?: FloatFilter<"CartProduct"> | number
+    ratings?: JsonFilter<"CartProduct">
     img?: StringNullableListFilter<"CartProduct">
     quantity?: IntFilter<"CartProduct"> | number
     orderId?: IntNullableFilter<"CartProduct"> | number | null
@@ -10282,7 +10266,7 @@ export namespace Prisma {
     price?: SortOrder
     size?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
+    ratings?: SortOrder
     img?: SortOrder
     quantity?: SortOrder
     orderId?: SortOrderInput | SortOrder
@@ -10304,7 +10288,7 @@ export namespace Prisma {
     price?: FloatFilter<"CartProduct"> | number
     size?: StringFilter<"CartProduct"> | string
     color?: StringFilter<"CartProduct"> | string
-    rating?: FloatFilter<"CartProduct"> | number
+    ratings?: JsonFilter<"CartProduct">
     img?: StringNullableListFilter<"CartProduct">
     quantity?: IntFilter<"CartProduct"> | number
     orderId?: IntNullableFilter<"CartProduct"> | number | null
@@ -10323,7 +10307,7 @@ export namespace Prisma {
     price?: SortOrder
     size?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
+    ratings?: SortOrder
     img?: SortOrder
     quantity?: SortOrder
     orderId?: SortOrderInput | SortOrder
@@ -10348,7 +10332,7 @@ export namespace Prisma {
     price?: FloatWithAggregatesFilter<"CartProduct"> | number
     size?: StringWithAggregatesFilter<"CartProduct"> | string
     color?: StringWithAggregatesFilter<"CartProduct"> | string
-    rating?: FloatWithAggregatesFilter<"CartProduct"> | number
+    ratings?: JsonWithAggregatesFilter<"CartProduct">
     img?: StringNullableListFilter<"CartProduct">
     quantity?: IntWithAggregatesFilter<"CartProduct"> | number
     orderId?: IntNullableWithAggregatesFilter<"CartProduct"> | number | null
@@ -10367,7 +10351,7 @@ export namespace Prisma {
     price?: FloatFilter<"Favorite"> | number
     size?: StringNullableListFilter<"Favorite">
     color?: StringFilter<"Favorite"> | string
-    rating?: FloatFilter<"Favorite"> | number
+    ratings?: JsonFilter<"Favorite">
     img?: StringNullableListFilter<"Favorite">
     userId?: IntFilter<"Favorite"> | number
     createdAt?: DateTimeFilter<"Favorite"> | Date | string
@@ -10383,7 +10367,7 @@ export namespace Prisma {
     price?: SortOrder
     size?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
+    ratings?: SortOrder
     img?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -10403,7 +10387,7 @@ export namespace Prisma {
     price?: FloatFilter<"Favorite"> | number
     size?: StringNullableListFilter<"Favorite">
     color?: StringFilter<"Favorite"> | string
-    rating?: FloatFilter<"Favorite"> | number
+    ratings?: JsonFilter<"Favorite">
     img?: StringNullableListFilter<"Favorite">
     createdAt?: DateTimeFilter<"Favorite"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
@@ -10418,7 +10402,7 @@ export namespace Prisma {
     price?: SortOrder
     size?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
+    ratings?: SortOrder
     img?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -10441,7 +10425,7 @@ export namespace Prisma {
     price?: FloatWithAggregatesFilter<"Favorite"> | number
     size?: StringNullableListFilter<"Favorite">
     color?: StringWithAggregatesFilter<"Favorite"> | string
-    rating?: FloatWithAggregatesFilter<"Favorite"> | number
+    ratings?: JsonWithAggregatesFilter<"Favorite">
     img?: StringNullableListFilter<"Favorite">
     userId?: IntWithAggregatesFilter<"Favorite"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Favorite"> | Date | string
@@ -10918,7 +10902,7 @@ export namespace Prisma {
     price: number
     size: string
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: CartProductCreateimgInput | string[]
     quantity: number
     order?: OrderCreateNestedOneWithoutCartProductsInput
@@ -10935,7 +10919,7 @@ export namespace Prisma {
     price: number
     size: string
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: CartProductCreateimgInput | string[]
     quantity: number
     orderId?: number | null
@@ -10951,7 +10935,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
     order?: OrderUpdateOneWithoutCartProductsNestedInput
@@ -10968,7 +10952,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
     orderId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -10985,7 +10969,7 @@ export namespace Prisma {
     price: number
     size: string
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: CartProductCreateimgInput | string[]
     quantity: number
     orderId?: number | null
@@ -11001,7 +10985,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
   }
@@ -11016,7 +11000,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
     orderId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -11032,7 +11016,7 @@ export namespace Prisma {
     price: number
     size?: FavoriteCreatesizeInput | string[]
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: FavoriteCreateimgInput | string[]
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutFavoriteItemsInput
@@ -11047,7 +11031,7 @@ export namespace Prisma {
     price: number
     size?: FavoriteCreatesizeInput | string[]
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: FavoriteCreateimgInput | string[]
     userId: number
     createdAt?: Date | string
@@ -11062,7 +11046,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: FavoriteUpdatesizeInput | string[]
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: FavoriteUpdateimgInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutFavoriteItemsNestedInput
@@ -11077,7 +11061,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: FavoriteUpdatesizeInput | string[]
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: FavoriteUpdateimgInput | string[]
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11092,7 +11076,7 @@ export namespace Prisma {
     price: number
     size?: FavoriteCreatesizeInput | string[]
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: FavoriteCreateimgInput | string[]
     userId: number
     createdAt?: Date | string
@@ -11107,7 +11091,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: FavoriteUpdatesizeInput | string[]
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: FavoriteUpdateimgInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11121,7 +11105,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: FavoriteUpdatesizeInput | string[]
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: FavoriteUpdateimgInput | string[]
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11752,7 +11736,7 @@ export namespace Prisma {
     price?: SortOrder
     size?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
+    ratings?: SortOrder
     img?: SortOrder
     quantity?: SortOrder
     orderId?: SortOrder
@@ -11763,7 +11747,6 @@ export namespace Prisma {
     cartProductId?: SortOrder
     id?: SortOrder
     price?: SortOrder
-    rating?: SortOrder
     quantity?: SortOrder
     orderId?: SortOrder
     userId?: SortOrder
@@ -11779,7 +11762,6 @@ export namespace Prisma {
     price?: SortOrder
     size?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
     quantity?: SortOrder
     orderId?: SortOrder
     userId?: SortOrder
@@ -11795,7 +11777,6 @@ export namespace Prisma {
     price?: SortOrder
     size?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
     quantity?: SortOrder
     orderId?: SortOrder
     userId?: SortOrder
@@ -11805,7 +11786,6 @@ export namespace Prisma {
     cartProductId?: SortOrder
     id?: SortOrder
     price?: SortOrder
-    rating?: SortOrder
     quantity?: SortOrder
     orderId?: SortOrder
     userId?: SortOrder
@@ -11852,7 +11832,7 @@ export namespace Prisma {
     price?: SortOrder
     size?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
+    ratings?: SortOrder
     img?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -11861,7 +11841,6 @@ export namespace Prisma {
   export type FavoriteAvgOrderByAggregateInput = {
     id?: SortOrder
     price?: SortOrder
-    rating?: SortOrder
     userId?: SortOrder
   }
 
@@ -11873,7 +11852,6 @@ export namespace Prisma {
     category?: SortOrder
     price?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
   }
@@ -11886,7 +11864,6 @@ export namespace Prisma {
     category?: SortOrder
     price?: SortOrder
     color?: SortOrder
-    rating?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
   }
@@ -11894,7 +11871,6 @@ export namespace Prisma {
   export type FavoriteSumOrderByAggregateInput = {
     id?: SortOrder
     price?: SortOrder
-    rating?: SortOrder
     userId?: SortOrder
   }
 
@@ -12823,7 +12799,7 @@ export namespace Prisma {
     price: number
     size: string
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: CartProductCreateimgInput | string[]
     quantity: number
     order?: OrderCreateNestedOneWithoutCartProductsInput
@@ -12839,7 +12815,7 @@ export namespace Prisma {
     price: number
     size: string
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: CartProductCreateimgInput | string[]
     quantity: number
     orderId?: number | null
@@ -12864,7 +12840,7 @@ export namespace Prisma {
     price: number
     size?: FavoriteCreatesizeInput | string[]
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: FavoriteCreateimgInput | string[]
     createdAt?: Date | string
   }
@@ -12878,7 +12854,7 @@ export namespace Prisma {
     price: number
     size?: FavoriteCreatesizeInput | string[]
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: FavoriteCreateimgInput | string[]
     createdAt?: Date | string
   }
@@ -12980,7 +12956,7 @@ export namespace Prisma {
     price?: FloatFilter<"CartProduct"> | number
     size?: StringFilter<"CartProduct"> | string
     color?: StringFilter<"CartProduct"> | string
-    rating?: FloatFilter<"CartProduct"> | number
+    ratings?: JsonFilter<"CartProduct">
     img?: StringNullableListFilter<"CartProduct">
     quantity?: IntFilter<"CartProduct"> | number
     orderId?: IntNullableFilter<"CartProduct"> | number | null
@@ -13015,7 +12991,7 @@ export namespace Prisma {
     price?: FloatFilter<"Favorite"> | number
     size?: StringNullableListFilter<"Favorite">
     color?: StringFilter<"Favorite"> | string
-    rating?: FloatFilter<"Favorite"> | number
+    ratings?: JsonFilter<"Favorite">
     img?: StringNullableListFilter<"Favorite">
     userId?: IntFilter<"Favorite"> | number
     createdAt?: DateTimeFilter<"Favorite"> | Date | string
@@ -13396,7 +13372,7 @@ export namespace Prisma {
     price: number
     size: string
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: CartProductCreateimgInput | string[]
     quantity: number
     user: UserCreateNestedOneWithoutCartProductsInput
@@ -13412,7 +13388,7 @@ export namespace Prisma {
     price: number
     size: string
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: CartProductCreateimgInput | string[]
     quantity: number
     userId: number
@@ -13702,7 +13678,7 @@ export namespace Prisma {
     price: number
     size: string
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: CartProductCreateimgInput | string[]
     quantity: number
     orderId?: number | null
@@ -13717,7 +13693,7 @@ export namespace Prisma {
     price: number
     size?: FavoriteCreatesizeInput | string[]
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: FavoriteCreateimgInput | string[]
     createdAt?: Date | string
   }
@@ -13789,7 +13765,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
     order?: OrderUpdateOneWithoutCartProductsNestedInput
@@ -13805,7 +13781,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
     orderId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -13821,7 +13797,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
     orderId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -13836,7 +13812,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: FavoriteUpdatesizeInput | string[]
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: FavoriteUpdateimgInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13850,7 +13826,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: FavoriteUpdatesizeInput | string[]
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: FavoriteUpdateimgInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13864,7 +13840,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: FavoriteUpdatesizeInput | string[]
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: FavoriteUpdateimgInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -13899,7 +13875,7 @@ export namespace Prisma {
     price: number
     size: string
     color: string
-    rating: number
+    ratings: JsonNullValueInput | InputJsonValue
     img?: CartProductCreateimgInput | string[]
     quantity: number
     userId: number
@@ -13972,7 +13948,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
     user?: UserUpdateOneRequiredWithoutCartProductsNestedInput
@@ -13988,7 +13964,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
@@ -14004,7 +13980,7 @@ export namespace Prisma {
     price?: FloatFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
     color?: StringFieldUpdateOperationsInput | string
-    rating?: FloatFieldUpdateOperationsInput | number
+    ratings?: JsonNullValueInput | InputJsonValue
     img?: CartProductUpdateimgInput | string[]
     quantity?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
