@@ -2,14 +2,14 @@ const prisma = require("../../db.server");
 
 exports.addToFavorite = async (req, res, next) => {
   try {
-    const existingFavorite = await prisma.favorite.findUnique({
+    const existingFavorites = await prisma.favorite.findMany();
+    const existingFavorite = await prisma.favorite.findMany({
       where: {
         id: req.body.id,
-        userId: req.user.id,
+        // userId: req.user.id,
       },
     });
-
-    if (existingFavorite) {
+    if (existingFavorite.length > 0) {
       return res
         .status(200)
         .json({ message: "Product Already Present Favorite" });
@@ -49,6 +49,7 @@ exports.getAllFavorites = async (req, res, next) => {
 };
 
 exports.deleteFavorite = async (req, res, next) => {
+  console.log("req.params  ", req.params);
   const { id } = req.params;
   try {
     // Check if the favorite belongs to the user before deleting
@@ -64,11 +65,15 @@ exports.deleteFavorite = async (req, res, next) => {
     //     message: "Favorite not found or does not belong to the user.",
     //   });
     // }
+    console.log("favoriteId ", id);
+    const foundOne = await prisma.favorite.findMany({
+      where: { favoriteId: +req.params.id },
+    });
+    console.log("foundOne ", foundOne);
 
     await prisma.favorite.delete({
       where: {
-        id: +id,
-        userId: req.user.id,
+        favoriteId: +id,
       },
     });
 

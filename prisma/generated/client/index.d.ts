@@ -5647,18 +5647,21 @@ export namespace Prisma {
   }
 
   export type FavoriteAvgAggregateOutputType = {
+    favoriteId: number | null
     id: number | null
     price: number | null
     userId: number | null
   }
 
   export type FavoriteSumAggregateOutputType = {
+    favoriteId: number | null
     id: number | null
     price: number | null
     userId: number | null
   }
 
   export type FavoriteMinAggregateOutputType = {
+    favoriteId: number | null
     id: number | null
     title: string | null
     gender: string | null
@@ -5671,6 +5674,7 @@ export namespace Prisma {
   }
 
   export type FavoriteMaxAggregateOutputType = {
+    favoriteId: number | null
     id: number | null
     title: string | null
     gender: string | null
@@ -5683,6 +5687,7 @@ export namespace Prisma {
   }
 
   export type FavoriteCountAggregateOutputType = {
+    favoriteId: number
     id: number
     title: number
     gender: number
@@ -5700,18 +5705,21 @@ export namespace Prisma {
 
 
   export type FavoriteAvgAggregateInputType = {
+    favoriteId?: true
     id?: true
     price?: true
     userId?: true
   }
 
   export type FavoriteSumAggregateInputType = {
+    favoriteId?: true
     id?: true
     price?: true
     userId?: true
   }
 
   export type FavoriteMinAggregateInputType = {
+    favoriteId?: true
     id?: true
     title?: true
     gender?: true
@@ -5724,6 +5732,7 @@ export namespace Prisma {
   }
 
   export type FavoriteMaxAggregateInputType = {
+    favoriteId?: true
     id?: true
     title?: true
     gender?: true
@@ -5736,6 +5745,7 @@ export namespace Prisma {
   }
 
   export type FavoriteCountAggregateInputType = {
+    favoriteId?: true
     id?: true
     title?: true
     gender?: true
@@ -5838,6 +5848,7 @@ export namespace Prisma {
   }
 
   export type FavoriteGroupByOutputType = {
+    favoriteId: number
     id: number
     title: string
     gender: string
@@ -5872,6 +5883,7 @@ export namespace Prisma {
 
 
   export type FavoriteSelect<ExtArgs extends $Extensions.Args = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    favoriteId?: boolean
     id?: boolean
     title?: boolean
     gender?: boolean
@@ -5888,6 +5900,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["favorite"]>
 
   export type FavoriteSelectScalar = {
+    favoriteId?: boolean
     id?: boolean
     title?: boolean
     gender?: boolean
@@ -5913,6 +5926,7 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetResult<{
+      favoriteId: number
       id: number
       title: string
       gender: string
@@ -6017,8 +6031,8 @@ export namespace Prisma {
      * // Get first 10 Favorites
      * const favorites = await prisma.favorite.findMany({ take: 10 })
      * 
-     * // Only select the `id`
-     * const favoriteWithIdOnly = await prisma.favorite.findMany({ select: { id: true } })
+     * // Only select the `favoriteId`
+     * const favoriteWithFavoriteIdOnly = await prisma.favorite.findMany({ select: { favoriteId: true } })
      * 
     **/
     findMany<T extends FavoriteFindManyArgs<ExtArgs>>(
@@ -6320,6 +6334,7 @@ export namespace Prisma {
    * Fields of the Favorite model
    */ 
   interface FavoriteFieldRefs {
+    readonly favoriteId: FieldRef<"Favorite", 'Int'>
     readonly id: FieldRef<"Favorite", 'Int'>
     readonly title: FieldRef<"Favorite", 'String'>
     readonly gender: FieldRef<"Favorite", 'String'>
@@ -9835,6 +9850,7 @@ export namespace Prisma {
 
 
   export const FavoriteScalarFieldEnum: {
+    favoriteId: 'favoriteId',
     id: 'id',
     title: 'title',
     gender: 'gender',
@@ -10343,6 +10359,7 @@ export namespace Prisma {
     AND?: FavoriteWhereInput | FavoriteWhereInput[]
     OR?: FavoriteWhereInput[]
     NOT?: FavoriteWhereInput | FavoriteWhereInput[]
+    favoriteId?: IntFilter<"Favorite"> | number
     id?: IntFilter<"Favorite"> | number
     title?: StringFilter<"Favorite"> | string
     gender?: StringFilter<"Favorite"> | string
@@ -10359,6 +10376,7 @@ export namespace Prisma {
   }
 
   export type FavoriteOrderByWithRelationInput = {
+    favoriteId?: SortOrder
     id?: SortOrder
     title?: SortOrder
     gender?: SortOrder
@@ -10375,7 +10393,7 @@ export namespace Prisma {
   }
 
   export type FavoriteWhereUniqueInput = Prisma.AtLeast<{
-    userId?: number
+    favoriteId?: number
     AND?: FavoriteWhereInput | FavoriteWhereInput[]
     OR?: FavoriteWhereInput[]
     NOT?: FavoriteWhereInput | FavoriteWhereInput[]
@@ -10389,11 +10407,13 @@ export namespace Prisma {
     color?: StringFilter<"Favorite"> | string
     ratings?: JsonFilter<"Favorite">
     img?: StringNullableListFilter<"Favorite">
+    userId?: IntFilter<"Favorite"> | number
     createdAt?: DateTimeFilter<"Favorite"> | Date | string
     user?: XOR<UserRelationFilter, UserWhereInput>
-  }, "userId">
+  }, "favoriteId">
 
   export type FavoriteOrderByWithAggregationInput = {
+    favoriteId?: SortOrder
     id?: SortOrder
     title?: SortOrder
     gender?: SortOrder
@@ -10417,6 +10437,7 @@ export namespace Prisma {
     AND?: FavoriteScalarWhereWithAggregatesInput | FavoriteScalarWhereWithAggregatesInput[]
     OR?: FavoriteScalarWhereWithAggregatesInput[]
     NOT?: FavoriteScalarWhereWithAggregatesInput | FavoriteScalarWhereWithAggregatesInput[]
+    favoriteId?: IntWithAggregatesFilter<"Favorite"> | number
     id?: IntWithAggregatesFilter<"Favorite"> | number
     title?: StringWithAggregatesFilter<"Favorite"> | string
     gender?: StringWithAggregatesFilter<"Favorite"> | string
@@ -11023,6 +11044,7 @@ export namespace Prisma {
   }
 
   export type FavoriteUncheckedCreateInput = {
+    favoriteId?: number
     id: number
     title: string
     gender: string
@@ -11053,6 +11075,7 @@ export namespace Prisma {
   }
 
   export type FavoriteUncheckedUpdateInput = {
+    favoriteId?: IntFieldUpdateOperationsInput | number
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
@@ -11068,6 +11091,7 @@ export namespace Prisma {
   }
 
   export type FavoriteCreateManyInput = {
+    favoriteId?: number
     id: number
     title: string
     gender: string
@@ -11097,6 +11121,7 @@ export namespace Prisma {
   }
 
   export type FavoriteUncheckedUpdateManyInput = {
+    favoriteId?: IntFieldUpdateOperationsInput | number
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
@@ -11824,6 +11849,7 @@ export namespace Prisma {
   }
 
   export type FavoriteCountOrderByAggregateInput = {
+    favoriteId?: SortOrder
     id?: SortOrder
     title?: SortOrder
     gender?: SortOrder
@@ -11839,12 +11865,14 @@ export namespace Prisma {
   }
 
   export type FavoriteAvgOrderByAggregateInput = {
+    favoriteId?: SortOrder
     id?: SortOrder
     price?: SortOrder
     userId?: SortOrder
   }
 
   export type FavoriteMaxOrderByAggregateInput = {
+    favoriteId?: SortOrder
     id?: SortOrder
     title?: SortOrder
     gender?: SortOrder
@@ -11857,6 +11885,7 @@ export namespace Prisma {
   }
 
   export type FavoriteMinOrderByAggregateInput = {
+    favoriteId?: SortOrder
     id?: SortOrder
     title?: SortOrder
     gender?: SortOrder
@@ -11869,6 +11898,7 @@ export namespace Prisma {
   }
 
   export type FavoriteSumOrderByAggregateInput = {
+    favoriteId?: SortOrder
     id?: SortOrder
     price?: SortOrder
     userId?: SortOrder
@@ -12846,6 +12876,7 @@ export namespace Prisma {
   }
 
   export type FavoriteUncheckedCreateWithoutUserInput = {
+    favoriteId?: number
     id: number
     title: string
     gender: string
@@ -12983,6 +13014,7 @@ export namespace Prisma {
     AND?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
     OR?: FavoriteScalarWhereInput[]
     NOT?: FavoriteScalarWhereInput | FavoriteScalarWhereInput[]
+    favoriteId?: IntFilter<"Favorite"> | number
     id?: IntFilter<"Favorite"> | number
     title?: StringFilter<"Favorite"> | string
     gender?: StringFilter<"Favorite"> | string
@@ -13685,6 +13717,7 @@ export namespace Prisma {
   }
 
   export type FavoriteCreateManyUserInput = {
+    favoriteId?: number
     id: number
     title: string
     gender: string
@@ -13818,6 +13851,7 @@ export namespace Prisma {
   }
 
   export type FavoriteUncheckedUpdateWithoutUserInput = {
+    favoriteId?: IntFieldUpdateOperationsInput | number
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string
@@ -13832,6 +13866,7 @@ export namespace Prisma {
   }
 
   export type FavoriteUncheckedUpdateManyWithoutUserInput = {
+    favoriteId?: IntFieldUpdateOperationsInput | number
     id?: IntFieldUpdateOperationsInput | number
     title?: StringFieldUpdateOperationsInput | string
     gender?: StringFieldUpdateOperationsInput | string

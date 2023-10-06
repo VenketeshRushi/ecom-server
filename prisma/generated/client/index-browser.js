@@ -172,6 +172,7 @@ exports.Prisma.CartProductScalarFieldEnum = {
 };
 
 exports.Prisma.FavoriteScalarFieldEnum = {
+  favoriteId: 'favoriteId',
   id: 'id',
   title: 'title',
   gender: 'gender',

@@ -16,4 +16,8 @@ router.get("/getusers", authorization, OrderController.getUsers);
 // TO GET ALL ORDERS
 router.get("/getproducts", authorization, OrderController.getProducts);
 
+// CREATE ORDER
+
+router.post("/createorder", authorization, OrderController.createOrder);
+
 module.exports = router;
