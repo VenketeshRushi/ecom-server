@@ -53,6 +53,11 @@ exports.createOrder = async (req, res, next) => {
   try {
     const { subTotal, quantity, shipping, discount, total } = orderSummary;
 
+    let UpdatedCartProducts = cartProducts.map((ele) => {
+      delete ele.orderId
+      return ele
+    })
+
     // Create PaymentDetail record
     const createdPaymentDetail = await prisma.paymentDetail.create({
       data: {
@@ -79,7 +84,7 @@ exports.createOrder = async (req, res, next) => {
           create: shippingDetails,
         },
         cartProducts: {
-          create: cartProducts, // Assuming cartProducts is an array of CartProduct objects
+          create: UpdatedCartProducts,
         },
       },
       include: {
