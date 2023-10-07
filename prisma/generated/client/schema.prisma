@@ -14,7 +14,7 @@ datasource db {
 model User {
   id       Int      @id @default(autoincrement())
   email    String   @unique
-  password String   // Note: For simplicity, storing the password in plain text. In practice, you should hash passwords.
+  password String   
   firstName String?
   lastName  String?
   createdAt DateTime @default(now())
@@ -63,8 +63,6 @@ model CartProduct {
   ratings      Json
   img         String[]
   quantity    Int
-  order       Order?    @relation(fields: [orderId], references: [id])
-  orderId     Int?
   user        User      @relation(fields: [userId], references: [id])
   userId      Int       
 }
@@ -98,7 +96,24 @@ model Order {
   createdAt       DateTime @default(now())
   PaymentDetails  PaymentDetail[]
   ShippingDetails ShippingDetail[]
-  cartProducts    CartProduct[]
+  OrderedProducts OrderedProduct[]
+}
+
+model OrderedProduct{
+  OrderedProductId Int      @id @default(autoincrement())
+  id          Int     
+  title       String
+  gender      String
+  description String
+  category    String
+  price       Float
+  size        String
+  color       String
+  ratings     Json
+  img         String[]
+  quantity    Int
+  order       Order?    @relation(fields: [orderId], references: [id])
+  orderId     Int?
 }
 
 model PaymentDetail {
