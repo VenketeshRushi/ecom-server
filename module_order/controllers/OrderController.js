@@ -56,6 +56,7 @@ exports.createOrder = async (req, res, next) => {
       shipping,
       discount,
       total, } = orderSummary;
+    const { orderId, razorpayOrderId, razorpayPaymentId } = paymentDetails
     const order = await prisma.order.create({
       data: {
         subTotal,
@@ -64,7 +65,10 @@ exports.createOrder = async (req, res, next) => {
         discount,
         total,
         userId: req.user.id,
-        PaymentDetails: paymentDetails,
+        PaymentDetails: {
+          razorpayOrderId,
+          razorpayPaymentId
+        },
         ShippingDetails: shippingDetails,
         cartProducts
       }
