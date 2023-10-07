@@ -234,3 +234,24 @@ exports.getSearchedProducts = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.addReview = async (req, res, next) => {
+  const { id, rating, reviewdes, userid } = req.body;
+  try {
+    const updatedProduct = await prisma.$executeRaw`
+      UPDATE products
+      SET ratings = jsonb_set(
+        COALESCE(ratings, '[]'::jsonb),
+        ARRAY[jsonb_array_length(COALESCE(ratings, '[]'::jsonb))::text],
+        '[{"rating": ${rating}, "reviewdes": ${reviewdes}, "productId": ${id}, "userId": ${userid}}]'::jsonb
+      )
+      WHERE id = ${id}
+      RETURNING *
+    `;
+
+    res.status(200).json(updatedProduct);
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+};
