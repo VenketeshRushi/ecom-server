@@ -66,8 +66,8 @@ exports.createOrder = async (req, res, next) => {
         total,
         userId: req.user.id,
         PaymentDetails: {
-          razorpayOrderId,
-          razorpayPaymentId
+          razorpayOrderId: razorpayOrderId,
+          razorpayPaymentId: razorpayPaymentId
         },
         ShippingDetails: shippingDetails,
         cartProducts
