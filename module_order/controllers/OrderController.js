@@ -64,8 +64,8 @@ exports.createOrder = async (req, res, next) => {
         discount,
         total,
         userId: req.user.id,
-        paymentDetails,
-        shippingDetails,
+        PaymentDetails: paymentDetails,
+        ShippingDetails: shippingDetails,
         cartProducts
       }
     });
