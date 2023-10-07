@@ -10,63 +10,26 @@ exports.getOrders = async (req, res, next) => {
   }
 };
 
-// exports.createOrder = async (req, res, next) => {
-//   const {
-//     orderSummary,
-//     cartProducts,
-//     shippingDetails,
-//     paymentDetails,
-//   } = req.body;
-//   try {
-//     const { subTotal,
-//       quantity,
-//       shipping,
-//       discount,
-//       total, } = orderSummary;
-//     const { orderId, razorpayOrderId, razorpayPaymentId } = paymentDetails
-//     const order = await prisma.order.create({
-//       data: {
-//         subTotal,
-//         quantity,
-//         shipping,
-//         discount,
-//         total,
-//         userId: req.user.id,
-//         PaymentDetails: {
-//           razorpayOrderId: razorpayOrderId,
-//           razorpayPaymentId: razorpayPaymentId
-//         },
-//         ShippingDetails: shippingDetails,
-//         cartProducts
-//       }
-//     });
-
-//     return res.status(201).json(order);
-//   } catch (error) {
-//     console.log("error", error)
-//     next(error);
-//   }
-// };
-
 exports.createOrder = async (req, res, next) => {
-  const { orderSummary, cartProducts, shippingDetails, paymentDetails } = req.body;
+  const {
+    orderSummary,
+    cartProducts,
+    shippingDetails,
+    paymentDetails,
+  } = req.body;
   try {
-    const { subTotal, quantity, shipping, discount, total } = orderSummary;
+    const { subTotal,
+      quantity,
+      shipping,
+      discount,
+      total, } = orderSummary;
+    const { orderId, razorpayOrderId, razorpayPaymentId } = paymentDetails;
 
     let UpdatedCartProducts = cartProducts.map((ele) => {
       delete ele.orderId
       return ele
     })
 
-    // Create PaymentDetail record
-    const createdPaymentDetail = await prisma.paymentDetail.create({
-      data: {
-        razorpayOrderId: paymentDetails.razorpayOrderId,
-        razorpayPaymentId: paymentDetails.razorpayPaymentId,
-      },
-    });
-
-    // Create Order record with associated PaymentDetail, ShippingDetails, and CartProducts
     const order = await prisma.order.create({
       data: {
         subTotal,
@@ -76,30 +39,73 @@ exports.createOrder = async (req, res, next) => {
         total,
         userId: req.user.id,
         PaymentDetails: {
-          connect: {
-            id: createdPaymentDetail.id,
-          },
+          razorpayOrderId: razorpayOrderId,
+          razorpayPaymentId: razorpayPaymentId
         },
-        ShippingDetails: {
-          create: shippingDetails,
-        },
-        cartProducts: {
-          create: UpdatedCartProducts,
-        },
-      },
-      include: {
-        PaymentDetails: true,
-        ShippingDetails: true,
-        cartProducts: true,
-      },
+        ShippingDetails: shippingDetails,
+        UpdatedCartProducts
+      }
     });
 
     return res.status(201).json(order);
   } catch (error) {
-    console.error("error", error);
+    console.log("error", error)
     next(error);
   }
 };
+
+// exports.createOrder = async (req, res, next) => {
+//   const { orderSummary, cartProducts, shippingDetails, paymentDetails } = req.body;
+//   try {
+//     const { subTotal, quantity, shipping, discount, total } = orderSummary;
+
+//     let UpdatedCartProducts = cartProducts.map((ele) => {
+//       delete ele.orderId
+//       return ele
+//     })
+
+//     // Create PaymentDetail record
+//     const createdPaymentDetail = await prisma.paymentDetail.create({
+//       data: {
+//         razorpayOrderId: paymentDetails.razorpayOrderId,
+//         razorpayPaymentId: paymentDetails.razorpayPaymentId,
+//       },
+//     });
+
+//     // Create Order record with associated PaymentDetail, ShippingDetails, and CartProducts
+//     const order = await prisma.order.create({
+//       data: {
+//         subTotal,
+//         quantity,
+//         shipping,
+//         discount,
+//         total,
+//         userId: req.user.id,
+//         PaymentDetails: {
+//           connect: {
+//             id: createdPaymentDetail.id,
+//           },
+//         },
+//         ShippingDetails: {
+//           create: shippingDetails,
+//         },
+//         cartProducts: {
+//           create: UpdatedCartProducts,
+//         },
+//       },
+//       include: {
+//         PaymentDetails: true,
+//         ShippingDetails: true,
+//         cartProducts: true,
+//       },
+//     });
+
+//     return res.status(201).json(order);
+//   } catch (error) {
+//     console.error("error", error);
+//     next(error);
+//   }
+// };
 
 
 exports.getUsers = async (req, res, next) => {
