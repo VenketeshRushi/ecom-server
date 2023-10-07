@@ -31,7 +31,7 @@ exports.createOrder = async (req, res, next) => {
         quantity,
       } = product;
       return {
-        id, // Assuming this is the product ID
+        id,
         title,
         gender,
         description,
