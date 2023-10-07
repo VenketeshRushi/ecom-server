@@ -63,6 +63,7 @@ exports.createOrder = async (req, res, next) => {
 
     return res.status(201).json(order);
   } catch (error) {
+    console.log("error",error)
     next(error);
   }
 };
