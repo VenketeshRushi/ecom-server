@@ -49,7 +49,6 @@ exports.getAllFavorites = async (req, res, next) => {
 };
 
 exports.deleteFavorite = async (req, res, next) => {
-  console.log("req.params  ", req.params);
   const { id } = req.params;
   try {
     // Check if the favorite belongs to the user before deleting
@@ -65,11 +64,9 @@ exports.deleteFavorite = async (req, res, next) => {
     //     message: "Favorite not found or does not belong to the user.",
     //   });
     // }
-    console.log("favoriteId ", id);
     const foundOne = await prisma.favorite.findMany({
       where: { favoriteId: +req.params.id },
     });
-    console.log("foundOne ", foundOne);
 
     await prisma.favorite.delete({
       where: {
