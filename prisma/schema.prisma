@@ -112,8 +112,8 @@ model OrderedProduct{
   ratings     Json
   img         String[]
   quantity    Int
-  order            Order?    @relation(fields: [orderId], references: [id])
-  orderId          Int?
+  order       Order?    @relation(fields: [orderId], references: [id])
+  orderId     Int?
 }
 
 model PaymentDetail {
@@ -136,6 +136,6 @@ model ShippingDetail {
   country      String
   email        String
   mobile       String
-  order            Order?    @relation(fields: [orderId], references: [id])
-  orderId          Int?
+  order        Order?    @relation(fields: [orderId], references: [id])
+  orderId      Int?
 }
