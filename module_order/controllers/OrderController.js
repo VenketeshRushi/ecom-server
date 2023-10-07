@@ -16,12 +16,21 @@ exports.createOrder = async (req, res, next) => {
     const { subTotal, quantity, shipping, discount, total } = orderSummary;
     const { orderId, razorpayOrderId, razorpayPaymentId } = paymentDetails;
 
-    let UpdatedCartProducts = cartProducts.map((ele) => {
-      delete ele.cartProductId
-      delete ele.userId
-      return ele
-    })
+    // Create PaymentDetail record
+    const paymentDetail = await prisma.paymentDetail.create({
+      data: {
+        razorpayOrderId,
+        razorpayPaymentId,
+      },
+    });
 
+    let UpdatedCartProducts = cartProducts.map((ele) => {
+      delete ele.cartProductId;
+      delete ele.userId;
+      return ele;
+    });
+
+    // Create Order record and associate it with the PaymentDetail record
     const order = await prisma.order.create({
       data: {
         subTotal,
@@ -30,13 +39,14 @@ exports.createOrder = async (req, res, next) => {
         discount,
         total,
         userId: req.user.id,
-        PaymentDetails: {
-          // razorpayOrderId: razorpayOrderId,
-          razorpayPaymentId: razorpayPaymentId
+        paymentDetail: {
+          connect: {
+            id: paymentDetail.id,
+          },
         },
         ShippingDetails: shippingDetails,
-        OrderedProducts: UpdatedCartProducts
-      }
+        OrderedProducts: UpdatedCartProducts,
+      },
     });
 
     return res.status(201).json(order);
