@@ -16,11 +16,35 @@ exports.createOrder = async (req, res, next) => {
     const { subTotal, quantity, shipping, discount, total } = orderSummary;
     const { orderId, razorpayOrderId, razorpayPaymentId } = paymentDetails;
 
-    let UpdatedCartProducts = cartProducts.map((ele) => {
-      delete ele.cartProductId;
-      delete ele.userId;
-      return ele;
+    const orderedProducts = cartProducts.map((product) => {
+      const {
+        id,
+        title,
+        gender,
+        description,
+        category,
+        price,
+        size,
+        color,
+        ratings,
+        img,
+        quantity,
+      } = product;
+      return {
+        id, // Assuming this is the product ID
+        title,
+        gender,
+        description,
+        category,
+        price,
+        size,
+        color,
+        ratings,
+        img,
+        quantity,
+      };
     });
+
 
     // Create Order record and associate it with the PaymentDetails record
     const order = await prisma.order.create({
@@ -40,7 +64,11 @@ exports.createOrder = async (req, res, next) => {
         ShippingDetails: {
           create: shippingDetails
         },
-        OrderedProducts: [...UpdatedCartProducts],
+        OrderedProducts: {
+          createMany: {
+            data: orderedProducts,
+          },
+        },
       },
     });
 
