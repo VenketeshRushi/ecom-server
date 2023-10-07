@@ -20,7 +20,7 @@ exports.addToCart = async (req, res, next) => {
             userId: req.user.id,
             cartProductId: data.cartProductId,
             id: data.id,
-            orderId: null,
+
           },
           data: {
             quantity: existingCartItem[0].quantity + 1,
@@ -30,7 +30,7 @@ exports.addToCart = async (req, res, next) => {
         const products = await prisma.cartProduct.findMany({
           where: {
             user: { id: req.user.id },
-            orderId: null,
+
           },
         });
 
@@ -52,7 +52,7 @@ exports.addToCart = async (req, res, next) => {
         const products = await prisma.cartProduct.findMany({
           where: {
             userId: req.user.id,
-            orderId: null,
+
           },
         });
 
@@ -68,7 +68,7 @@ exports.addToCart = async (req, res, next) => {
             userId: req.user.id,
             cartProductId: data.cartProductId,
             id: data.id,
-            orderId: null,
+
           },
           data: {
             quantity: existingCartItem[0].quantity - 1,
@@ -79,7 +79,7 @@ exports.addToCart = async (req, res, next) => {
         const products = await prisma.cartProduct.findMany({
           where: {
             userId: req.user.id,
-            orderId: null,
+
           },
         });
 
@@ -97,14 +97,14 @@ exports.addToCart = async (req, res, next) => {
             userId: req.user.id,
             cartProductId: data.cartProductId,
             id: data.id,
-            orderId: null,
+
           },
         });
 
         const products = await prisma.cartProduct.findMany({
           where: {
             userId: req.user.id,
-            orderId: null,
+
           },
         });
 
@@ -128,7 +128,7 @@ exports.getAllCartProducts = async (req, res, next) => {
     const products = await prisma.cartProduct.findMany({
       where: {
         userId: req.user.id,
-        orderId: null,
+
       },
     });
 
@@ -149,7 +149,7 @@ exports.deleteCartProduct = async (req, res, next) => {
         id: id,
         cartProductId: cartProductIdToDelete,
         userId: req.user.id,
-        orderId: null,
+
       },
     });
 
