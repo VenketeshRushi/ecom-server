@@ -30,7 +30,7 @@ exports.createOrder = async (req, res, next) => {
       return ele;
     });
 
-    // Create Order record and associate it with the PaymentDetail record
+    // Create Order record and associate it with the PaymentDetails record
     const order = await prisma.order.create({
       data: {
         subTotal,
@@ -39,7 +39,7 @@ exports.createOrder = async (req, res, next) => {
         discount,
         total,
         userId: req.user.id,
-        paymentDetail: {
+        PaymentDetails: {
           connect: {
             id: paymentDetail.id,
           },
@@ -55,6 +55,7 @@ exports.createOrder = async (req, res, next) => {
     next(error);
   }
 };
+
 
 
 exports.getUsers = async (req, res, next) => {
