@@ -57,13 +57,22 @@ exports.createOrder = async (req, res, next) => {
     // });
 
     const order = await prisma.order.create({
-      ...req.body,
-      user: req.user.id,
+      data: {
+        subTotal,
+        quantity,
+        shipping,
+        discount,
+        total,
+        userId: req.user.id,
+        paymentDetails,
+        shippingDetails,
+        cartProducts
+      }
     });
 
     return res.status(201).json(order);
   } catch (error) {
-    console.log("error",error)
+    console.log("error", error)
     next(error);
   }
 };
