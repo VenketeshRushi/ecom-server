@@ -10,53 +10,58 @@ exports.getOrders = async (req, res, next) => {
   }
 };
 
+// exports.createOrder = async (req, res, next) => {
+//   const {
+//     orderSummary,
+//     cartProducts,
+//     shippingDetails,
+//     paymentDetails,
+//   } = req.body;
+//   try {
+//     const { subTotal,
+//       quantity,
+//       shipping,
+//       discount,
+//       total, } = orderSummary;
+//     const { orderId, razorpayOrderId, razorpayPaymentId } = paymentDetails
+//     const order = await prisma.order.create({
+//       data: {
+//         subTotal,
+//         quantity,
+//         shipping,
+//         discount,
+//         total,
+//         userId: req.user.id,
+//         PaymentDetails: {
+//           razorpayOrderId: razorpayOrderId,
+//           razorpayPaymentId: razorpayPaymentId
+//         },
+//         ShippingDetails: shippingDetails,
+//         cartProducts
+//       }
+//     });
+
+//     return res.status(201).json(order);
+//   } catch (error) {
+//     console.log("error", error)
+//     next(error);
+//   }
+// };
+
 exports.createOrder = async (req, res, next) => {
-  const {
-    orderSummary,
-    cartProducts,
-    shippingDetails,
-    paymentDetails,
-  } = req.body;
+  const { orderSummary, cartProducts, shippingDetails, paymentDetails } = req.body;
   try {
-    // Create related records first, assuming they are in the correct shape in req.body
-    // const createdShippingDetails = await prisma.shippingDetail.create({
-    //   data: { ...shippingDetails },
-    // });
+    const { subTotal, quantity, shipping, discount, total } = orderSummary;
 
-    // const createdPaymentDetails = await prisma.paymentDetail.create({
-    //   data: { ...paymentDetails },
-    // });
+    // Create PaymentDetail record
+    const createdPaymentDetail = await prisma.paymentDetail.create({
+      data: {
+        razorpayOrderId: paymentDetails.razorpayOrderId,
+        razorpayPaymentId: paymentDetails.razorpayPaymentId,
+      },
+    });
 
-    // const createdCartProducts = await prisma.cartProduct.createMany({
-    //   data: cartProducts,
-    // });
-
-    // Create the order record with references to the related records
-    // const order = await prisma.order.create({
-    //   data: {
-    //     subTotal,
-    //     quantity,
-    //     shipping,
-    //     discount,
-    //     total,
-    //     userId: req.user.id,
-    //     ShippingDetails: {
-    //       connect: { id: createdShippingDetails.id },
-    //     },
-    //     PaymentDetails: {
-    //       connect: { id: createdPaymentDetails.id },
-    //     },
-    //     cartProducts: {
-    //       connect: createdCartProducts.map((product) => ({ id: product.id })),
-    //     },
-    //   },
-    // });
-    const { subTotal,
-      quantity,
-      shipping,
-      discount,
-      total, } = orderSummary;
-    const { orderId, razorpayOrderId, razorpayPaymentId } = paymentDetails
+    // Create Order record with associated PaymentDetail, ShippingDetails, and CartProducts
     const order = await prisma.order.create({
       data: {
         subTotal,
@@ -66,20 +71,31 @@ exports.createOrder = async (req, res, next) => {
         total,
         userId: req.user.id,
         PaymentDetails: {
-          razorpayOrderId: razorpayOrderId,
-          razorpayPaymentId: razorpayPaymentId
+          connect: {
+            id: createdPaymentDetail.id,
+          },
         },
-        ShippingDetails: shippingDetails,
-        cartProducts
-      }
+        ShippingDetails: {
+          create: shippingDetails,
+        },
+        cartProducts: {
+          create: cartProducts, // Assuming cartProducts is an array of CartProduct objects
+        },
+      },
+      include: {
+        PaymentDetails: true,
+        ShippingDetails: true,
+        cartProducts: true,
+      },
     });
 
     return res.status(201).json(order);
   } catch (error) {
-    console.log("error", error)
+    console.error("error", error);
     next(error);
   }
 };
+
 
 exports.getUsers = async (req, res, next) => {
   try {
