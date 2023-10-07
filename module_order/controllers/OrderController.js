@@ -12,11 +12,7 @@ exports.getOrders = async (req, res, next) => {
 
 exports.createOrder = async (req, res, next) => {
   const {
-    subTotal,
-    quantity,
-    shipping,
-    discount,
-    total,
+    orderSummary,
     cartProducts,
     shippingDetails,
     paymentDetails,
@@ -55,7 +51,11 @@ exports.createOrder = async (req, res, next) => {
     //     },
     //   },
     // });
-
+    const { subTotal,
+      quantity,
+      shipping,
+      discount,
+      total, } = orderSummary;
     const order = await prisma.order.create({
       data: {
         subTotal,
