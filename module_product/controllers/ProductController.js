@@ -239,7 +239,7 @@ exports.addReview = async (req, res, next) => {
   const { id, rating, reviewdes, userid } = req.body;
   try {
     const updatedProduct = await prisma.$executeRaw`
-      UPDATE products
+      UPDATE product
       SET ratings = jsonb_set(
         COALESCE(ratings, '[]'::jsonb),
         ARRAY[jsonb_array_length(COALESCE(ratings, '[]'::jsonb))::text],

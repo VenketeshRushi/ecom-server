@@ -30,6 +30,6 @@ router.post("/getfilterdproducts", productController.filterProducts);
 router.get("/getsearchedproduct", productController.getSearchedProducts);
 
 // ADD REVIEW TO PRODUCT
-router.post("addreview", productController.addReview);
+router.post("/addreview", productController.addReview);
 
 module.exports = router;
