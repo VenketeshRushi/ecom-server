@@ -15,6 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// using app.use to serve up static CSS files in "public" folder when /public link is called in ejs files
 app.use("/public", express.static("public"));
 
 // Set EJS as the view engine
@@ -27,6 +28,7 @@ app.set("views", __dirname + "/views");
 app.get("/", (req, res) => {
   res.render("offer",{seconds : 15});
 });
+
 
 app.use("/auth", AuthApiRoutes);
 app.use("/product", ProductApiRoutes);
