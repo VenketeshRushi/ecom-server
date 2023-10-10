@@ -139,3 +139,10 @@ model ShippingDetail {
   order        Order?    @relation(fields: [orderId], references: [id])
   orderId      Int?
 }
+
+model Location {
+  id   Int    @id @default(autoincrement())
+  lat  Float
+  long Float
+}
+

@@ -1,24 +1,8 @@
 const express = require("express");
 const router = express.Router();
-// const passport = require("passport");
-// require("../controllers/passport");
-// const session = require("express-session");
-// const jwt = require("jsonwebtoken");
 
 const handleErrors = require("../middleware/handleErrors");
 const UserController = require("../controllers/UserController");
-
-// router.use(
-//   session({
-//     secret: "token",
-//     resave: false,
-//     saveUninitialized: true,
-//     cookie: { secure: false },
-//   })
-// );
-
-// router.use(passport.initialize());
-// router.use(passport.session());
 
 // HANDLING ERRORS
 router.use(handleErrors);
@@ -34,6 +18,29 @@ router.post("/sendotp", UserController.checkMailAndSendOTP);
 
 // RESET PASSWORD
 router.post("/resetpassword", UserController.resetPassword);
+
+// ADD LOCATION
+router.post("/addlocation", UserController.saveLocation);
+
+// GET LOCATION
+router.get("/getlocation", UserController.getLocation);
+
+// const passport = require("passport");
+// require("../controllers/passport");
+// const session = require("express-session");
+// const jwt = require("jsonwebtoken");
+
+// router.use(
+//   session({
+//     secret: "token",
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { secure: false },
+//   })
+// );
+
+// router.use(passport.initialize());
+// router.use(passport.session());
 
 // UPDATE USER PROFILE
 // router.put("/profile", authorization, UserController.updateProfile);

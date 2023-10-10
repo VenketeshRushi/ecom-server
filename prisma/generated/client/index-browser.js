@@ -235,6 +235,12 @@ exports.Prisma.ShippingDetailScalarFieldEnum = {
   orderId: 'orderId'
 };
 
+exports.Prisma.LocationScalarFieldEnum = {
+  id: 'id',
+  lat: 'lat',
+  long: 'long'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -270,7 +276,8 @@ exports.Prisma.ModelName = {
   Order: 'Order',
   OrderedProduct: 'OrderedProduct',
   PaymentDetail: 'PaymentDetail',
-  ShippingDetail: 'ShippingDetail'
+  ShippingDetail: 'ShippingDetail',
+  Location: 'Location'
 };
 
 /**

@@ -27,7 +27,6 @@ exports.login = async (req, res, next) => {
         isAdmin: isAdmin,
       },
     });
-    
 
     if (!user) {
       return res.status(401).json({ message: "Email Address Not Found" });
@@ -69,6 +68,36 @@ exports.signup = async (req, res, next) => {
     const token = jwt.sign({ user }, "your-secret-key");
 
     res.status(201).json({ user, token });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.saveLocation = async (req, res, next) => {
+  const { latitude, longitude } = req.body;
+
+  try {
+    const location = await prisma.location.create({
+      data: { lat: latitude, long: longitude },
+    });
+
+    return res
+      .status(201)
+      .json({ status: true, message: "Location Saved successfully", location });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getLocation = async (req, res, next) => {
+  try {
+    const location = await prisma.location.findMany();
+
+    return res.status(201).json({
+      status: true,
+      message: "Users Locations Found successfully",
+      location,
+    });
   } catch (error) {
     next(error);
   }
