@@ -239,7 +239,7 @@ exports.addReview = async (req, res, next) => {
   const { id, rating, reviewdes, userid } = req.body;
   try {
     const existingProduct = await prisma.product.findUnique({
-      where: { id: 7 },
+      where: { id: id },
       select: { ratings: true },
     });
 
@@ -247,12 +247,12 @@ exports.addReview = async (req, res, next) => {
     updatedRatings.push({ rating, reviewdes, productId: id, userId: userid });
 
     const updatedProduct = await prisma.product.update({
-      where: { id: 7 },
+      where: { id: id },
       data: {
         ratings: updatedRatings,
       },
     });
-    
+
     return res.status(200).json(updatedProduct);
   } catch (error) {
     console.error(error);
