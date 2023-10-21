@@ -21,7 +21,7 @@ exports.getAllProducts = async (req, res, next) => {
         },
       });
     } else {
-      products = await prisma.product.findMany({});
+      products = await prisma.product.findMany();
     }
 
     return res.status(200).json(products);
@@ -57,7 +57,31 @@ exports.getSingleProduct = async (req, res, next) => {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    return res.status(200).json(product);
+    let reviewsWithUsersDetails = [];
+    let withOutUserDetailsReview = [];
+    for (let i = 0; i < product.ratings.length; i++) {
+      let reviewsWithUsers = product.ratings[i];
+      if ([...Object.keys(reviewsWithUsers)].includes("userId")) {
+        let findUserForReview = await prisma.user.findUnique({
+          where: {
+            id: reviewsWithUsers.userId,
+          },
+        });
+        reviewsWithUsersDetails.push({
+          ...reviewsWithUsers,
+          userName:
+            findUserForReview?.firstName + " " + findUserForReview?.lastName,
+          userPicture: "",
+        });
+      } else {
+        withOutUserDetailsReview.push(reviewsWithUsers);
+      }
+    }
+    let productUpdated = {
+      ...product,
+      ratings: [...reviewsWithUsersDetails, ...withOutUserDetailsReview],
+    };
+    return res.status(200).json(productUpdated);
   } catch (error) {
     next(error);
   }
