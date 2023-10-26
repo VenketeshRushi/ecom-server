@@ -7,7 +7,7 @@ exports.addUserImage = async (req, res, next) => {
     }
 
     const url = process.env.SERVER_URL;
-    const uploadedFile = url + "public/uploads" + req.file.filename;
+    const uploadedFile = url + "/public/uploads" + req.file.filename;
     const user = await prisma.user.update({
       where: {
         id: req.user.id,
