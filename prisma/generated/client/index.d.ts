@@ -1736,6 +1736,7 @@ export namespace Prisma {
     password: string | null
     firstName: string | null
     lastName: string | null
+    profilePic: string | null
     createdAt: Date | null
     updatedAt: Date | null
     isAdmin: boolean | null
@@ -1747,6 +1748,7 @@ export namespace Prisma {
     password: string | null
     firstName: string | null
     lastName: string | null
+    profilePic: string | null
     createdAt: Date | null
     updatedAt: Date | null
     isAdmin: boolean | null
@@ -1758,6 +1760,7 @@ export namespace Prisma {
     password: number
     firstName: number
     lastName: number
+    profilePic: number
     createdAt: number
     updatedAt: number
     isAdmin: number
@@ -1779,6 +1782,7 @@ export namespace Prisma {
     password?: true
     firstName?: true
     lastName?: true
+    profilePic?: true
     createdAt?: true
     updatedAt?: true
     isAdmin?: true
@@ -1790,6 +1794,7 @@ export namespace Prisma {
     password?: true
     firstName?: true
     lastName?: true
+    profilePic?: true
     createdAt?: true
     updatedAt?: true
     isAdmin?: true
@@ -1801,6 +1806,7 @@ export namespace Prisma {
     password?: true
     firstName?: true
     lastName?: true
+    profilePic?: true
     createdAt?: true
     updatedAt?: true
     isAdmin?: true
@@ -1899,6 +1905,7 @@ export namespace Prisma {
     password: string
     firstName: string | null
     lastName: string | null
+    profilePic: string | null
     createdAt: Date
     updatedAt: Date
     isAdmin: boolean
@@ -1929,6 +1936,7 @@ export namespace Prisma {
     password?: boolean
     firstName?: boolean
     lastName?: boolean
+    profilePic?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isAdmin?: boolean
@@ -1945,6 +1953,7 @@ export namespace Prisma {
     password?: boolean
     firstName?: boolean
     lastName?: boolean
+    profilePic?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     isAdmin?: boolean
@@ -1973,6 +1982,7 @@ export namespace Prisma {
       password: string
       firstName: string | null
       lastName: string | null
+      profilePic: string | null
       createdAt: Date
       updatedAt: Date
       isAdmin: boolean
@@ -2382,6 +2392,7 @@ export namespace Prisma {
     readonly password: FieldRef<"User", 'String'>
     readonly firstName: FieldRef<"User", 'String'>
     readonly lastName: FieldRef<"User", 'String'>
+    readonly profilePic: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
     readonly isAdmin: FieldRef<"User", 'Boolean'>
@@ -11875,6 +11886,7 @@ export namespace Prisma {
     password: 'password',
     firstName: 'firstName',
     lastName: 'lastName',
+    profilePic: 'profilePic',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     isAdmin: 'isAdmin'
@@ -12146,6 +12158,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     firstName?: StringNullableFilter<"User"> | string | null
     lastName?: StringNullableFilter<"User"> | string | null
+    profilePic?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     isAdmin?: BoolFilter<"User"> | boolean
@@ -12161,6 +12174,7 @@ export namespace Prisma {
     password?: SortOrder
     firstName?: SortOrderInput | SortOrder
     lastName?: SortOrderInput | SortOrder
+    profilePic?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isAdmin?: SortOrder
@@ -12179,6 +12193,7 @@ export namespace Prisma {
     password?: StringFilter<"User"> | string
     firstName?: StringNullableFilter<"User"> | string | null
     lastName?: StringNullableFilter<"User"> | string | null
+    profilePic?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     isAdmin?: BoolFilter<"User"> | boolean
@@ -12194,6 +12209,7 @@ export namespace Prisma {
     password?: SortOrder
     firstName?: SortOrderInput | SortOrder
     lastName?: SortOrderInput | SortOrder
+    profilePic?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isAdmin?: SortOrder
@@ -12213,6 +12229,7 @@ export namespace Prisma {
     password?: StringWithAggregatesFilter<"User"> | string
     firstName?: StringNullableWithAggregatesFilter<"User"> | string | null
     lastName?: StringNullableWithAggregatesFilter<"User"> | string | null
+    profilePic?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     isAdmin?: BoolWithAggregatesFilter<"User"> | boolean
@@ -12924,6 +12941,7 @@ export namespace Prisma {
     password: string
     firstName?: string | null
     lastName?: string | null
+    profilePic?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAdmin?: boolean
@@ -12939,6 +12957,7 @@ export namespace Prisma {
     password: string
     firstName?: string | null
     lastName?: string | null
+    profilePic?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAdmin?: boolean
@@ -12953,6 +12972,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -12968,6 +12988,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -12983,6 +13004,7 @@ export namespace Prisma {
     password: string
     firstName?: string | null
     lastName?: string | null
+    profilePic?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAdmin?: boolean
@@ -12993,6 +13015,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -13004,6 +13027,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -13858,6 +13882,7 @@ export namespace Prisma {
     password?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
+    profilePic?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isAdmin?: SortOrder
@@ -13873,6 +13898,7 @@ export namespace Prisma {
     password?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
+    profilePic?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isAdmin?: SortOrder
@@ -13884,6 +13910,7 @@ export namespace Prisma {
     password?: SortOrder
     firstName?: SortOrder
     lastName?: SortOrder
+    profilePic?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     isAdmin?: SortOrder
@@ -15518,6 +15545,7 @@ export namespace Prisma {
     password: string
     firstName?: string | null
     lastName?: string | null
+    profilePic?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAdmin?: boolean
@@ -15532,6 +15560,7 @@ export namespace Prisma {
     password: string
     firstName?: string | null
     lastName?: string | null
+    profilePic?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAdmin?: boolean
@@ -15561,6 +15590,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -15575,6 +15605,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -15588,6 +15619,7 @@ export namespace Prisma {
     password: string
     firstName?: string | null
     lastName?: string | null
+    profilePic?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAdmin?: boolean
@@ -15602,6 +15634,7 @@ export namespace Prisma {
     password: string
     firstName?: string | null
     lastName?: string | null
+    profilePic?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAdmin?: boolean
@@ -15631,6 +15664,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -15645,6 +15679,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -15658,6 +15693,7 @@ export namespace Prisma {
     password: string
     firstName?: string | null
     lastName?: string | null
+    profilePic?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAdmin?: boolean
@@ -15672,6 +15708,7 @@ export namespace Prisma {
     password: string
     firstName?: string | null
     lastName?: string | null
+    profilePic?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAdmin?: boolean
@@ -15701,6 +15738,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -15715,6 +15753,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -15728,6 +15767,7 @@ export namespace Prisma {
     password: string
     firstName?: string | null
     lastName?: string | null
+    profilePic?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAdmin?: boolean
@@ -15742,6 +15782,7 @@ export namespace Prisma {
     password: string
     firstName?: string | null
     lastName?: string | null
+    profilePic?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     isAdmin?: boolean
@@ -15868,6 +15909,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
@@ -15882,6 +15924,7 @@ export namespace Prisma {
     password?: StringFieldUpdateOperationsInput | string
     firstName?: NullableStringFieldUpdateOperationsInput | string | null
     lastName?: NullableStringFieldUpdateOperationsInput | string | null
+    profilePic?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isAdmin?: BoolFieldUpdateOperationsInput | boolean
