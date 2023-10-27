@@ -48,9 +48,9 @@ router.post(
 
 // Update User Details
 router.post(
-  "/updateuserdetails",
+  "/updateusernotificationdetails",
   authorization,
-  userController.updateUserDetails
+  userController.updateUserNotificationDetails
 );
 
 module.exports = router;

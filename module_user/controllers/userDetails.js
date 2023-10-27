@@ -1,5 +1,5 @@
 const prisma = require("../../db.server");
-const fs = require('fs');
+const fs = require("fs");
 
 exports.addUserImage = async (req, res, next) => {
   try {
@@ -12,19 +12,21 @@ exports.addUserImage = async (req, res, next) => {
 
     const checkProfilePic = await prisma.user.findUnique({
       where: {
-        id: req.user.id
-      }
+        id: req.user.id,
+      },
     });
 
-    if (checkProfilePic.profilePic !== null && checkProfilePic.profilePic !== "") {
-      
+    if (
+      checkProfilePic.profilePic !== null &&
+      checkProfilePic.profilePic !== ""
+    ) {
       const profilePicName = checkProfilePic.profilePic.split("uploads/")[1];
 
       fs.unlink(`public/uploads/${profilePicName}`, async function (err) {
         if (err) {
           next(err);
         } else {
-          console.log('File deleted!');
+          console.log("File deleted!");
           const user = await prisma.user.update({
             where: {
               id: req.user.id,
@@ -60,12 +62,28 @@ exports.addUserImage = async (req, res, next) => {
   }
 };
 
-
-exports.updateUserDetails = async (req, res, next) => {
+exports.updateUserNotificationDetails = async (req, res, next) => {
   try {
-    const users = await prisma.user.findMany();
+    const user = await prisma.user.findUnique({
+      where: {
+        id: req.user.id,
+      },
+    });
 
-    res.status(200).json(users);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const updatedUser = await prisma.user.update({
+      where: {
+        id: req.user.id,
+      },
+      data: {
+        notification: true,
+      },
+    });
+
+    res.status(200).json(updatedUser);
   } catch (error) {
     console.error(error);
     next(error);
