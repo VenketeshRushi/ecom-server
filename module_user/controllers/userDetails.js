@@ -1,4 +1,5 @@
 const prisma = require("../../db.server");
+const fs = require('fs');
 
 exports.addUserImage = async (req, res, next) => {
   try {
@@ -8,23 +9,57 @@ exports.addUserImage = async (req, res, next) => {
 
     const url = "https://nike-clone-tcmw.onrender.com";
     const uploadedFile = url + "/public/uploads/" + req.file.filename;
-    const user = await prisma.user.update({
+
+    const checkProfilePic = await prisma.user.findUnique({
       where: {
-        id: req.user.id,
-      },
-      data: {
-        profilePic: uploadedFile,
-      },
+        id: req.user.id
+      }
     });
-    res.status(201).json({
-      message: "Done upload!",
-      uploadedFile: uploadedFile,
-      user: user,
-    });
+
+    if (checkProfilePic.profilePic !== null && checkProfilePic.profilePic !== "") {
+      
+      const profilePicName = checkProfilePic.profilePic.split("uploads/")[1];
+
+      fs.unlink(`public/uploads/${profilePicName}`, async function (err) {
+        if (err) {
+          next(err);
+        } else {
+          console.log('File deleted!');
+          const user = await prisma.user.update({
+            where: {
+              id: req.user.id,
+            },
+            data: {
+              profilePic: uploadedFile,
+            },
+          });
+          return res.status(201).json({
+            message: "Done upload!",
+            uploadedFile: uploadedFile,
+            user: user,
+          });
+        }
+      });
+    } else {
+      const user = await prisma.user.update({
+        where: {
+          id: req.user.id,
+        },
+        data: {
+          profilePic: uploadedFile,
+        },
+      });
+      return res.status(201).json({
+        message: "Done upload!",
+        uploadedFile: uploadedFile,
+        user: user,
+      });
+    }
   } catch (error) {
     next(error);
   }
 };
+
 
 exports.updateUserDetails = async (req, res, next) => {
   try {
