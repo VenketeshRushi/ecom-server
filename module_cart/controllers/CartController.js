@@ -8,7 +8,6 @@ exports.addToCart = async (req, res, next) => {
       where: {
         userId: req.user.id,
         id: data.id,
-        order: null,
       },
     });
 
