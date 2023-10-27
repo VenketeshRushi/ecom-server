@@ -9,6 +9,8 @@ const userController = require("../controllers/userDetails");
 // HANDLING ERRORS
 router.use(authorization);
 
+
+// MULTER
 const DIR = "./public/uploads";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
