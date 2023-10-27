@@ -6,8 +6,8 @@ exports.addUserImage = async (req, res, next) => {
       throw new Error("No file uploaded.");
     }
 
-    const url = process.env.SERVER_URL;
-    const uploadedFile = url + "/public/uploads" + req.file.filename;
+    const url = "https://nike-clone-tcmw.onrender.com";
+    const uploadedFile = url + "/public/uploads/" + req.file.filename;
     const user = await prisma.user.update({
       where: {
         id: req.user.id,
