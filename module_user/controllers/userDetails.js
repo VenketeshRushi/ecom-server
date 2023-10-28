@@ -83,7 +83,7 @@ exports.updateUserNotificationDetails = async (req, res, next) => {
       },
     });
 
-    res.status(200).json(updatedUser);
+    return res.status(200).json({ user: updatedUser });
   } catch (error) {
     console.error(error);
     next(error);
