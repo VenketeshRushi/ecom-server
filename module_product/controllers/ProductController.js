@@ -33,12 +33,33 @@ exports.getAllProducts = async (req, res, next) => {
 exports.getProductsByVerity = async (req, res, next) => {
   try {
     const products = await prisma.product.findMany({
-      take: 4,
+      take: 12,
       orderBy: {
         id: "desc",
       },
     });
-    return res.status(200).json(products);
+    // console.log("length", products.length);
+    let updatedProduct = {
+      a: [],
+      b: [],
+      c: [],
+    };
+    for (let i = 0; i < products.length; i++) {
+      const product = products[i];
+      const productInfo = {
+        id: product.id,
+        image: product.img[0],
+      };
+
+      if (i < 4) {
+        updatedProduct.a.push(productInfo);
+      } else if (i < 8) {
+        updatedProduct.b.push(productInfo);
+      } else {
+        updatedProduct.c.push(productInfo);
+      }
+    }
+    return res.status(200).json(updatedProduct);
   } catch (error) {
     next(error);
   }
