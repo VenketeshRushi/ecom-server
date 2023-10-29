@@ -14,7 +14,7 @@ router.get("/", authorization, function (req, res, next) {
   // Cookies that have been signed
   console.log("Signed Cookies: ", JSON.stringify(req.signedCookies));
 
-  res.render("index", { title: "Express" });
+  res.render("index", { title: "Nike Clone!" });
 });
 
 module.exports = router;
