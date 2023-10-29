@@ -5,6 +5,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 var session = require("express-session");
+const MemoryStore = require("memorystore")(session);
 
 const AuthApiRoutes = require("./module_auth/routes/auth.routes");
 const ProductApiRoutes = require("./module_product/routes/product.routes");
@@ -33,6 +34,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
     secret: "asdasdasdasdasd",
+    store: new MemoryStore({
+      checkPeriod: 86400000, // Prune expired entries every 24h (in milliseconds)
+    }),
   })
 );
 
