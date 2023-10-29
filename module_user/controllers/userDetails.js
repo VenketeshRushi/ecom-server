@@ -1,4 +1,4 @@
-const prisma = require("../../db.server");
+const prisma = require("../../db.server.postgres");
 const fs = require("fs");
 
 exports.addUserImage = async (req, res, next) => {
@@ -83,7 +83,7 @@ exports.updateUserNotificationDetails = async (req, res, next) => {
       },
     });
 
-    return res.status(200).json({ user: updatedUser });
+    res.status(200).json(updatedUser);
   } catch (error) {
     console.error(error);
     next(error);

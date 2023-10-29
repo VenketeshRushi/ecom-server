@@ -1,4 +1,4 @@
-const prisma = require("../../db.server");
+const prisma = require("../../db.server.postgres");
 
 // exports.getOrders = async (req, res, next) => {
 //   try {

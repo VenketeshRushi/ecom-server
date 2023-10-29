@@ -1,5 +1,5 @@
 // const GoogleStrategy = require("passport-google-oauth20").Strategy;
-// const prisma = require("../../db.server");
+// const prisma = require("../../db.server.postgres");
 // const jwt = require("jsonwebtoken");
 // const bcrypt = require("bcryptjs");
 // const passport = require("passport");

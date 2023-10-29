@@ -30,15 +30,13 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.1.1
- * Query Engine version: 6a3747c37ff169c90047725a05a6ef02e32ac97e
+ * Prisma Client JS version: 5.5.2
+ * Query Engine version: aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a
  */
 Prisma.prismaVersion = {
-  client: "5.1.1",
-  engine: "6a3747c37ff169c90047725a05a6ef02e32ac97e"
+  client: "5.5.2",
+  engine: "aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a"
 }
-
-false
 
 Prisma.PrismaClientKnownRequestError = PrismaClientKnownRequestError;
 Prisma.PrismaClientUnknownRequestError = PrismaClientUnknownRequestError
@@ -260,7 +258,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\selle\\OneDrive\\Desktop\\ecom\\ecom-server\\prisma\\generated\\client",
+      "value": "C:\\Users\\selle\\OneDrive\\Desktop\\nikeserver\\prisma\\generated\\client",
       "fromEnvVar": null
     },
     "config": {
@@ -281,13 +279,24 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
-  "clientVersion": "5.1.1",
-  "engineVersion": "6a3747c37ff169c90047725a05a6ef02e32ac97e",
+  "clientVersion": "5.5.2",
+  "engineVersion": "aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "postgresql",
-  "dataProxy": false
+  "postinstall": false,
+  "inlineDatasources": {
+    "db": {
+      "url": {
+        "fromEnvVar": "DATABASE_URL",
+        "value": null
+      }
+    }
+  },
+  "inlineSchema": "Ly8gc2NoZW1hLnByaXNtYQ0KDQpnZW5lcmF0b3IgY2xpZW50IHsNCiAgcHJvdmlkZXIgPSAicHJpc21hLWNsaWVudC1qcyINCiAgb3V0cHV0ICAgPSAiLi9nZW5lcmF0ZWQvY2xpZW50Ig0KfQ0KDQpkYXRhc291cmNlIGRiIHsNCiAgcHJvdmlkZXIgID0gInBvc3RncmVzcWwiDQogIHVybCAgICAgICA9IGVudigiREFUQUJBU0VfVVJMIikNCiAgZGlyZWN0VXJsID0gZW52KCJESVJFQ1RfVVJMIikNCn0NCg0KbW9kZWwgVXNlciB7DQogIGlkICAgICAgIEludCAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpDQogIGVtYWlsICAgIFN0cmluZyAgIEB1bmlxdWUNCiAgcGFzc3dvcmQgU3RyaW5nICAgDQogIGZpcnN0TmFtZSBTdHJpbmc/DQogIGxhc3ROYW1lICBTdHJpbmc/DQogIHByb2ZpbGVQaWMgU3RyaW5nPw0KICBub3RpZmljYXRpb24gIEJvb2xlYW4gQGRlZmF1bHQoZmFsc2UpDQogIGNyZWF0ZWRBdCBEYXRlVGltZSBAZGVmYXVsdChub3coKSkNCiAgdXBkYXRlZEF0IERhdGVUaW1lIEB1cGRhdGVkQXQNCiAgYWRkcmVzc2VzIEFkZHJlc3NbXQ0KICBvcmRlcnMgICAgT3JkZXJbXQ0KICBDYXJ0UHJvZHVjdHMgQ2FydFByb2R1Y3RbXQ0KICBmYXZvcml0ZUl0ZW1zIEZhdm9yaXRlW10NCiAgaXNBZG1pbiAgIEJvb2xlYW4gQGRlZmF1bHQoZmFsc2UpDQp9DQoNCm1vZGVsIEFkZHJlc3Mgew0KICBpZCAgICAgICAgSW50ICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkNCiAgc3RyZWV0ICAgIFN0cmluZw0KICBjaXR5ICAgICAgU3RyaW5nDQogIHN0YXRlICAgICBTdHJpbmcNCiAgemlwQ29kZSAgIFN0cmluZw0KICB1c2VyICAgICAgVXNlciAgICAgQHJlbGF0aW9uKGZpZWxkczogW3VzZXJJZF0sIHJlZmVyZW5jZXM6IFtpZF0pDQogIHVzZXJJZCAgICBJbnQNCn0NCg0KbW9kZWwgUHJvZHVjdCB7DQogIGlkICAgICAgICAgIEludCAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpDQogIHRpdGxlICAgICAgIFN0cmluZw0KICBnZW5kZXIgICAgICBTdHJpbmcNCiAgZGVzY3JpcHRpb24gU3RyaW5nDQogIGNhdGVnb3J5ICAgIFN0cmluZw0KICBwcmljZSAgICAgICBJbnQNCiAgc2l6ZSAgICAgICAgU3RyaW5nW10NCiAgY29sb3IgICAgICAgU3RyaW5nDQogIHJhdGluZ3MgICAgIEpzb24NCiAgaW1nICAgICAgICAgU3RyaW5nW10NCn0NCg0KDQptb2RlbCBDYXJ0UHJvZHVjdCB7DQogIGNhcnRQcm9kdWN0SWQgSW50ICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkNCsKgIGlkIMKgIMKgIMKgIMKgIMKgSW50ICAgICANCsKgIHRpdGxlIMKgIMKgIMKgIFN0cmluZw0KwqAgZ2VuZGVyIMKgIMKgIMKgU3RyaW5nDQrCoCBkZXNjcmlwdGlvbiBTdHJpbmcNCsKgIGNhdGVnb3J5IMKgIMKgU3RyaW5nDQrCoCBwcmljZSDCoCDCoCDCoCBGbG9hdA0KwqAgc2l6ZSDCoCDCoCDCoCDCoFN0cmluZw0KwqAgY29sb3IgwqAgwqAgwqAgU3RyaW5nDQrCoCByYXRpbmdzIMKgIMKgIMKgSnNvbg0KwqAgaW1nIMKgIMKgIMKgIMKgIFN0cmluZ1tdDQrCoCBxdWFudGl0eSDCoCDCoEludA0KICB1c2VyICAgICAgICBVc2VyICAgICAgQHJlbGF0aW9uKGZpZWxkczogW3VzZXJJZF0sIHJlZmVyZW5jZXM6IFtpZF0pDQogIHVzZXJJZCAgICAgIEludCAgICAgICANCn0NCg0KbW9kZWwgRmF2b3JpdGUgew0KICBmYXZvcml0ZUlkIEludCAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpDQrCoCBpZCDCoCDCoCDCoCDCoCDCoEludA0KwqAgdGl0bGUgwqAgwqAgwqAgU3RyaW5nDQrCoCBnZW5kZXIgwqAgwqAgwqBTdHJpbmcNCsKgIGRlc2NyaXB0aW9uIFN0cmluZw0KwqAgY2F0ZWdvcnkgwqAgwqBTdHJpbmcNCsKgIHByaWNlIMKgIMKgIMKgIEZsb2F0DQrCoCBzaXplIMKgIMKgIMKgIMKgU3RyaW5nW10NCsKgIGNvbG9yIMKgIMKgIMKgIFN0cmluZw0KwqAgcmF0aW5ncyDCoCDCoCAgSnNvbg0KwqAgaW1nIMKgIMKgIMKgIMKgIFN0cmluZ1tdDQrCoCB1c2VyIMKgIMKgIMKgIMKgVXNlciBAcmVsYXRpb24oZmllbGRzOiBbdXNlcklkXSwgcmVmZXJlbmNlczogW2lkXSkNCsKgIHVzZXJJZCDCoCDCoCDCoEludCDCoA0KwqAgY3JlYXRlZEF0IMKgIERhdGVUaW1lIEBkZWZhdWx0KG5vdygpKQ0KfQ0KDQptb2RlbCBPcmRlciB7DQogIGlkICAgICAgICAgICAgICBJbnQgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkNCiAgc3ViVG90YWwgICAgICAgIEZsb2F0DQogIHF1YW50aXR5ICAgICAgICBJbnQNCiAgc2hpcHBpbmcgICAgICAgIEZsb2F0DQogIGRpc2NvdW50ICAgICAgICBGbG9hdA0KICB0b3RhbCAgICAgICAgICAgRmxvYXQNCiAgdXNlciAgICAgICAgICAgIFVzZXIgICAgICBAcmVsYXRpb24oZmllbGRzOiBbdXNlcklkXSwgcmVmZXJlbmNlczogW2lkXSkNCiAgdXNlcklkICAgICAgICAgIEludA0KICBjcmVhdGVkQXQgwqAgICAgIERhdGVUaW1lIEBkZWZhdWx0KG5vdygpKQ0KICBQYXltZW50RGV0YWlscyAgUGF5bWVudERldGFpbFtdDQogIFNoaXBwaW5nRGV0YWlscyBTaGlwcGluZ0RldGFpbFtdDQogIE9yZGVyZWRQcm9kdWN0cyBPcmRlcmVkUHJvZHVjdFtdDQp9DQoNCm1vZGVsIE9yZGVyZWRQcm9kdWN0ew0KICBPcmRlcmVkUHJvZHVjdElkIEludCAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpDQrCoCBpZCDCoCDCoCDCoCDCoCDCoEludCAgICAgDQrCoCB0aXRsZSDCoCDCoCDCoCBTdHJpbmcNCsKgIGdlbmRlciDCoCDCoCDCoFN0cmluZw0KwqAgZGVzY3JpcHRpb24gU3RyaW5nDQrCoCBjYXRlZ29yeSDCoCDCoFN0cmluZw0KwqAgcHJpY2UgwqAgwqAgwqAgRmxvYXQNCsKgIHNpemUgwqAgwqAgwqAgwqBTdHJpbmcNCsKgIGNvbG9yIMKgIMKgIMKgIFN0cmluZw0KwqAgcmF0aW5ncyDCoCDCoCBKc29uDQrCoCBpbWcgwqAgwqAgwqAgwqAgU3RyaW5nW10NCsKgIHF1YW50aXR5IMKgIMKgSW50DQogIG9yZGVyICAgICAgIE9yZGVyPyAgICBAcmVsYXRpb24oZmllbGRzOiBbb3JkZXJJZF0sIHJlZmVyZW5jZXM6IFtpZF0pDQogIG9yZGVySWQgICAgIEludD8NCn0NCg0KbW9kZWwgUGF5bWVudERldGFpbCB7DQogIGlkICAgICAgICAgICAgICAgSW50ICAgICAgIEBpZCBAZGVmYXVsdChhdXRvaW5jcmVtZW50KCkpDQogIHJhem9ycGF5T3JkZXJJZCAgU3RyaW5nDQogIHJhem9ycGF5UGF5bWVudElkIFN0cmluZw0KICBvcmRlciAgICAgICAgICAgIE9yZGVyPyAgICBAcmVsYXRpb24oZmllbGRzOiBbb3JkZXJJZF0sIHJlZmVyZW5jZXM6IFtpZF0pDQogIG9yZGVySWQgICAgICAgICAgSW50Pw0KfQ0KDQptb2RlbCBTaGlwcGluZ0RldGFpbCB7DQogIGlkICAgICAgICAgICBJbnQgICAgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkNCiAgZmlyc3ROYW1lICAgIFN0cmluZw0KICBsYXN0TmFtZSAgICAgU3RyaW5nDQogIGFkZHJlc3NMaW5lMSBTdHJpbmcNCiAgYWRkcmVzc0xpbmUyIFN0cmluZz8NCiAgbG9jYWxpdHkgICAgIFN0cmluZw0KICBwaW5Db2RlICAgICAgU3RyaW5nDQogIHN0YXRlICAgICAgICBTdHJpbmcNCiAgY291bnRyeSAgICAgIFN0cmluZw0KICBlbWFpbCAgICAgICAgU3RyaW5nDQogIG1vYmlsZSAgICAgICBTdHJpbmcNCiAgb3JkZXIgICAgICAgIE9yZGVyPyAgICBAcmVsYXRpb24oZmllbGRzOiBbb3JkZXJJZF0sIHJlZmVyZW5jZXM6IFtpZF0pDQogIG9yZGVySWQgICAgICBJbnQ/DQp9DQoNCm1vZGVsIExvY2F0aW9uIHsNCiAgaWQgICBJbnQgICAgQGlkIEBkZWZhdWx0KGF1dG9pbmNyZW1lbnQoKSkNCiAgbGF0ICBGbG9hdA0KICBsb25nIEZsb2F0DQp9DQoNCg==",
+  "inlineSchemaHash": "0aebf79fd8289ccee4c062f8ee4dac9c49e9a996bbee2fd8b5ca729c8c020264",
+  "noEngine": false
 }
 
 const fs = require('fs')
@@ -312,8 +321,6 @@ defineDmmfProperty(exports.Prisma, config.runtimeDataModel)
 
 
 
-
-
 const { warnEnvConflicts } = require('./runtime/library')
 
 warnEnvConflicts({
@@ -325,7 +332,9 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
+// file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "prisma/generated/client/query_engine-windows.dll.node")
+// file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "prisma/generated/client/schema.prisma")

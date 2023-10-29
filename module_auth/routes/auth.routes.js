@@ -3,6 +3,7 @@ const router = express.Router();
 
 const handleErrors = require("../middleware/handleErrors");
 const UserController = require("../controllers/UserController");
+const authorization = require("../middleware/authorization");
 
 // HANDLING ERRORS
 router.use(handleErrors);

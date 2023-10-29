@@ -6,6 +6,7 @@ const {
   objectEnumValues,
   makeStrictEnum,
   Public,
+  detectRuntime,
 } = require('./runtime/index-browser')
 
 
@@ -15,28 +16,13 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.1.1
- * Query Engine version: 6a3747c37ff169c90047725a05a6ef02e32ac97e
+ * Prisma Client JS version: 5.5.2
+ * Query Engine version: aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a
  */
 Prisma.prismaVersion = {
-  client: "5.1.1",
-  engine: "6a3747c37ff169c90047725a05a6ef02e32ac97e"
+  client: "5.5.2",
+  engine: "aebc046ce8b88ebbcb45efe31cbe7d06fd6abc0a"
 }
-
-
-const runtimeDescription = (() => {
-  // https://edge-runtime.vercel.app/features/available-apis#addressing-the-runtime
-  if ("EdgeRuntime" in globalThis && typeof globalThis.EdgeRuntime === "string") {
-    return "under the Vercel Edge Runtime";
-  }
-  // Deno
-  if ("Deno" in globalThis && typeof globalThis.Deno === "object") {
-    return "under the Deno runtime";
-  }
-  // Default to assuming browser
-  return "in the browser";
-})();
-
 
 Prisma.PrismaClientKnownRequestError = () => {
   throw new Error(`PrismaClientKnownRequestError is unable to be run ${runtimeDescription}.
@@ -283,16 +269,36 @@ exports.Prisma.ModelName = {
 };
 
 /**
- * Create the Client
+ * This is a stub Prisma Client that will error at runtime if called.
  */
 class PrismaClient {
   constructor() {
-    throw new Error(
-      `PrismaClient is unable to be run ${runtimeDescription}.
-In case this error is unexpected for you, please report it in https://github.com/prisma/prisma/issues`,
-    )
+    return new Proxy(this, {
+      get(target, prop) {
+        const runtime = detectRuntime()
+        const edgeRuntimeName = {
+          'workerd': 'Cloudflare Workers',
+          'deno': 'Deno and Deno Deploy',
+          'netlify': 'Netlify Edge Functions',
+          'edge-light': 'Vercel Edge Functions',
+        }[runtime]
+
+        let message = 'PrismaClient is unable to run in '
+        if (edgeRuntimeName !== undefined) {
+          message += edgeRuntimeName + '. As an alternative, try Accelerate: https://pris.ly/d/accelerate.'
+        } else {
+          message += 'this browser environment, or has been bundled for the browser (running in `' + runtime + '`).'
+        }
+        
+        message += `
+If this is unexpected, please open an issue: https://github.com/prisma/prisma/issues`
+
+        throw new Error(message)
+      }
+    })
   }
 }
+
 exports.PrismaClient = PrismaClient
 
 Object.assign(exports, Prisma)

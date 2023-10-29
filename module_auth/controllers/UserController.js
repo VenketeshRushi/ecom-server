@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const { BadRequest } = require("../utils/errors");
-const prisma = require("../../db.server");
+const prisma = require("../../db.server.postgres");
 
 const transport = nodemailer.createTransport({
   service: "gmail",
@@ -42,6 +42,7 @@ exports.login = async (req, res, next) => {
 
     return res.status(200).json({ user, token });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
