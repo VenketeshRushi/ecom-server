@@ -11,7 +11,7 @@ router.use(authorization);
 
 
 // MULTER
-const DIR = "./public/uploads";
+const DIR = "./uploads";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, DIR);

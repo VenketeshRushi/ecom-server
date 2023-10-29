@@ -8,7 +8,7 @@ exports.addUserImage = async (req, res, next) => {
     }
 
     const url = "https://nike-clone-tcmw.onrender.com";
-    const uploadedFile = url + "/public/uploads/" + req.file.filename;
+    const uploadedFile = url + "/uploads/" + req.file.filename;
 
     const checkProfilePic = await prisma.user.findUnique({
       where: {
