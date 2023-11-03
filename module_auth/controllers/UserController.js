@@ -38,6 +38,8 @@ exports.login = async (req, res, next) => {
       return res.status(401).json({ message: "Invalid Password" });
     }
 
+    delete user.password
+
     const token = jwt.sign({ user }, "1234");
 
     return res.status(200).json({ user, token });
@@ -66,9 +68,8 @@ exports.signup = async (req, res, next) => {
       data: { firstName, lastName, email, password: hashedPassword, isAdmin },
     });
 
-    const token = jwt.sign({ user }, "your-secret-key");
+    return res.status(200).json({ message: "User signed up successfully" });
 
-    res.status(201).json({ user, token });
   } catch (error) {
     next(error);
   }
